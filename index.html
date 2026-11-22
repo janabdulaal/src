@@ -182,14 +182,30 @@ body.ready .hero p{opacity:.92;transform:none}
 .story h2{margin:18px 0 28px}
 .story-copy p{margin:0 0 16px;max-width:480px;opacity:.88}
 .story-copy .lead{opacity:1}
-.story-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.2vw,16px)}
-.story-cards figure{margin:0}
-.story-cards figure:nth-child(2){transform:translateY(-36px)}
-.story-cards .ph{aspect-ratio:3/4;border-radius:var(--radius);overflow:hidden;background:rgba(247,244,231,.06)}
+.story-cards{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.2vw,16px);padding-top:40px}
+.story-route{position:absolute;left:-6%;width:112%;top:46%;height:140px;overflow:visible;pointer-events:none;clip-path:inset(0 100% 0 0);transition:clip-path 2.2s .5s cubic-bezier(.6,0,.2,1)}
+.story.in .story-route{clip-path:inset(0 0 0 0)}
+.story-route path{fill:none;stroke:var(--cream);stroke-width:1.5;stroke-dasharray:2 9;stroke-linecap:round;opacity:.45}
+.story-route circle{fill:var(--cream)}
+.story-cards figure{position:relative;z-index:1;margin:0;opacity:0;transition:transform 1.4s cubic-bezier(.2,.8,.2,1),opacity .6s ease}
+.story-cards figure:nth-child(2){--t:translate(105%,60px) rotate(-12deg);--to:rotate(-3deg)}
+.story-cards figure:nth-child(3){--t:translateY(80px) rotate(5deg);--to:translateY(-40px);z-index:2;transition-delay:.12s}
+.story-cards figure:nth-child(4){--t:translate(-105%,60px) rotate(14deg);--to:rotate(3deg) translateY(8px);transition-delay:.24s}
+.story-cards figure{transform:var(--t)}
+.story.in .story-cards figure{opacity:1;transform:var(--to)}
+.story.in .story-cards figure:hover{transform:translateY(-14px) rotate(0);transition-delay:0s;transition-duration:.6s}
+.story-cards .ph{aspect-ratio:3/4;border-radius:var(--radius);overflow:hidden;background:rgba(247,244,231,.06);box-shadow:0 30px 60px -24px rgba(0,0,0,.55)}
 .story-cards img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
-.story-cards figure:hover img{transform:scale(1.05)}
-.story-cards figcaption{margin-top:12px;font:italic clamp(16px,1.3vw,19px)/1.25 var(--serif)}
+.story-cards figure:hover img{transform:scale(1.06)}
+.story-cards figcaption{margin-top:14px;font:italic clamp(16px,1.3vw,19px)/1.25 var(--serif)}
 .story-cards figcaption b{display:block;margin-bottom:4px;font:700 10px var(--sans);letter-spacing:.26em;text-transform:uppercase;font-style:normal;opacity:.6}
+.story-copy .mark{position:relative;white-space:nowrap;font-style:italic;font-family:var(--serif);font-size:1.12em}
+.story-copy .mark:after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;border-radius:2px;background:var(--cream);opacity:.7;transform:scaleX(0);transform-origin:left;transition:transform 1s var(--ease)}
+.story.in .story-copy .mark:after{transform:none}
+.story.in .story-copy .mark:nth-of-type(1):after{transition-delay:1.1s}
+.story.in .story-copy .mark:nth-of-type(2):after{transition-delay:1.4s}
+.story.in .story-copy .mark:nth-of-type(3):after{transition-delay:1.7s}
+@media (prefers-reduced-motion:reduce){.story-cards figure{transform:var(--to)!important;opacity:1}.story-route{clip-path:none}}
 
 /* ---------- Numbers ---------- */
 .numbers{padding:clamp(90px,10vw,140px) 0;text-align:center}
@@ -270,37 +286,26 @@ body.ready .hero p{opacity:.92;transform:none}
 .cal-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:clamp(30px,4vw,48px);flex-wrap:wrap}
 .cal-head h2{margin-top:16px}
 .cal-head p{margin:0;max-width:320px;font-size:14px;opacity:.7}
-.cal-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(16px,2vw,28px);align-items:stretch}
-.cal-next{position:relative;overflow:hidden;border-radius:var(--radius);background:var(--green);color:var(--cream);padding:clamp(28px,3vw,44px);display:flex;flex-direction:column;gap:18px}
-.cal-next:before{content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;border:1px solid rgba(247,244,231,.14);box-shadow:0 0 0 40px rgba(247,244,231,.03),0 0 0 80px rgba(247,244,231,.02)}
+.cal-next{position:relative;overflow:hidden;border-radius:var(--radius);background:var(--green);color:var(--cream);padding:clamp(26px,3.4vw,52px);display:grid;grid-template-columns:auto 1fr;grid-template-areas:"top top" "when count" "runs runs";gap:clamp(20px,2.6vw,34px) clamp(24px,4vw,64px);align-items:center}
+.cal-next:before{content:"";position:absolute;right:-80px;top:-80px;width:300px;height:300px;border-radius:50%;border:1px solid rgba(247,244,231,.14);box-shadow:0 0 0 46px rgba(247,244,231,.03),0 0 0 92px rgba(247,244,231,.02)}
 .cal-next>*{position:relative}
-.cal-next .eyebrow{opacity:.7}
+.cal-next>.eyebrow{grid-area:top;opacity:.7}
 .cal-next p{margin:0;opacity:.8}
-.cal-when{display:flex;align-items:flex-end;gap:18px}
+.cal-when{grid-area:when;display:flex;align-items:flex-end;gap:18px}
 .cal-day{font:italic 400 clamp(84px,8vw,128px)/.78 var(--serif);letter-spacing:-.06em}
 .cal-when h3{font-size:clamp(30px,2.8vw,44px)}
 .cal-when small{display:block;margin-top:8px;font:700 10px var(--sans);letter-spacing:.26em;text-transform:uppercase;opacity:.7}
-.cal-count{display:flex;gap:10px}
-.cal-count[hidden]{display:none}
-.cal-count div{min-width:70px;padding:10px 12px;border-radius:14px;background:rgba(247,244,231,.08);text-align:center}
-.cal-count b{display:block;font:400 30px/1 var(--serif);font-variant-numeric:tabular-nums}
-.cal-count span{font:700 9px var(--sans);letter-spacing:.24em;text-transform:uppercase;opacity:.65}
-.cal-runs{display:grid;gap:8px;margin-top:auto}
-.cal-run{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-radius:14px;background:rgba(247,244,231,.07)}
-.cal-run strong{display:block;font:italic 22px/1.1 var(--serif)}
-.cal-run span{font-size:13px;opacity:.75}
+.cal-count{grid-area:count;justify-self:end;text-align:left}
+.cal-count>small{display:block;margin-bottom:10px;font:700 10px var(--sans);letter-spacing:.26em;text-transform:uppercase;opacity:.7}
+.cal-count>div{display:flex;gap:10px}
+.cal-count>div div{min-width:78px;padding:12px 10px;border-radius:14px;background:rgba(247,244,231,.08);border:1px solid rgba(247,244,231,.1);text-align:center}
+.cal-count b{display:block;font:400 clamp(30px,3vw,40px)/1 var(--serif);font-variant-numeric:tabular-nums}
+.cal-count span{display:block;margin-top:6px;font:700 9px var(--sans);letter-spacing:.24em;text-transform:uppercase;opacity:.65}
+.cal-runs{grid-area:runs;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+.cal-run{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-radius:14px;background:rgba(247,244,231,.07)}
+.cal-run strong{display:block;font:italic 24px/1.1 var(--serif)}
+.cal-run span{display:block;margin-top:4px;font-size:13px;line-height:1.4;opacity:.75}
 .cal-run button,.cal-run a{flex:none;height:38px;padding:0 16px;border-radius:100px;background:var(--cream);color:var(--green);font:700 10px var(--sans);letter-spacing:.2em;text-transform:uppercase;display:inline-flex;align-items:center}
-.cal-list{list-style:none;margin:0;padding:0;border-radius:var(--radius);background:#fbf9f0;border:1px solid var(--line);overflow:hidden}
-.cal-list[hidden]{display:none}
-.cal-list li{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;padding:16px 20px;border-bottom:1px solid var(--line)}
-.cal-list li:last-child{border-bottom:0}
-.cal-tile{width:58px;padding:7px 0 8px;border-radius:12px;background:var(--sage);text-align:center;line-height:1}
-.cal-tile small{display:block;font:700 9px var(--sans);letter-spacing:.24em;text-transform:uppercase;opacity:.7;margin-bottom:4px}
-.cal-tile b{font:400 28px var(--serif)}
-.cal-list strong{display:block;font:italic 21px/1.15 var(--serif)}
-.cal-list span{font-size:13px;opacity:.7}
-.cal-list .cal-tag{font:700 9px var(--sans);letter-spacing:.2em;text-transform:uppercase;padding:6px 10px;border-radius:100px;background:var(--green);color:var(--cream);opacity:1}
-.cal-list .cal-tag.weekly{background:rgba(0,64,24,.1);color:var(--green)}
 
 /* ---------- Archive: an easy photo grid ---------- */
 .archive{background:var(--sage);padding:clamp(90px,10vw,140px) 0}
@@ -408,7 +413,9 @@ body.ready .hero p{opacity:.92;transform:none}
   .story{padding:96px 0 80px}
   .story-in{grid-template-columns:1fr;gap:34px}
   .story-cards{gap:8px}
-  .story-cards figure:nth-child(2){transform:translateY(-18px)}
+  .story-cards{padding-top:24px}
+  .story-route{top:30%}
+  .story-cards figure:nth-child(3){--to:translateY(-20px)}
   .story-cards figcaption{font-size:13px;margin-top:8px}
   .story-cards figcaption b{font-size:8px;letter-spacing:.18em}
   .numbers{padding:80px 0}
@@ -442,11 +449,11 @@ body.ready .hero p{opacity:.92;transform:none}
   .loc-info .pill{min-height:46px}
   /* Calendar */
   .calendar{padding:84px 0}
-  .cal-grid{grid-template-columns:1fr}
+  .cal-next{grid-template-columns:1fr;grid-template-areas:"top" "when" "count" "runs"}
+  .cal-count{justify-self:stretch}
   .cal-day{font-size:76px}
-  .cal-count div{min-width:0;flex:1}
-  .cal-list li{gap:12px;padding:12px 14px}
-  .cal-list li .cal-tag{display:none}
+  .cal-count>div div{min-width:0;flex:1;padding:10px 4px}
+  .cal-count b{font-size:28px}
   /* Archive */
   .archive{padding:84px 0}
   .archive-head .hint{display:none}
@@ -563,13 +570,14 @@ body.ready .hero p{opacity:.92;transform:none}
       <div class="story-copy">
         <div class="eyebrow rv">01 / Our story</div>
         <h2 class="rv">More than <em>the miles.</em></h2>
-        <p class="lead rv d1">What started with six runners on a Saturday morning in Khobar in 2024 has grown into a community built on connection, support, and personal growth.</p>
+        <p class="lead rv d1">What started with six runners on a Saturday morning in Khobar in 2024 has grown into a community built on <span class="mark">connection</span>, <span class="mark">support</span>, and <span class="mark">personal growth</span>.</p>
         <p class="rv d2">Wherever you are in your running journey, there’s a place for you here.</p>
       </div>
       <div class="story-cards">
-        <figure class="rv"><div class="ph"><img src="assets/photos/thumbs/story-hug.jpg" alt="Runners embracing after a Saturday run" loading="lazy"></div><figcaption><b>2024</b>Six runners, one Saturday</figcaption></figure>
-        <figure class="rv d1"><div class="ph"><img src="assets/photos/thumbs/story-crew.jpg" alt="SRC members together in club jerseys" loading="lazy"></div><figcaption><b>Every week</b>Came for the miles</figcaption></figure>
-        <figure class="rv d2"><div class="ph"><img src="assets/photos/thumbs/story-stretch.jpg" alt="Stretching together after the run" loading="lazy"></div><figcaption><b>Today</b>Stayed for the company</figcaption></figure>
+        <svg class="story-route" viewBox="0 0 600 140" preserveAspectRatio="none" aria-hidden="true"><path d="M0 110 C 90 110, 120 30, 200 40 S 330 120, 400 90 S 520 10, 600 30" vector-effect="non-scaling-stroke"/></svg>
+        <figure><div class="ph"><img src="assets/photos/thumbs/story-hug.jpg" alt="Runners embracing after a Saturday run" loading="lazy"></div><figcaption><b>2024</b>Six runners, one Saturday</figcaption></figure>
+        <figure><div class="ph"><img src="assets/photos/thumbs/story-jerseys.jpg" alt="SRC members in club jerseys heading out on a run" loading="lazy" style="object-position:30% center"></div><figcaption><b>Every week</b>Came for the miles</figcaption></figure>
+        <figure><div class="ph"><img src="assets/photos/thumbs/story-stretch.jpg" alt="Stretching together after the run" loading="lazy"></div><figcaption><b>Today</b>Stayed for the company</figcaption></figure>
       </div>
     </div>
   </section>
@@ -650,10 +658,7 @@ body.ready .hero p{opacity:.92;transform:none}
         </div>
         <p class="rv d1">Khobar and Riyadh run every Saturday. Pop-ups are added here as they’re announced.</p>
       </div>
-      <div class="cal-grid">
-        <article class="cal-next rv" id="cal-next" aria-live="polite"></article>
-        <ol class="cal-list rv d1" id="cal-list"></ol>
-      </div>
+      <article class="cal-next rv" id="cal-next" aria-live="polite"></article>
     </div>
   </section>
 
@@ -1091,18 +1096,15 @@ function buildCalendar() {
   const list = [...days.values()].sort((a, b) => a.date - b.date)
     .filter(day => day.date > today || day.items.some(it => { const t = parseTime(it.time); return !t || t[0] * 60 + t[1] > minutesNow; }))
     .slice(0, 5);
-  const next = $("#cal-next"), rest = $("#cal-list");
+  const next = $("#cal-next");
   if (!list.length) {
-    next.innerHTML = `<div class="eyebrow">Next run</div><div class="cal-when"><h3>To be announced</h3></div><p>New dates are shared on Instagram first.</p><a class="pill pill-cream" style="align-self:flex-start" href="https://www.instagram.com/${esc(CONTENT.instagram.username)}/" target="_blank" rel="noopener noreferrer">Follow for dates <i><svg><use href="#i-arrow"/></svg></i></a>`;
-    rest.hidden = true;
+    next.innerHTML = `<div class="eyebrow">Next run</div><div class="cal-when"><h3>To be announced</h3></div><p>Times and new dates are shared on WhatsApp.</p><a class="pill pill-cream" style="align-self:flex-start" href="https://www.instagram.com/${esc(CONTENT.instagram.username)}/" target="_blank" rel="noopener noreferrer">Follow for dates <i><svg><use href="#i-arrow"/></svg></i></a>`;
     return;
   }
   const label = d => {
     const diff = Math.round((d - today) / 864e5);
     return diff === 0 ? "Today" : diff === 1 ? "Tomorrow" : diff < 7 ? `This ${DAYS[d.getDay()]}` : `In ${diff} days`;
   };
-  const isWeekly = day => day.items.every(i => i.kind === "weekly");
-  const who = items => items.map(it => it.title || it.city).filter((v, i, a) => a.indexOf(v) === i).join(" · ");
   const reg = it => {
     if (it.link) return `<a href="${esc(it.link)}" target="_blank" rel="noopener noreferrer">Register</a>`;
     const key = (it.city || "").trim().toLowerCase();
@@ -1111,24 +1113,19 @@ function buildCalendar() {
   const first = list[0];
   next.innerHTML = `<div class="eyebrow">Next run · ${label(first.date)}</div>
     <div class="cal-when"><span class="cal-day">${first.date.getDate()}</span><div><h3>${DAYS[first.date.getDay()]}</h3><small>${MONTHS[first.date.getMonth()]} ${first.date.getFullYear()}</small></div></div>
-    <div class="cal-count" id="cal-count" hidden></div>
-    <div class="cal-runs">${first.items.map(it => `<div class="cal-run"><div><strong>${esc(it.title || it.city)}</strong><span>${esc([it.title ? it.city : "", it.time || "Time shared on Instagram", it.place].filter(Boolean).join(" · "))}</span></div>${reg(it)}</div>`).join("")}</div>`;
-  rest.hidden = list.length < 2;
-  rest.innerHTML = list.slice(1).map(day => `<li><div class="cal-tile"><small>${MONTHS[day.date.getMonth()]}</small><b>${day.date.getDate()}</b></div><div><strong>${esc(who(day.items))}</strong><span>${DAYS[day.date.getDay()]}${day.items[0].time ? " · " + esc(day.items[0].time) : ""}</span></div><span class="cal-tag${isWeekly(day) ? " weekly" : ""}">${isWeekly(day) ? "Weekly" : "Pop-up"}</span></li>`).join("");
-  // Live countdown when the next run has a start time
-  const t = first.items.map(it => parseTime(it.time)).find(Boolean);
-  if (t) {
-    const target = new Date(first.date); target.setHours(t[0], t[1], 0, 0);
-    const box = $("#cal-count");
-    const tick = () => {
-      const ms = target - riyadhNow();
-      if (ms <= 0) { box.hidden = true; return; }
-      const d = Math.floor(ms / 864e5), h = Math.floor(ms / 36e5) % 24, m = Math.floor(ms / 6e4) % 60;
-      box.innerHTML = `<div><b>${d}</b><span>Days</span></div><div><b>${String(h).padStart(2, "0")}</b><span>Hours</span></div><div><b>${String(m).padStart(2, "0")}</b><span>Min</span></div>`;
-      box.hidden = false;
-    };
-    tick(); setInterval(tick, 30000);
-  }
+    <div class="cal-count"><small>Starts in</small><div id="cal-count"></div></div>
+    <div class="cal-runs">${first.items.map(it => `<div class="cal-run"><div><strong>${esc(it.title || it.city)}</strong><span>${esc([it.title ? it.city : "", it.time || "Time shared on WhatsApp", it.place].filter(Boolean).join(" · "))}</span></div>${reg(it)}</div>`).join("")}</div>`;
+  // Live countdown to the start time, or to the start of the run day when no time is set yet
+  const t = first.items.map(it => parseTime(it.time)).find(Boolean) || [0, 0];
+  const target = new Date(first.date); target.setHours(t[0], t[1], 0, 0);
+  const box = $("#cal-count"), pad = n => String(n).padStart(2, "0");
+  const tick = () => {
+    const ms = Math.max(0, target - riyadhNow());
+    const d = Math.floor(ms / 864e5), h = Math.floor(ms / 36e5) % 24, m = Math.floor(ms / 6e4) % 60, sec = Math.floor(ms / 1e3) % 60;
+    box.innerHTML = `<div><b>${d}</b><span>Days</span></div><div><b>${pad(h)}</b><span>Hrs</span></div><div><b>${pad(m)}</b><span>Min</span></div><div><b>${pad(sec)}</b><span>Sec</span></div>`;
+    if (!ms) { box.parentNode.querySelector("small").textContent = "Run day"; clearInterval(timer); }
+  };
+  const timer = setInterval(tick, 1000); tick();
 }
 
 // ----- Registration -----
