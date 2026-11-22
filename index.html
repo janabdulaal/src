@@ -1,591 +1,772 @@
 <!DOCTYPE html>
-
-<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="#004018" name="theme-color"/><title>Saturday Run Club — Where Community Meets Movement</title><meta content="Saturday Run Club. Where community meets movement. Founded in Khobar in 2024, with a Riyadh chapter and pop-up runs in Jeddah and Bahrain." name="description"/><style>
-:root{--green:#004018;--cream:#f7f4e7;--ink:#070707}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--green);font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}button,a{font:inherit}a{text-decoration:none;color:inherit}button{cursor:pointer}.serif{font-family:'Times New Roman',Georgia,serif;letter-spacing:-.055em}.eyebrow{font-size:11px;letter-spacing:.24em;font-weight:700;text-transform:uppercase}.nav{position:fixed;z-index:50;top:18px;left:3%;width:94%;height:65px;border-radius:100px;display:flex;align-items:center;justify-content:space-between;padding:0 25px;background:rgba(247,244,231,.93);backdrop-filter:blur(22px);box-shadow:0 10px 50px #0002;transition:.4s}.logo{font-family:Georgia,serif;font-weight:bold;line-height:.8;font-size:21px;letter-spacing:-1px}.links{display:flex;gap:27px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em}.pill{background:var(--green);color:var(--cream);border-radius:100px;padding:15px 23px;border:1px solid var(--green);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;display:inline-flex;gap:15px;align-items:center;transition:.25s}.pill:hover{background:var(--cream);color:var(--green);transform:translateY(-2px)}.menu{display:none;border:0;background:transparent;font-size:24px;color:var(--green)}.hero{height:100svh;min-height:620px;position:relative;color:white;background:#122a1b;overflow:hidden}.hero-slide{position:absolute;inset:0;opacity:0;transform:scale(1.1);transition:opacity 1.5s,transform 8s;object-fit:cover;width:100%;height:100%}.hero-slide.active{opacity:1;transform:scale(1)}.shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,24,13,.72),rgba(0,0,0,.08) 85%),linear-gradient(0deg,rgba(0,20,9,.6),transparent 40%)}.hero-content{position:absolute;top:48%;left:7%;transform:translateY(-40%);max-width:850px}.hero h1{font-size:clamp(74px,11vw,175px);font-weight:400;line-height:.79;margin:28px 0;max-width:900px}.hero h1 em{font-weight:400}.hero p{font-size:clamp(15px,1.6vw,19px);line-height:1.6;max-width:390px}.hero-foot{position:absolute;bottom:32px;left:7%;right:7%;display:flex;justify-content:space-between;align-items:center;gap:25px}.progress{width:160px;height:2px;background:#ffffff66;overflow:hidden}.progress span{display:block;background:white;height:100%;width:0}.hero-controls{display:flex;gap:9px}.circle{width:43px;height:43px;border:1px solid #fff8;border-radius:50%;background:transparent;color:white;font-size:20px}.ticker{overflow:hidden;background:var(--green);color:var(--cream);padding:18px 0;white-space:nowrap}.ticker-track{display:inline-block;animation:marquee 72s linear infinite;font-family:Georgia,serif;font-size:22px;font-style:italic}.ticker-track span{padding:0 35px}@keyframes marquee{to{transform:translateX(-50%)}}section{padding:110px 7%}.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:50px}.section-head h2,.story h2,.join h2{font-size:clamp(52px,7vw,112px);line-height:.89;font-weight:400;margin:16px 0}.lead{max-width:430px;line-height:1.75;font-size:16px}.stats{background:var(--cream);display:grid;grid-template-columns:repeat(4,1fr);gap:15px;padding-top:100px;padding-bottom:110px}.stat{border-top:1px solid #00401855;padding:28px 0}.stat strong{display:block;font:normal clamp(60px,7vw,115px)/1 Georgia,serif;letter-spacing:-.08em}.stat p{font-size:12px;text-transform:uppercase;letter-spacing:.18em}.story{background:var(--green);color:var(--cream);display:grid;grid-template-columns:1fr 1fr;gap:9%;align-items:center}.story-photo{height:650px;max-height:75vh;width:100%;object-fit:cover;border-radius:150px 150px 4px 4px}.story p{font-size:17px;line-height:1.8;max-width:490px}.mini-values{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}.mini-values span{border:1px solid #ffffff55;padding:11px 16px;border-radius:30px;font-size:11px;letter-spacing:.1em;text-transform:uppercase}.gallery{background:var(--cream)}.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-flow:dense;gap:12px}.photo{position:relative;border:0;padding:0;background:#ddd;overflow:hidden;aspect-ratio:4/5;display:block}.photo:nth-child(9n + 1),.photo:nth-child(9n + 7){grid-column:span 2;aspect-ratio:1.45}.photo img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.8,.2,1);display:block}.photo:hover img{transform:scale(1.075)}.photo:after{content:'';position:absolute;bottom:15px;right:18px;color:white;font-size:27px;text-shadow:0 1px 6px #0008}.cities{background:#eae8dc}.city-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.city{position:relative;height:430px;overflow:hidden;background:var(--green);color:white;display:flex;align-items:end;padding:27px}.city img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.72;transition:transform .7s}.city:hover img{transform:scale(1.08)}.city:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#001e12bb,transparent 70%)}.city div{position:relative;z-index:1;width:100%;display:flex;justify-content:space-between;align-items:end}.city h3{font:normal 52px Georgia,serif;margin:0}.city small{font-size:11px;letter-spacing:.12em;text-transform:uppercase}.partners{background:var(--cream);text-align:center}.partner-list{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;margin:45px auto;max-width:1000px}.partner-list span{border:1px solid #00401855;padding:18px 25px;font-family:Georgia,serif;font-size:21px}.join{background:var(--green);color:var(--cream);text-align:center;padding-top:125px;padding-bottom:125px}.join h2{font-size:clamp(75px,12vw,180px)}.join .pill{background:var(--cream);color:var(--green);border-color:var(--cream)}.footer{padding:55px 7%;background:#00290f;color:var(--cream);display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}.footer a{text-decoration:underline;text-underline-offset:5px}.reveal{opacity:0;transform:translateY(38px);transition:opacity .9s,transform .9s}.reveal.visible{opacity:1;transform:none}.lightbox{position:fixed;inset:0;z-index:90;background:#030903ef;display:none;align-items:center;justify-content:center;padding:65px 25px}.lightbox.open{display:flex}.lightbox img{max-width:100%;max-height:88vh;object-fit:contain}.close{position:absolute;top:20px;right:25px;background:none;border:0;color:white;font-size:35px}.light-nav{position:absolute;bottom:20px;display:flex;gap:20px}.light-nav button{border:1px solid white;color:white;background:none;border-radius:50%;width:40px;height:40px}.mobile-panel{display:none}@media(max-width:800px){.links,.nav>.pill{display:none}.menu{display:block}.mobile-panel.open{display:flex;position:fixed;z-index:49;top:0;left:0;right:0;background:var(--cream);padding:110px 30px 35px;flex-direction:column;gap:24px;font:30px Georgia,serif;box-shadow:0 10px 40px #0003}.hero-content{left:6%;right:6%;top:47%}.hero h1{font-size:clamp(70px,17vw,130px)}.hero-foot{left:6%;right:6%}section{padding:75px 6%}.stats{grid-template-columns:repeat(2,1fr)}.story{grid-template-columns:1fr}.story-photo{height:420px;order:-1}.gallery-grid{grid-template-columns:repeat(2,1fr);gap:7px}.photo:nth-child(9n + 1),.photo:nth-child(9n + 7){grid-column:span 2}.city-grid{grid-template-columns:1fr}.city{height:330px}.section-head{display:block}.section-head h2{font-size:65px}.footer{display:block}.footer>*{margin-bottom:25px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
-
-.hero-slide,.story-photo img,.city img{filter:none!important;image-rendering:auto} .hero-slide{object-fit:cover} 
-/* SRC STUDIO V5 — premium editorial system */
-:root{--green:#004018;--cream:#f7f4e7;--lime:#c8ef8b}body{font-family:Arial,Helvetica,sans-serif}.opening{position:fixed;inset:0;z-index:150;background:#003c20;color:var(--cream);display:grid;place-items:center;overflow:hidden;isolation:isolate;transition:opacity .9s ease,visibility .9s}.opening.done{opacity:0;visibility:hidden;pointer-events:none}.opening:before{content:"";position:absolute;inset:-35%;background:radial-gradient(ellipse at 50% 50%,#187346 0%,#004625 34%,#002e18 68%);animation:introAmbient 5s ease-in-out infinite alternate;z-index:-1}.opening-grain{position:absolute;inset:0;opacity:.17;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");pointer-events:none}.opening-orbit{position:absolute;width:85vmax;height:85vmax;border:1px solid #ffffff18;border-radius:50%;transform:rotate(-22deg) scaleX(.7);animation:orbit 8s linear infinite}.orbit-two{width:125vmax;height:125vmax;animation-direction:reverse;opacity:.7}.opening-inner{position:relative;text-align:center;padding:20px;max-width:1100px;width:100%}.opening-kicker{font-size:10px;letter-spacing:.38em;font-weight:700;animation:rise .8s .2s both}.opening-word{font-size:clamp(46px,9.8vw,160px);font-weight:400;letter-spacing:-.075em;line-height:.86;margin:30px 0 26px}.opening-word>span{display:block;animation:rise .9s both}.opening-word>span:first-child{animation-delay:.38s}.opening-word>span:nth-child(2){animation-delay:.58s}.opening-word i{font-weight:400}.opening-star{display:inline-block;font-family:Arial;font-size:.3em;vertical-align:top;color:var(--lime);margin-left:12px;animation:spin 8s linear infinite}.opening-rule{width:min(270px,55vw);height:1px;background:#ffffff55;margin:0 auto 22px;overflow:hidden}.opening-rule span{display:block;height:100%;background:var(--lime);animation:loadintro 2.7s .45s both}.opening-inner p{font-size:10px;letter-spacing:.3em;animation:rise 1s .8s both}.skip-intro{position:absolute;bottom:32px;right:5%;background:none;color:white;border:1px solid #ffffff66;padding:13px 19px;border-radius:50px;font-size:10px;letter-spacing:.16em;z-index:2}.skip-intro span{margin-left:15px}.opening-counter{position:absolute;bottom:35px;left:5%;font:italic 25px Georgia,serif;opacity:.8}@keyframes rise{from{opacity:0;transform:translateY(40px);filter:blur(7px)}to{opacity:1;transform:none;filter:blur(0)}}@keyframes introAmbient{to{transform:translate(5%,3%) scale(1.1)}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes orbit{to{transform:rotate(338deg) scaleX(.7)}}@keyframes loadintro{from{width:0}to{width:100%}}.manifesto{background:#dce7c8;color:#004018;padding:100px 7% 105px;position:relative;overflow:hidden}.manifesto-tag{font-size:10px;font-weight:700;letter-spacing:.24em}.manifesto p{font-size:clamp(39px,6.7vw,102px);letter-spacing:-.055em;line-height:1.04;margin:45px 0 15px;max-width:1250px}.manifesto p em{font-weight:400}.manifesto-icon{position:absolute;right:8%;bottom:38px;font-size:60px}.partners{padding-top:140px;padding-bottom:120px;background:#f2f0e5;text-align:left}.partner-intro{max-width:1100px;margin:0 auto 65px;text-align:center}.partner-intro h2{font:normal clamp(52px,8.5vw,130px)/.92 Georgia,serif;letter-spacing:-.07em;margin:22px 0 25px}.partner-intro h2 em{font-weight:400}.partner-intro p{max-width:550px;margin:auto;font-size:16px;line-height:1.8;color:#355e46}.brand-grid{max-width:1250px;margin:auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:#a5b5a6;border:1px solid #a5b5a6}.brand-tile{min-height:170px;background:#f2f0e5;display:flex;justify-content:center;align-items:center;padding:20px;position:relative;overflow:hidden;transition:background .4s,color .4s}.brand-tile:before{content:'';position:absolute;top:14px;right:18px;opacity:0;transition:.3s}.brand-tile:hover{background:#004018;color:white}.brand-tile:hover:before{opacity:.7}.brand-mark{font-weight:900;font-size:clamp(16px,2vw,27px);letter-spacing:-.06em;text-align:center;transition:transform .5s;line-height:1.1}.brand-tile:hover .brand-mark{transform:scale(1.08)}.brand-wello{font-size:40px;letter-spacing:-.09em;font-weight:1000}.brand-barry{font-size:27px;letter-spacing:.1em}.brand-f45{font-size:55px;letter-spacing:-.08em;font-style:italic}.brand-physio{font-size:22px;letter-spacing:.06em;font-weight:500}.brand-nafas{font:italic 42px Georgia,serif}.brand-lakma{letter-spacing:.19em}.brand-salt{font:italic 30px Georgia,serif}.brand-joe{font-size:19px;letter-spacing:.04em}.brand-happy{font:italic 29px Georgia,serif}.brand-wood{font-size:23px;letter-spacing:.15em}.brand-soul{font:italic 39px Georgia,serif}.partner-bottom{max-width:1250px;margin:35px auto 0;display:flex;align-items:center;justify-content:space-between;gap:20px}.partner-bottom>span{font-size:10px;letter-spacing:.18em;font-weight:700}.stats{gap:30px}.stat{position:relative;padding-top:40px}.stat:before{content:none;position:absolute;right:0;top:22px;font-size:18px}.story-photo{border-radius:220px 220px 6px 6px}.city{border-radius:3px}.city:after{transition:background .4s}.city:hover:after{background:linear-gradient(0deg,#001e12ef,transparent 80%)}.join{position:relative;overflow:hidden}.join:before{content:'✳';position:absolute;right:-4%;top:-22%;font-size:clamp(350px,60vw,900px);line-height:1;color:#ffffff08;pointer-events:none;animation:spin 65s linear infinite}.join>*{position:relative}.pill{transition:transform .3s,background .3s,color .3s}.pill:hover{transform:translateY(-4px)}.nav{max-width:1600px;left:50%;transform:translateX(-50%)}
-@media(max-width:800px){.opening-word{font-size:clamp(42px,12vw,95px)}.opening-star{margin-left:5px}.opening-inner p{font-size:9px;letter-spacing:.16em}.nav{top:12px;width:calc(100% - 24px);padding:0 18px;height:59px}.hero{height:100svh;min-height:580px}.hero-content{top:46%}.hero h1{font-size:clamp(65px,16vw,115px)}.hero-foot{bottom:25px;align-items:end}.hero-foot>.eyebrow{max-width:110px;font-size:9px;line-height:1.5}.progress{width:55px}.hero-controls{gap:4px}.circle{width:36px;height:36px}.stats{gap:15px}.stat strong{font-size:clamp(49px,10vw,85px)}.stat p{font-size:10px;line-height:1.6}.manifesto{padding:85px 6% 110px}.manifesto p{font-size:clamp(39px,8.7vw,70px)}.manifesto-icon{font-size:40px}.partners{padding:90px 6%}.partner-intro{margin-bottom:40px}.partner-intro h2{font-size:clamp(53px,11vw,90px)}.brand-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.brand-tile{min-height:130px;padding:14px}.brand-mark{font-size:18px}.brand-wello{font-size:32px}.brand-f45{font-size:40px}.brand-nafas,.brand-soul{font-size:29px}.brand-happy{font-size:22px}.brand-salt{font-size:22px}.brand-joe{font-size:14px}.partner-bottom{align-items:flex-start;flex-direction:column}.join h2{font-size:clamp(68px,15vw,130px)}.mobile-panel.open{height:100dvh;overflow:auto;gap:28px}.mobile-panel a{border-bottom:1px solid #00401822;padding-bottom:15px}}
-@media(max-width:390px){.hero-foot>.eyebrow{display:none}.hero-foot{justify-content:flex-end}.hero h1{font-size:64px}.brand-tile{min-height:115px}}
-@media(prefers-reduced-motion:reduce){.opening{display:none}.opening.done{display:none}}
-
-/* SRC Studio V6 — bespoke editorial experiences */
-.story-v6{grid-template-columns:.9fr 1.1fr;gap:5%;min-height:840px;overflow:hidden}.story-v6 .story-copy{position:relative;z-index:2}.story-v6 h2{font-size:clamp(66px,7vw,122px)}.story-art{height:650px;position:relative;isolation:isolate}.story-art img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}.story-art>div:not(.story-stamp):hover img{transform:scale(1.055)}.story-art-main{position:absolute;top:2%;left:6%;width:75%;height:65%;overflow:hidden;border-radius:180px 180px 8px 8px}.story-art-small{position:absolute;right:0;top:18%;width:37%;height:38%;overflow:hidden;border:7px solid var(--green);border-radius:110px 110px 8px 8px;box-shadow:0 18px 45px #0004}.story-art-bottom{position:absolute;bottom:5%;left:0;width:56%;height:31%;overflow:hidden;border:7px solid var(--green);border-radius:5px}.story-stamp{position:absolute;right:1%;bottom:17%;border:1px solid #f7f4e78c;width:145px;height:145px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;transform:rotate(12deg);font-size:11px;letter-spacing:.2em;animation:stampFloat 6s ease-in-out infinite}.story-stamp strong{font:normal 48px Georgia,serif;letter-spacing:-.06em}.story-stamp span{font-size:8px}.story-art-caption{position:absolute;bottom:0;right:0;font-size:9px;letter-spacing:.2em}.story-signoff{display:flex;justify-content:space-between;max-width:470px;border-top:1px solid #ffffff55;margin-top:35px;padding-top:18px;font-size:10px;letter-spacing:.17em}.story-signoff span{font-size:24px}@keyframes stampFloat{50%{transform:rotate(17deg) translateY(-12px)}}
-.cities-v6{background:#e7e7d9}.city-switch{display:flex;gap:0;border-bottom:1px solid #00401844;margin-bottom:24px;overflow-x:auto}.city-switch button{white-space:nowrap;border:0;background:transparent;color:var(--green);opacity:.5;padding:20px 30px 20px 0;margin-right:35px;font-size:12px;font-weight:800;letter-spacing:.16em;position:relative}.city-switch button.active{opacity:1}.city-switch button.active:after{content:'';height:3px;background:var(--green);position:absolute;bottom:0;left:0;right:30px}.city-feature{display:grid;grid-template-columns:1.18fr .82fr;min-height:530px;background:var(--green);color:var(--cream);overflow:hidden}.city-visual{position:relative;overflow:hidden;min-height:530px}.city-visual img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:opacity .4s,transform 1.1s}.city-feature:hover .city-visual img{transform:scale(1.045)}.city-visual-tag{position:absolute;left:25px;bottom:25px;background:var(--cream);color:var(--green);padding:14px 18px;font-size:10px;letter-spacing:.16em;font-weight:800}.city-detail{position:relative;padding:58px 45px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}.city-outline{position:absolute;right:20px;top:0;font:normal 230px Georgia,serif;color:#ffffff0b;pointer-events:none}.city-detail h3{position:relative;font:normal clamp(65px,7vw,125px)/.95 Georgia,serif;margin:35px 0 20px;letter-spacing:-.07em}.city-dot{color:#b5e68a}.city-detail p{font-size:17px;line-height:1.7;max-width:360px}.city-foot{margin-top:auto;border-top:1px solid #ffffff50;padding-top:20px;display:flex;flex-direction:column;gap:12px;font-size:10px;letter-spacing:.12em}.city-cta{color:#c8ef8b}.city-note{font-size:11px;opacity:.75;margin-top:18px}
-.partners-v6{text-align:left;background:var(--cream);overflow:hidden}.partner-top{display:flex;justify-content:space-between;align-items:end;gap:40px}.partner-top h2{font:normal clamp(70px,9vw,145px)/.8 Georgia,serif;letter-spacing:-.07em;margin:25px 0 55px}.partner-side{max-width:350px;padding-bottom:55px}.partner-side p{font-size:17px;line-height:1.65}.partner-star{font-size:65px;display:block;animation:spin 30s linear infinite;transform-origin:35px 36px}.partner-marquee{margin:0 -8vw 45px;overflow:hidden;border-top:1px solid #00401833;border-bottom:1px solid #00401833;padding:16px 0}.partner-marquee-track{white-space:nowrap;width:max-content;animation:marquee 42s linear infinite;font:italic 23px Georgia,serif;letter-spacing:.05em}.partner-marquee-track i{font-style:normal;color:#5c9a65;padding:0 27px}.brand-grid-v6{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:#00401835;border:1px solid #00401835}.brand-grid-v6 .brand-tile{min-height:168px;margin:0;border:0;background:var(--cream);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:22px;transition:background .4s,color .4s,transform .4s}.brand-grid-v6 .brand-tile:hover{background:var(--green);color:var(--cream);transform:none}.brand-grid-v6 .brand-tile small{font-size:9px;letter-spacing:.18em;opacity:.65}.brand-grid-v6 .brand-mark{max-width:95%;font-size:clamp(17px,2vw,29px);white-space:normal;text-align:center}.brand-grid-v6 .partner-invite{background:#d9e7ce;align-items:start;padding:24px;justify-content:space-between;font-weight:bold}.partner-invite span{font:normal 29px/1.1 Georgia,serif}.partner-bottom{display:flex;justify-content:space-between;align-items:center;gap:20px;border-top:1px solid #00401833;padding-top:40px;margin-top:45px}.partner-bottom p{font:normal 25px Georgia,serif;margin:10px 0}.logo-disclaimer{font-size:11px;opacity:.65;margin-top:25px}
-@media(max-width:950px){.story-v6{grid-template-columns:1fr}.story-art{height:560px}.city-feature{grid-template-columns:1fr}.city-visual{min-height:390px}.city-detail{min-height:370px}.brand-grid-v6{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:600px){.story-v6{gap:30px}.story-v6 h2{font-size:70px}.story-art{height:420px}.story-art-main{width:78%;height:65%}.story-art-small{width:39%;height:38%}.story-art-bottom{width:60%;height:30%}.story-stamp{width:98px;height:98px;right:0;bottom:16%;font-size:8px}.story-stamp strong{font-size:32px}.story-stamp span{font-size:6px}.story-art-caption{font-size:7px}.city-switch button{margin-right:14px;padding-right:15px;font-size:10px}.city-feature{min-height:0}.city-visual{min-height:310px}.city-detail{padding:35px 25px;min-height:340px}.city-detail h3{font-size:77px}.city-outline{font-size:180px}.partner-top{display:block}.partner-top h2{font-size:80px;margin-bottom:25px}.partner-side{padding-bottom:20px}.brand-grid-v6{grid-template-columns:repeat(2,minmax(0,1fr))}.brand-grid-v6 .brand-tile{min-height:130px;padding:12px}.brand-grid-v6 .brand-mark{font-size:18px}.partner-bottom{align-items:start;flex-direction:column}.partner-bottom .pill{width:100%;justify-content:center}.partner-marquee-track{font-size:19px}}
-@media(prefers-reduced-motion:reduce){.story-stamp,.partner-marquee-track,.partner-star{animation:none!important}}
-
-/* Wello: balanced breathing room, centered within its partner tile */
-.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Wello"] img {max-width:min(68%, 260px);max-height:92px;width:auto;height:auto;object-fit:contain;object-position:center;margin-inline:auto;}
-@media(max-width:600px){.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Wello"] img{max-width:72%;max-height:72px;}}
- .stat-mark .stat-spark-icon{display:block;width:23px;height:23px;color:#174b2d;flex:none} 
-/* V16: desktop navigation stays on one line; original hamburger remains mobile-only. */
-@media (min-width:801px){nav .links{display:flex;align-items:center;flex-wrap:nowrap;white-space:nowrap;gap:clamp(12px,2vw,27px)}nav .links a{white-space:nowrap}}
-@media (max-width:800px){nav .links{display:none!important}nav .menu{display:block!important}}
-
-/* V18 mobile polish: spacing, contrast and typographic iconography */
-.city-register{display:inline-flex!important;align-items:center;justify-content:space-between;gap:18px;width:auto!important;max-width:100%;min-height:54px;padding:14px 17px 14px 22px!important;border:1px solid rgba(247,244,231,.78)!important;border-radius:100px!important;background:var(--cream)!important;color:var(--green)!important;font-size:12px!important;font-weight:800!important;letter-spacing:.11em!important;text-align:left!important;line-height:1.3!important;transition:transform .2s,background .2s!important}
-.city-register:hover{transform:translateY(-2px);background:#e3ebd3!important}.city-register .register-arrow,.city-register span{display:grid;place-items:center;flex:0 0 29px;width:29px;height:29px;border-radius:50%;background:var(--green);color:var(--cream);font-family:Arial,sans-serif;font-size:19px;line-height:1}
-.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Snatch a Matcha"] img{filter:none!important;opacity:1!important;width:83%!important;max-width:190px!important;max-height:65px!important;object-fit:contain!important}
-.stats{position:relative!important}.stats:before{pointer-events:none!important}.stat{min-width:0!important;position:relative!important}.stat-mark{position:absolute!important;top:12px!important;right:8px!important;display:block!important;width:18px!important;height:18px!important;line-height:0!important;z-index:1!important}.stat-spark-icon{width:18px!important;height:18px!important;display:block!important}
-@media(max-width:700px){
-.stats{padding:80px 6% 35px!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;min-height:0!important}
-.stats:before{top:29px!important;left:6%!important;font-size:10px!important;letter-spacing:.19em!important;white-space:nowrap!important}
-.stat{padding:16px 0 0!important;border-top:1px solid rgba(0,64,24,.28)!important;min-height:115px!important;overflow:visible!important}
-.stat strong{display:block!important;font-size:clamp(26px,7.2vw,45px)!important;line-height:1.12!important;letter-spacing:-.065em!important;padding:0!important;margin:0 0 10px!important;white-space:nowrap!important}
-.stat p{font-size:clamp(9px,2.45vw,12px)!important;letter-spacing:.025em!important;line-height:1.35!important;margin:0!important;overflow-wrap:normal!important}
-.stat-mark{top:17px!important;right:0!important;width:12px!important;height:12px!important;opacity:.55!important;transform:translate(2px,-10px)!important}
-.stat-spark-icon{width:12px!important;height:12px!important}
-.city-register{margin-top:25px!important;font-size:11px!important;letter-spacing:.07em!important;padding:12px 14px 12px 19px!important;min-height:52px!important}
-.city-detail{padding-bottom:25px!important}.city-detail p{margin-bottom:0!important}
-.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Snatch a Matcha"] img{width:92%!important;max-width:160px!important;max-height:58px!important}
-}
-@media(max-width:380px){.stats{gap:8px!important}.stat strong{font-size:clamp(24px,7vw,31px)!important}.stat p{font-size:9px!important}.stat-mark{display:none!important}}
-
-/* V20: registration text and arrow have distinct layout roles. */
-.city-register{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:20px!important;width:100%!important;max-width:480px!important;min-height:64px!important;padding:12px 14px 12px 26px!important;overflow:hidden!important;white-space:normal!important;box-sizing:border-box!important}
-.city-register span.register-label{display:block!important;position:static!important;flex:1 1 auto!important;width:auto!important;height:auto!important;min-width:0!important;max-width:none!important;padding:0!important;margin:0!important;border:0!important;border-radius:0!important;background:transparent!important;color:var(--green)!important;font-size:clamp(12px,1.1vw,15px)!important;font-weight:750!important;letter-spacing:.065em!important;line-height:1.3!important;text-align:left!important;white-space:normal!important;overflow-wrap:normal!important;word-break:normal!important;place-items:initial!important}
-.city-register span.register-arrow{display:grid!important;place-items:center!important;flex:0 0 38px!important;width:38px!important;height:38px!important;min-width:38px!important;min-height:38px!important;margin:0!important;padding:0!important;border-radius:50%!important;background:var(--green)!important;color:var(--cream)!important}
-.city-register .register-arrow svg{display:block!important;width:18px!important;height:18px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.9!important;stroke-linecap:round!important;stroke-linejoin:round!important}
-@media(max-width:700px){.city-register{min-height:58px!important;padding:10px 12px 10px 19px!important;gap:12px!important}.city-register span.register-label{font-size:12px!important;letter-spacing:.045em!important;line-height:1.25!important}.city-register span.register-arrow{flex-basis:34px!important;width:34px!important;height:34px!important;min-width:34px!important;min-height:34px!important}}
-
-/* SRC V21 | Subtle leather finish, preserving original brand colors. */
-body::before{content:""!important;position:fixed!important;inset:0!important;z-index:8998!important;pointer-events:none!important;opacity:.42!important;background-image:url("assets/leather-grain.png")!important;background-repeat:repeat!important;background-size:512px 512px!important;mix-blend-mode:multiply!important}
-body::after{content:""!important;position:fixed!important;inset:0!important;z-index:8999!important;pointer-events:none!important;opacity:.14!important;background-image:radial-gradient(ellipse at 50% 42%,transparent 34%,rgba(40,29,14,.18) 100%)!important;background-size:100% 100%!important;mix-blend-mode:multiply!important}
-/* Restrained tactile edge detailing for interactive surfaces. */
-.city-register,.location-register,.registration-btn,.join a,.btn-primary,.btn,.city-tabs button,.city-tab{transition:transform .2s ease,box-shadow .2s ease,filter .2s ease!important}
-.city-register:hover,.location-register:hover,.registration-btn:hover,.join a:hover,.btn-primary:hover,.city-tabs button:hover,.city-tab:hover{filter:brightness(1.035);box-shadow:0 8px 26px rgba(0,30,13,.19),inset 0 1px 0 rgba(255,255,255,.46)!important}
-.city-register:focus-visible,.location-register:focus-visible,.registration-btn:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid #a9cf80!important;outline-offset:4px!important}
-@media(prefers-reduced-motion:reduce){.city-register,.location-register,.registration-btn{transition:none!important}}
-
-/* V22 — compact luxury mobile bottom navigation, with three purposeful destinations */
-.src-mobile-dock,.src-dock-sheet,.src-dock-backdrop{display:none}
-@media(max-width:800px){
-  .nav{display:none!important}
-  .mobile-panel{display:none!important}
-  body{padding-bottom:92px}
-  .src-mobile-dock{display:grid;grid-template-columns:1fr 1.18fr 1.32fr;align-items:stretch;gap:3px;position:fixed;bottom:max(12px,env(safe-area-inset-bottom));left:12px;right:12px;z-index:1002;padding:6px;border-radius:23px;background:#08391f;color:var(--cream);box-shadow:0 14px 35px rgba(0,26,12,.30),inset 0 1px rgba(255,255,255,.13);border:1px solid rgba(247,244,231,.2);backdrop-filter:blur(20px)}
-  .src-dock-item{appearance:none;border:0;border-radius:17px;background:transparent;color:inherit;padding:17px 5px;min-height:55px;font-size:clamp(9px,2.5vw,12px);font-weight:800;letter-spacing:.035em;white-space:nowrap;line-height:1.15;transition:background .2s,color .2s,transform .2s}
-  .src-dock-item:first-child{background:rgba(247,244,231,.13)}
-  .src-dock-item[aria-expanded=true]{background:var(--cream);color:var(--green)}
-  .src-dock-item:active{transform:scale(.96)}
-  .src-dock-item:focus-visible,.src-sheet-close:focus-visible,.src-sheet-link:focus-visible{outline:2px solid #c9e7a0;outline-offset:2px}
-  .src-dock-backdrop{position:fixed;inset:0;z-index:999;background:rgba(0,20,10,.25);opacity:0;pointer-events:none;display:block;transition:opacity .25s}
-  .src-dock-backdrop.open{opacity:1;pointer-events:auto}
-  .src-dock-sheet{display:block;position:fixed;bottom:calc(max(12px,env(safe-area-inset-bottom)) + 76px);left:12px;right:12px;z-index:1001;padding:25px 24px 23px;background:var(--cream);border:1px solid rgba(0,64,24,.15);border-radius:23px;box-shadow:0 18px 65px #001f1240;transform:translateY(14px);opacity:0;pointer-events:none;transition:transform .25s,opacity .25s}
-  .src-dock-sheet.open{transform:translateY(0);opacity:1;pointer-events:auto}
-  .src-sheet-close{position:absolute;right:15px;top:14px;border:1px solid #00401824;background:transparent;color:var(--green);width:35px;height:35px;border-radius:50%;display:grid;place-items:center}
-  .src-sheet-close svg{width:17px;height:17px}
-  .src-sheet-kicker{font-size:10px;letter-spacing:.18em;font-weight:800;margin-bottom:13px}
-  .src-sheet-title{font:normal clamp(31px,9vw,46px)/1 Georgia,serif;letter-spacing:-.045em;margin:0 38px 12px 0}
-  .src-sheet-desc{font-size:14px;line-height:1.6;margin:0 0 20px;max-width:440px}
-  .src-sheet-link{display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid #0040182b;border-radius:50px;padding:13px 17px;font-size:12px;font-weight:800;letter-spacing:.055em;margin-top:9px;min-height:46px;background:#004018;color:var(--cream)}
-  .src-sheet-link.secondary{background:transparent;color:var(--green)}
-  .src-sheet-link svg{width:17px;height:17px;flex-shrink:0}
-}
-@media(min-width:801px){.src-mobile-dock,.src-dock-sheet,.src-dock-backdrop{display:none!important}}
-@media(prefers-reduced-motion:reduce){.src-dock-sheet,.src-dock-backdrop,.src-dock-item{transition:none!important}}
-</style>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#004018">
+<title>Saturday Run Club — Where Community Meets Movement</title>
+<meta name="description" content="Saturday Run Club. Where community meets movement. Founded in Khobar in 2024, with a chapter in Riyadh and pop-up runs in Jeddah and Bahrain.">
+<meta property="og:title" content="Saturday Run Club">
+<meta property="og:description" content="Where community meets movement. Khobar · Riyadh · Pop-ups.">
+<meta property="og:image" content="https://janabdulaal.github.io/src/assets/hero-hq-07.jpg">
+<link rel="icon" href="assets/src-official-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/hero-hq-07.jpg">
 <style>
-/* SRC SIGNATURE / EDITORIAL ART DIRECTION */
-:root{--acid:#d7f29d}
-body{background:var(--cream)}
-::selection{background:#c8ef8b;color:#003c20}
-#scroll-line{position:fixed;top:0;left:0;height:3px;background:var(--acid);width:0;z-index:200;pointer-events:none;box-shadow:0 0 14px #d7f29d99}
-.nav{border:1px solid #ffffff99;box-shadow:0 12px 55px #001f1326}
-.nav .logo{transition:transform .35s}.nav .logo:hover{transform:rotate(-3deg)}
-.pill{position:relative;overflow:hidden;isolation:isolate}.pill:after{content:"";position:absolute;inset:0;background:#c8ef8b;transform:translateX(-102%);transition:transform .45s cubic-bezier(.2,.8,.2,1);z-index:-1}.pill:hover:after{transform:translateX(0)}.pill:hover{color:#003b20}
-.hero h1{letter-spacing:-.075em;text-wrap:balance}.hero-content{z-index:2}.hero-foot{z-index:2}
-.hero:after{content:"SATURDAY RUN CLUB  /  EST. 2024";position:absolute;right:3.5%;top:50%;writing-mode:vertical-rl;letter-spacing:.3em;font-size:9px;font-weight:700;color:#fff9;z-index:2}
-.stats{position:relative}.stats:before{content:"THE MOVEMENT IN NUMBERS";position:absolute;top:55px;left:7%;font-size:10px;letter-spacing:.3em;font-weight:800}.stat{transition:transform .35s}.stat:hover{transform:translateY(-7px)}.stat strong{font-variant-numeric:tabular-nums}
-.story-v6{position:relative;overflow:hidden;min-height:860px}.story-v6:before{content:"SRC";position:absolute;bottom:-.24em;left:-.055em;font:normal 40vw/1 Georgia,serif;color:#ffffff08;pointer-events:none}.story-v6 .story-copy{position:relative;z-index:2}.story-v6 .story-copy h2{font-size:clamp(70px,8.5vw,140px);letter-spacing:-.075em}.story-v6 .story-art{transform-style:preserve-3d}.story-v6 .story-art-main,.story-v6 .story-art-small,.story-v6 .story-art-bottom{box-shadow:0 25px 80px #001a0f40;transition:transform .8s cubic-bezier(.2,.8,.2,1)}.story-v6 .story-art:hover .story-art-main{transform:translateY(-9px) rotate(-1deg)}.story-v6 .story-art:hover .story-art-small{transform:translate(5px,-15px) rotate(2deg)}.story-v6 .story-art:hover .story-art-bottom{transform:translate(-7px,8px) rotate(-2deg)}
-.manifesto{position:relative;overflow:hidden}.manifesto:before{content:"✳";position:absolute;left:-3%;top:-55%;font:normal 48vw Georgia,serif;opacity:.055;animation:slowturn 35s linear infinite;pointer-events:none}
-@keyframes slowturn{to{transform:rotate(360deg)}}
-.cities-v6{position:relative;overflow:hidden}.cities-v6:before{content:"03 CITIES / ONE MOVEMENT";position:absolute;right:-25px;top:50%;transform:rotate(90deg);font-size:10px;letter-spacing:.3em;opacity:.35}
-.city-switch button{transition:background .3s,color .3s,transform .3s}.city-switch button:hover{transform:translateY(-4px)}.city-feature{box-shadow:0 30px 80px #002e1726;overflow:hidden}.city-visual{overflow:hidden}.city-visual img{transition:opacity .45s,transform 7s cubic-bezier(.2,.8,.2,1)}.city-feature:hover .city-visual img{transform:scale(1.055)}.city-detail{position:relative;overflow:hidden}.city-outline{pointer-events:none}.city-cta{letter-spacing:.12em}
-.partners-v6{position:relative;overflow:hidden}.partners-v6:before{content:"TOGETHER";position:absolute;top:18%;right:-10%;font:normal 18vw Georgia,serif;letter-spacing:-.08em;color:#00401808;pointer-events:none}.partner-top{position:relative;z-index:1}.partner-top h2{font-size:clamp(75px,10vw,165px);letter-spacing:-.08em}.partner-marquee{border-top:1px solid #00401844;border-bottom:1px solid #00401844}.brand-grid-v6{gap:1px;background:#00401829;border:1px solid #00401829}.brand-tile{background:var(--cream);position:relative;overflow:hidden;transition:background .45s,color .45s,transform .45s}.brand-tile:before{content:"";position:absolute;right:18px;top:15px;opacity:0;transform:translate(-7px,7px);transition:.35s;font-size:22px}.brand-tile:hover{background:#004018;color:var(--cream);transform:translateY(-3px);z-index:2}.brand-tile:hover:before{opacity:1;transform:none}.brand-tile .brand-mark{transition:transform .5s}.brand-tile:hover .brand-mark{transform:scale(1.06)}.brand-tile small{letter-spacing:.2em}
-.signature-break{background:#d7f29d;color:#003e1f;min-height:470px;padding:85px 7%;display:grid;grid-template-columns:1.4fr .6fr;gap:8%;align-items:center;overflow:hidden;position:relative}.signature-break:before{content:"";font:normal 35vw Georgia,serif;position:absolute;right:-2%;bottom:-.55em;opacity:.1}.signature-break h2{font:normal clamp(70px,9vw,150px)/.85 Georgia,serif;letter-spacing:-.085em;margin:20px 0}.signature-break p{font-size:clamp(18px,2vw,27px);line-height:1.4;max-width:350px}.signature-break .eyebrow{font-weight:900}.signature-break .number{font:normal 22px Georgia,serif;border-bottom:1px solid #003e1f;padding-bottom:20px}
-.join{position:relative;overflow:hidden}.join:before{content:"✳";position:absolute;font-size:60vw;line-height:1;right:-18%;top:-30%;opacity:.05;animation:slowturn 50s linear infinite}.join>*{position:relative;z-index:1}.join h2{letter-spacing:-.09em}
-@media(max-width:800px){.hero:after{display:none}.signature-break{grid-template-columns:1fr;padding:80px 6%;min-height:unset}.signature-break h2{font-size:clamp(68px,14vw,110px)}.story-v6{min-height:unset}.story-v6:before{font-size:80vw}.partners-v6:before{font-size:32vw}.brand-tile:before{display:none}.cities-v6:before{display:none}.hero h1{letter-spacing:-.08em}.partner-top h2{font-size:clamp(67px,13vw,110px)}}
-@media(prefers-reduced-motion:reduce){.manifesto:before,.join:before{animation:none!important}}
-
-/* V18 mobile polish: spacing, contrast and typographic iconography */
-.city-register{display:inline-flex!important;align-items:center;justify-content:space-between;gap:18px;width:auto!important;max-width:100%;min-height:54px;padding:14px 17px 14px 22px!important;border:1px solid rgba(247,244,231,.78)!important;border-radius:100px!important;background:var(--cream)!important;color:var(--green)!important;font-size:12px!important;font-weight:800!important;letter-spacing:.11em!important;text-align:left!important;line-height:1.3!important;transition:transform .2s,background .2s!important}
-.city-register:hover{transform:translateY(-2px);background:#e3ebd3!important}.city-register .register-arrow,.city-register span{display:grid;place-items:center;flex:0 0 29px;width:29px;height:29px;border-radius:50%;background:var(--green);color:var(--cream);font-family:Arial,sans-serif;font-size:19px;line-height:1}
-.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Snatch a Matcha"] img{filter:none!important;opacity:1!important;width:83%!important;max-width:190px!important;max-height:65px!important;object-fit:contain!important}
-.stats{position:relative!important}.stats:before{pointer-events:none!important}.stat{min-width:0!important;position:relative!important}.stat-mark{position:absolute!important;top:12px!important;right:8px!important;display:block!important;width:18px!important;height:18px!important;line-height:0!important;z-index:1!important}.stat-spark-icon{width:18px!important;height:18px!important;display:block!important}
-@media(max-width:700px){
-.stats{padding:80px 6% 35px!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;min-height:0!important}
-.stats:before{top:29px!important;left:6%!important;font-size:10px!important;letter-spacing:.19em!important;white-space:nowrap!important}
-.stat{padding:16px 0 0!important;border-top:1px solid rgba(0,64,24,.28)!important;min-height:115px!important;overflow:visible!important}
-.stat strong{display:block!important;font-size:clamp(26px,7.2vw,45px)!important;line-height:1.12!important;letter-spacing:-.065em!important;padding:0!important;margin:0 0 10px!important;white-space:nowrap!important}
-.stat p{font-size:clamp(9px,2.45vw,12px)!important;letter-spacing:.025em!important;line-height:1.35!important;margin:0!important;overflow-wrap:normal!important}
-.stat-mark{top:17px!important;right:0!important;width:12px!important;height:12px!important;opacity:.55!important;transform:translate(2px,-10px)!important}
-.stat-spark-icon{width:12px!important;height:12px!important}
-.city-register{margin-top:25px!important;font-size:11px!important;letter-spacing:.07em!important;padding:12px 14px 12px 19px!important;min-height:52px!important}
-.city-detail{padding-bottom:25px!important}.city-detail p{margin-bottom:0!important}
-.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Snatch a Matcha"] img{width:92%!important;max-width:160px!important;max-height:58px!important}
+/* ---------- Tokens: green, cream, one neutral (ink) ---------- */
+:root{
+  --green:#004018;
+  --cream:#f7f4e7;
+  --ink:#070707;
+  --green-soft:rgba(0,64,24,.08);
+  --line:rgba(0,64,24,.16);
+  --sans:"Inter Tight",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --script:"Pinyon Script","Snell Roundhand",cursive;
+  --gutter:clamp(20px,5vw,72px);
+  --max:1320px;
+  --radius:22px;
+  --ease:cubic-bezier(.2,.7,.1,1);
 }
-@media(max-width:380px){.stats{gap:8px!important}.stat strong{font-size:clamp(24px,7vw,31px)!important}.stat p{font-size:9px!important}.stat-mark{display:none!important}}
-</style>
-<style>
-/* V8 CAMPAIGN SYSTEM */
-.hero-route{position:absolute;z-index:1;right:0;top:11%;width:min(53vw,770px);height:68%;pointer-events:none;opacity:.65}
-.hero-route svg{width:100%;height:100%;overflow:visible}.hero-route path{fill:none;stroke-width:2;stroke-linecap:round}.route-base{stroke:#ffffff32;stroke-dasharray:4 12}.route-draw{stroke:#d7f29d;stroke-dasharray:1000;stroke-dashoffset:1000;animation:routeReveal 3.2s 1.2s cubic-bezier(.3,.8,.2,1) forwards}.hero-route circle{opacity:0;animation:routePoint .6s 4s forwards}@keyframes routeReveal{to{stroke-dashoffset:0}}@keyframes routePoint{to{opacity:1}}
-.campaign-headline{animation:campaignIn 1.3s .3s both;transform-origin:left bottom}@keyframes campaignIn{from{opacity:0;transform:translateY(65px) skewY(4deg);filter:blur(9px)}to{opacity:1;transform:none;filter:blur(0)}}.hero-content p,.hero-content .eyebrow{animation:campaignIn 1.1s .8s both}
-.story-v6{position:relative}.story-progress{position:absolute;left:0;top:0;width:4px;height:100%;background:#ffffff1a}.story-progress span{display:block;width:100%;height:0;background:#d7f29d;box-shadow:0 0 18px #d7f29d}
-.src-timeline{margin-top:46px;border-top:1px solid #ffffff45}.milestone{display:grid;grid-template-columns:95px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid #ffffff3b}.milestone-year{font:italic 24px Georgia,serif;color:#d7f29d}.milestone b{font-size:10px;letter-spacing:.2em}.milestone p{font-size:13px!important;margin:7px 0 0;line-height:1.6!important;opacity:.75}.story-photo-index{position:absolute;bottom:-36px;right:0;letter-spacing:.2em;font-size:10px;color:#d7f29d}.story-art{position:relative}.story-art-main img,.story-art-small img,.story-art-bottom img{transition:transform 1.4s ease}.story-art:hover img{transform:scale(1.035)}
-.chapter-route{position:absolute;top:4%;left:2%;width:96%;height:40%;z-index:2;pointer-events:none;opacity:.3}.chapter-route path{fill:none;stroke:#d7f29d;stroke-width:2;stroke-dasharray:8 10}.city-feature{position:relative}.city-visual-tag{z-index:3}.city-detail h3{transition:opacity .3s,transform .3s}.city-detail.is-changing h3{opacity:0;transform:translateY(18px)}.chapter-nav-mobile{display:flex;align-items:center;justify-content:space-between;margin-top:18px;gap:10px;font-size:10px;letter-spacing:.13em}.chapter-nav-mobile button{background:transparent;border:1px solid #00401866;border-radius:50px;padding:14px 17px;color:#004018;font-weight:bold}
-.partner-feature{display:grid;grid-template-columns:1.1fr .9fr;margin:50px 0 75px;background:#004018;color:#f7f4e7;text-align:left;min-height:490px;overflow:hidden}.partner-feature-photo{position:relative;overflow:hidden;min-height:460px}.partner-feature-photo img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;transition:transform 1.2s}.partner-feature:hover img{transform:scale(1.055)}.partner-feature-photo span{position:absolute;bottom:22px;left:25px;font-size:10px;letter-spacing:.2em;background:#004018c9;padding:12px}.partner-feature-copy{padding:clamp(35px,5vw,95px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center}.partner-feature-copy h3{font-size:clamp(54px,5.5vw,98px);line-height:.93;font-weight:400;margin:25px 0}.partner-feature-copy p{line-height:1.8;max-width:390px;opacity:.85}.partner-feature-copy .pill{background:#d7f29d;color:#004018;border-color:#d7f29d;margin-top:18px}.partner-wall-label{text-align:left;margin-bottom:20px;opacity:.65;font-size:9px}
-@media(max-width:800px){.hero-route{width:110%;right:-35%;top:25%;opacity:.36}.partner-feature{grid-template-columns:1fr;margin:30px 0 55px}.partner-feature-photo{min-height:300px}.partner-feature-copy{padding:40px 28px 50px}.partner-feature-copy h3{font-size:65px}.chapter-nav-mobile span{font-size:8px}.story-photo-index{bottom:-22px}.milestone{grid-template-columns:80px 1fr}.city-switch{overflow-x:auto;scroll-snap-type:x mandatory}.city-switch button{scroll-snap-align:center;flex-shrink:0}}
-@media(prefers-reduced-motion:reduce){.route-draw{animation:none;stroke-dashoffset:0}.hero-route circle{opacity:1;animation:none}.campaign-headline,.hero-content p,.hero-content .eyebrow{animation:none}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cream);color:var(--green);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body.locked{overflow:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+:focus-visible{outline:2px solid currentColor;outline-offset:4px;border-radius:6px}
+.wrap{width:min(100% - var(--gutter)*2,var(--max));margin-inline:auto}
+section{scroll-margin-top:64px}
 
-/* V18 mobile polish: spacing, contrast and typographic iconography */
-.city-register{display:inline-flex!important;align-items:center;justify-content:space-between;gap:18px;width:auto!important;max-width:100%;min-height:54px;padding:14px 17px 14px 22px!important;border:1px solid rgba(247,244,231,.78)!important;border-radius:100px!important;background:var(--cream)!important;color:var(--green)!important;font-size:12px!important;font-weight:800!important;letter-spacing:.11em!important;text-align:left!important;line-height:1.3!important;transition:transform .2s,background .2s!important}
-.city-register:hover{transform:translateY(-2px);background:#e3ebd3!important}.city-register .register-arrow,.city-register span{display:grid;place-items:center;flex:0 0 29px;width:29px;height:29px;border-radius:50%;background:var(--green);color:var(--cream);font-family:Arial,sans-serif;font-size:19px;line-height:1}
-.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Snatch a Matcha"] img{filter:none!important;opacity:1!important;width:83%!important;max-width:190px!important;max-height:65px!important;object-fit:contain!important}
-.stats{position:relative!important}.stats:before{pointer-events:none!important}.stat{min-width:0!important;position:relative!important}.stat-mark{position:absolute!important;top:12px!important;right:8px!important;display:block!important;width:18px!important;height:18px!important;line-height:0!important;z-index:1!important}.stat-spark-icon{width:18px!important;height:18px!important;display:block!important}
-@media(max-width:700px){
-.stats{padding:80px 6% 35px!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;min-height:0!important}
-.stats:before{top:29px!important;left:6%!important;font-size:10px!important;letter-spacing:.19em!important;white-space:nowrap!important}
-.stat{padding:16px 0 0!important;border-top:1px solid rgba(0,64,24,.28)!important;min-height:115px!important;overflow:visible!important}
-.stat strong{display:block!important;font-size:clamp(26px,7.2vw,45px)!important;line-height:1.12!important;letter-spacing:-.065em!important;padding:0!important;margin:0 0 10px!important;white-space:nowrap!important}
-.stat p{font-size:clamp(9px,2.45vw,12px)!important;letter-spacing:.025em!important;line-height:1.35!important;margin:0!important;overflow-wrap:normal!important}
-.stat-mark{top:17px!important;right:0!important;width:12px!important;height:12px!important;opacity:.55!important;transform:translate(2px,-10px)!important}
-.stat-spark-icon{width:12px!important;height:12px!important}
-.city-register{margin-top:25px!important;font-size:11px!important;letter-spacing:.07em!important;padding:12px 14px 12px 19px!important;min-height:52px!important}
-.city-detail{padding-bottom:25px!important}.city-detail p{margin-bottom:0!important}
-.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Snatch a Matcha"] img{width:92%!important;max-width:160px!important;max-height:58px!important}
+/* ---------- Type ---------- */
+.eyebrow{font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;opacity:.7}
+h1,h2,h3{font-family:var(--sans);font-weight:500;letter-spacing:-.035em;line-height:1;margin:0}
+h2{font-size:clamp(40px,5.6vw,84px)}
+.script{font-family:var(--script);font-weight:400;letter-spacing:0;font-size:1.12em;line-height:1;padding:0 .06em 0 .02em;vertical-align:baseline}
+.lead{font-size:clamp(19px,1.7vw,23px);line-height:1.5;letter-spacing:-.01em}
+.muted{opacity:.72}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:14px;height:52px;padding:0 10px 0 24px;border-radius:100px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;transition:transform .4s var(--ease),background .3s,color .3s}
+.btn i{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;transition:transform .4s var(--ease)}
+.btn svg{width:15px;height:15px}
+.btn:hover{transform:translateY(-2px)}
+.btn:hover i{transform:translateX(3px) rotate(-45deg)}
+.btn-green{background:var(--green);color:var(--cream)}
+.btn-green i{background:var(--cream);color:var(--green)}
+.btn-cream{background:var(--cream);color:var(--green)}
+.btn-cream i{background:var(--green);color:var(--cream)}
+.btn-line{border:1px solid currentColor;padding:0 24px}
+
+/* ---------- Intro ---------- */
+.intro{position:fixed;inset:0;z-index:100;background:var(--green);display:grid;place-items:center;transition:clip-path 1.1s var(--ease);clip-path:inset(0 0 0 0)}
+.intro.out{clip-path:inset(0 0 100% 0)}
+.intro img{width:clamp(130px,16vw,200px);opacity:0;transform:translateY(14px);animation:introIn 1s .15s var(--ease) forwards}
+.intro-line{position:absolute;bottom:18%;left:50%;width:120px;height:1px;background:rgba(247,244,231,.25);transform:translateX(-50%);overflow:hidden}
+.intro-line:after{content:"";position:absolute;inset:0;background:var(--cream);transform:scaleX(0);transform-origin:left;animation:introLine 1.3s .2s var(--ease) forwards}
+@keyframes introIn{to{opacity:1;transform:none}}
+@keyframes introLine{to{transform:scaleX(1)}}
+
+/* ---------- Nav ---------- */
+.nav{position:fixed;inset:0 0 auto;z-index:50;color:var(--cream);transition:background .5s,color .5s,box-shadow .5s,height .5s;height:84px}
+.nav .wrap{height:100%;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{position:relative;width:64px;height:56px}
+.nav-logo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .4s}
+.nav-logo .on-light{opacity:0}
+.nav-links{display:flex;align-items:center;gap:clamp(20px,3vw,44px);font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase}
+.nav-links a:not(.btn){position:relative;padding:6px 0}
+.nav-links a:not(.btn):after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .45s var(--ease)}
+.nav-links a:not(.btn):hover:after{transform:scaleX(1);transform-origin:left}
+.nav-links .btn{height:42px;padding:0 20px;font-size:12px}
+.nav.solid{height:64px;background:rgba(247,244,231,.86);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);color:var(--green);box-shadow:0 1px 0 var(--line)}
+.nav.solid .nav-logo{height:44px}
+.nav.solid .on-dark{opacity:0}
+.nav.solid .on-light{opacity:1}
+.nav .btn{background:var(--cream);color:var(--green)}
+.nav.solid .btn{background:var(--green);color:var(--cream)}
+.menu-btn{display:none;width:44px;height:44px;position:relative}
+.menu-btn span{position:absolute;left:10px;right:10px;height:1.5px;background:currentColor;transition:transform .4s var(--ease),top .4s var(--ease)}
+.menu-btn span:first-child{top:17px}.menu-btn span:last-child{top:26px}
+body.menu-open .menu-btn span:first-child{top:21px;transform:rotate(45deg)}
+body.menu-open .menu-btn span:last-child{top:21px;transform:rotate(-45deg)}
+.sheet{position:fixed;inset:0;z-index:45;background:var(--green);color:var(--cream);display:flex;flex-direction:column;justify-content:center;padding:100px var(--gutter) 40px;gap:8px;clip-path:inset(0 0 100% 0);transition:clip-path .7s var(--ease);visibility:hidden}
+body.menu-open .sheet{clip-path:inset(0);visibility:visible}
+.sheet a{font-size:clamp(38px,11vw,64px);font-weight:500;letter-spacing:-.035em;line-height:1.15}
+.sheet small{margin-top:40px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;opacity:.6}
+body.menu-open .nav{color:var(--cream);background:transparent;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+body.menu-open .nav .on-dark{opacity:1}body.menu-open .nav .on-light{opacity:0}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;height:100svh;min-height:600px;color:var(--cream);overflow:hidden;background:var(--ink)}
+.slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.12);transition:opacity 1.6s ease,transform 8s linear}
+.slides img.on{opacity:1;transform:scale(1)}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,7,7,.45) 0%,rgba(7,7,7,0) 28%,rgba(7,7,7,0) 45%,rgba(7,7,7,.62) 100%);pointer-events:none}
+.hero-content{position:absolute;z-index:2;left:0;right:0;bottom:clamp(110px,15vh,160px)}
+.hero h1{font-size:clamp(54px,9vw,148px);line-height:.92;letter-spacing:-.045em}
+.hero-eyebrow{margin-bottom:22px;opacity:0;transition:opacity 1s .3s}
+body.ready .hero-eyebrow{opacity:.85}
+.hero p .script{font-size:1.35em;line-height:0}
+.hero-content .wrap{will-change:transform,opacity}
+.hero h1 .line{display:block;overflow:hidden;padding-bottom:.06em}
+.hero h1 .line>span{display:inline-block;transform:translateY(105%);transition:transform 1.3s var(--ease)}
+.hero p{margin:22px 0 0;font-size:clamp(17px,1.5vw,21px);opacity:0;transform:translateY(12px);transition:opacity 1s .5s,transform 1s .5s var(--ease)}
+body.ready .hero h1 .line>span{transform:none}
+body.ready .hero h1 .line:nth-child(2)>span{transition-delay:.12s}
+body.ready .hero p{opacity:.9;transform:none}
+.hero-foot{position:absolute;z-index:2;left:0;right:0;bottom:36px}
+.hero-foot .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:12px;letter-spacing:.2em}
+.hero-count{display:flex;align-items:center;gap:16px;font-variant-numeric:tabular-nums}
+.hero-bar{width:clamp(80px,12vw,160px);height:1px;background:rgba(247,244,231,.3);position:relative;overflow:hidden}
+.hero-bar i{position:absolute;inset:0;background:var(--cream);transform-origin:left;transform:scaleX(0)}
+.hero-bar i.run{animation:bar 6s linear forwards}
+@keyframes bar{to{transform:scaleX(1)}}
+.hero-arrows{display:flex;gap:10px}
+.hero-arrows button{width:44px;height:44px;border-radius:50%;border:1px solid rgba(247,244,231,.45);display:grid;place-items:center;transition:background .3s,color .3s}
+.hero-arrows button:hover{background:var(--cream);color:var(--green)}
+.hero-arrows svg{width:16px;height:16px}
+.scroll-cue{display:flex;align-items:center;gap:12px;opacity:.8}
+.scroll-cue i{width:1px;height:34px;background:rgba(247,244,231,.35);position:relative;overflow:hidden}
+.scroll-cue i:after{content:"";position:absolute;left:0;right:0;height:40%;background:var(--cream);animation:cue 2.2s var(--ease) infinite}
+@keyframes cue{0%{top:-40%}100%{top:100%}}
+
+/* ---------- Reveal ---------- */
+.rv{opacity:0;transform:translateY(34px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.rv-img{clip-path:inset(12% 0 0 0 round var(--radius));transition:clip-path 1.4s var(--ease)}
+.rv-img img{transform:scale(1.15);transition:transform 1.8s var(--ease)}
+.rv-img.in{clip-path:inset(0 0 0 0 round var(--radius))}
+.rv-img.in img{transform:scale(1)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* One image shape everywhere */
+.shot{border-radius:var(--radius);overflow:hidden;background:var(--green-soft)}
+.shot img{width:100%;height:100%;object-fit:cover}
+
+/* ---------- Story ---------- */
+.story{padding:clamp(110px,14vw,190px) 0 clamp(90px,10vw,140px)}
+.story .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,120px);align-items:start}
+.story h2{margin:22px 0 36px}
+.story-copy p{margin:0 0 20px;max-width:540px}
+.story-copy p.lead{margin-bottom:28px}
+.story .wrap{align-items:center}
+.story-art{aspect-ratio:4/3.4}
+.story-art img{will-change:transform}
+
+/* ---------- Numbers ---------- */
+.numbers{padding:0 0 clamp(100px,12vw,170px)}
+.numbers .wrap{text-align:center}
+.numbers-grid{display:grid;grid-template-columns:repeat(4,1fr);margin-top:42px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stat{padding:48px 12px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.stat+.stat{border-left:1px solid var(--line)}
+.stat strong{font-size:clamp(44px,5.4vw,82px);font-weight:400;letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums}
+.stat span{font-size:12px;letter-spacing:.2em;text-transform:uppercase;opacity:.7}
+
+/* ---------- Locations ---------- */
+.locations{background:var(--green);color:var(--cream);padding:clamp(80px,9vw,120px) 0;min-height:100svh;display:flex;align-items:center}
+.locations .wrap{width:min(100% - var(--gutter)*2,var(--max))}
+.loc-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:34px;flex-wrap:wrap}
+.loc-head h2{margin-top:16px}
+.tabs{display:inline-flex;padding:5px;border-radius:100px;border:1px solid rgba(247,244,231,.25);gap:4px}
+.tabs button{height:44px;padding:0 24px;border-radius:100px;font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;opacity:.75;transition:background .4s var(--ease),color .4s,opacity .3s}
+.tabs button:hover{opacity:1}
+.tabs button[aria-selected="true"]{background:var(--cream);color:var(--green);opacity:1}
+.loc-panel{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(20px,3vw,40px);height:clamp(400px,60svh,600px)}
+.loc-img{position:relative;height:100%}
+.loc-img img{position:absolute;inset:0;opacity:0;transform:scale(1.06);transition:opacity .9s ease,transform 1.6s var(--ease)}
+.loc-img img.on{opacity:1;transform:none}
+.loc-info{display:flex;flex-direction:column;justify-content:center;padding:clamp(8px,2vw,20px) 0}
+.loc-info .eyebrow{margin-bottom:18px}
+.loc-info h3{font-size:clamp(54px,6.4vw,100px);letter-spacing:-.05em;margin-bottom:22px}
+.loc-info p{margin:0 0 30px;max-width:440px;opacity:.85}
+.loc-info .fade{transition:opacity .45s,transform .6s var(--ease)}
+.loc-info.swap .fade{opacity:0;transform:translateY(10px)}
+.subtabs{display:flex;gap:26px;margin:-8px 0 22px;border-bottom:1px solid rgba(247,244,231,.2)}
+.subtabs[hidden]{display:none}
+.subtabs button{padding:0 0 12px;font-size:15px;font-weight:500;opacity:.55;position:relative;transition:opacity .3s}
+.subtabs button:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1.5px;background:var(--cream);transform:scaleX(0);transition:transform .45s var(--ease)}
+.subtabs button[aria-selected="true"]{opacity:1}
+.subtabs button[aria-selected="true"]:after{transform:scaleX(1)}
+
+/* ---------- Gallery ---------- */
+.gallery{padding:clamp(100px,12vw,170px) 0 clamp(70px,8vw,110px);overflow:hidden}
+.gallery-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:44px}
+.gallery-head h2{margin-top:16px}
+.film{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gutter);padding:0 var(--gutter) 6px;scrollbar-width:none;cursor:grab;-webkit-overflow-scrolling:touch}
+.film::-webkit-scrollbar{display:none}
+.film.dragging{cursor:grabbing;scroll-snap-type:none}
+.film figure{margin:0;flex:0 0 auto;width:clamp(300px,40vw,580px);aspect-ratio:4/3;scroll-snap-align:start}
+.film img{pointer-events:none;user-select:none;transition:transform 1.2s var(--ease)}
+.film figure:hover img{transform:scale(1.04)}
+.film-nav{display:flex;gap:10px}
+.film-nav button{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:background .3s,color .3s}
+.film-nav button:hover{background:var(--green);color:var(--cream)}
+.film-nav svg{width:16px;height:16px}
+.film-progress{width:min(100% - var(--gutter)*2,var(--max));margin:30px auto 0;height:1px;background:var(--line);position:relative}
+.film-progress i{position:absolute;left:0;top:0;bottom:0;background:var(--green);width:20%;transition:transform .2s}
+
+/* ---------- Collaborations ---------- */
+.collab{padding:clamp(90px,10vw,150px) 0}
+.collab-head{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(30px,6vw,100px);align-items:center;margin-bottom:clamp(60px,8vw,110px)}
+.collab-head h2{margin:18px 0 20px}
+.collab-head .shot{aspect-ratio:5/4}
+.logos{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.logo-tile{display:grid;place-items:center;aspect-ratio:16/10;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px;transition:background .4s}
+.logo-tile img{max-width:62%;max-height:58px;object-fit:contain;filter:grayscale(1) contrast(1.1);opacity:.72;transition:filter .5s,opacity .5s,transform .6s var(--ease)}
+.logo-tile.tall img{max-height:84px}
+.logo-tile:hover{background:var(--green-soft)}
+.logo-tile:hover img{filter:none;opacity:1;transform:scale(1.06)}
+.invite{text-align:center;padding-top:clamp(80px,9vw,130px);display:flex;flex-direction:column;align-items:center}
+.invite h3{font-size:clamp(38px,4.6vw,68px)}
+.invite p{margin:16px 0 34px}
+
+/* ---------- Join / See you Saturday ---------- */
+.join{background:var(--green);color:var(--cream);padding:clamp(90px,10vw,140px) 0;text-align:center;position:relative;overflow:hidden}
+.join h2{font-size:clamp(34px,4.4vw,64px);white-space:nowrap}
+.join p{margin:16px 0 36px;opacity:.8}
+.join-links{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+.join-links .btn{background:transparent;color:var(--cream);border:1px solid rgba(247,244,231,.4)}
+.join-links .btn:hover{background:var(--cream);color:var(--green)}
+
+/* ---------- Footer ---------- */
+.footer{background:var(--ink);color:var(--cream);padding:60px 0 40px;font-size:15px}
+.footer .wrap{display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:center}
+.footer-logo{width:76px}
+.footer-mid{opacity:.75}
+.footer-links{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+.footer-links a{display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 20px;border:1px solid rgba(247,244,231,.25);border-radius:100px;font-size:13px;letter-spacing:.06em;transition:background .3s,color .3s}
+.footer-links a:hover{background:var(--cream);color:var(--ink)}
+.footer-links svg{width:17px;height:17px}
+.footer-base{grid-column:1/-1;display:flex;justify-content:space-between;gap:20px;padding-top:28px;border-top:1px solid rgba(247,244,231,.12);font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.5}
+
+/* ---------- Registration dialog ---------- */
+dialog{border:0;padding:0;border-radius:var(--radius);background:var(--cream);color:var(--green);width:min(92vw,460px)}
+dialog::backdrop{background:rgba(7,7,7,.55);backdrop-filter:blur(4px)}
+.dlg{padding:40px 36px 36px;position:relative}
+.dlg h3{font-size:44px;margin:14px 0 14px}
+.dlg p{margin:0 0 26px;opacity:.8}
+.dlg-close{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;font-size:22px;line-height:1}
+.dlg-close:hover{background:var(--green-soft)}
+
+/* ---------- Motion extras ---------- */
+.rv.split{opacity:1;transform:none}
+.split .w{display:inline-block;overflow:hidden;vertical-align:top;padding:.08em .14em .22em;margin:-.08em -.14em -.22em}
+.split .w>span{display:inline-block;transform:translateY(115%) rotate(4deg);transform-origin:left bottom;transition:transform 1.15s var(--ease)}
+.split.in .w>span{transform:none}
+.slides{position:absolute;inset:0;transform-origin:50% 30%;will-change:transform}
+.loc-img img{opacity:1;transform:scale(1.08);clip-path:inset(0 0 0 100%);transition:clip-path 0s 1.1s,transform 0s 1.1s}
+.loc-img img.on{z-index:2;transform:none;clip-path:inset(0 0 0 0);transition:clip-path 1.1s var(--ease),transform 1.8s var(--ease)}
+.marquee{overflow:hidden;padding:clamp(40px,6vw,80px) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);user-select:none}
+.marquee-track{display:flex;width:max-content;white-space:nowrap;will-change:transform}
+.marquee-track span{font-size:clamp(56px,9vw,150px);font-weight:500;letter-spacing:-.045em;line-height:1.05;padding-right:.35em;display:inline-flex;align-items:center;gap:.35em}
+.marquee-track .script{font-size:1.1em;font-style:normal}
+.story-art img,.collab-head .shot img{transition:none!important}
+.marquee-track svg{width:.42em;height:.42em;flex:none}
+.cursor{position:fixed;left:0;top:0;z-index:200;pointer-events:none;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--green);box-shadow:0 0 0 1px rgba(247,244,231,.7);opacity:0;display:grid;place-items:center;transition:width .4s var(--ease),height .4s var(--ease),margin .4s var(--ease),opacity .3s,background .3s}
+.cursor.on{opacity:1}
+.cursor.link{width:46px;height:46px;margin:-23px 0 0 -23px;background:rgba(0,64,24,.12);box-shadow:0 0 0 1px rgba(0,64,24,.35)}
+.cursor.img{width:22px;height:22px;margin:-11px 0 0 -11px}
+.cursor span{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--cream);opacity:0;transition:opacity .3s}
+.cursor.drag{width:88px;height:88px;margin:-44px 0 0 -44px;background:var(--green)}
+.cursor.drag span{opacity:1}
+
+/* ---------- Responsive ---------- */
+@media (max-width:900px){
+  .story .wrap,.collab-head{grid-template-columns:1fr}
+  .numbers-grid{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(3){border-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--line)}
+  .loc-panel{grid-template-columns:1fr;height:auto}
+  .loc-img{height:clamp(220px,42svh,380px)}
+  .logos{grid-template-columns:repeat(3,1fr)}
+  .footer .wrap{grid-template-columns:1fr;text-align:left}
+  .footer-links{justify-content:flex-start}
 }
-@media(max-width:380px){.stats{gap:8px!important}.stat strong{font-size:clamp(24px,7vw,31px)!important}.stat p{font-size:9px!important}.stat-mark{display:none!important}}
-</style><style id="src-v9">
-/* SRC V9 — Cross-device vector identity, performance-aware kinetic motion */
-.src-arrow{display:inline-block;width:1em;height:1em;vertical-align:-.12em;flex:none;stroke:currentColor!important}.src-spark{display:inline-block;width:.78em;height:.78em;vertical-align:-.06em;flex:none;stroke:currentColor!important}.src-chevron{width:23px;height:23px;display:block}.src-chevron.left{transform:rotate(180deg)}
-.stat:before,.photo:after,.brand-tile:before,.manifesto:before,.join:before{content:none!important}.stat-mark{position:absolute;top:21px;right:1px;display:grid;place-items:center;width:31px;height:31px;color:var(--green);transition:transform .65s cubic-bezier(.2,.9,.2,1)}.stat-mark .src-spark{width:24px;height:24px}.stat:hover .stat-mark{transform:rotate(90deg) scale(1.2)}.stats{align-items:start}.stat{min-width:0}.stat strong{font-variant-numeric:lining-nums tabular-nums}.ticker-track .src-spark{width:.62em;height:.62em;margin:0 .45em;vertical-align:.02em}.ticker-track span{display:inline-flex;align-items:center;white-space:nowrap}.hero .pill{display:inline-flex;align-items:center;gap:10px}.hero .pill .src-arrow{transition:transform .35s}.hero .pill:hover .src-arrow{transform:translate(3px,-3px)}.city-visual-tag .src-arrow,.city-cta .src-arrow{width:13px;height:13px}.story-signoff .src-arrow{width:20px;height:20px}
-.scroll-cue{position:absolute;z-index:3;right:5.5%;bottom:130px;display:flex;gap:15px;align-items:center;writing-mode:vertical-rl;font-size:9px;letter-spacing:.25em;font-weight:700;color:#fff}.scroll-cue i{width:1px;height:54px;background:linear-gradient(#d7f29d,transparent);position:relative;overflow:hidden}.scroll-cue i:before{content:"";position:absolute;top:-30%;left:0;width:100%;height:25%;background:white;animation:scrollTrace 2.2s ease-in-out infinite}@keyframes scrollTrace{to{top:130%}}
-.story-film{grid-column:1/-1;margin-top:clamp(80px,9vw,150px);position:relative;z-index:2;min-width:0}.film-label{display:flex;justify-content:space-between;gap:18px;font-size:10px;letter-spacing:.19em;font-weight:700;color:#d7f29d;margin-bottom:22px}.film-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:#d7f29d #004018;padding:0 0 20px}.film-track figure{margin:0;flex:0 0 clamp(235px,31vw,510px);scroll-snap-align:center;position:relative;overflow:hidden;aspect-ratio:4/5;background:#183b2a}.film-track figure:nth-child(2n){aspect-ratio:4/5}.film-track img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1s cubic-bezier(.2,.7,.2,1),filter 1s}.film-track figure:hover img{transform:scale(1.06);filter:saturate(1.12)}.film-track figcaption{position:absolute;bottom:0;left:0;right:0;padding:45px 20px 20px;background:linear-gradient(transparent,#001e12c9);font-size:10px;letter-spacing:.2em;font-weight:700;color:white}.film-instruction{font-size:9px;letter-spacing:.22em;text-align:right;margin-top:12px;color:#d7f29d99}
-.kinetic-banner{background:#d7f29d;color:#004018;overflow:hidden;padding:20px 0;white-space:nowrap}.kinetic-track{width:max-content;font:italic clamp(45px,6vw,100px)/1 Georgia,serif;letter-spacing:-.07em;animation:kinetic 30s linear infinite}.kinetic-track span{font-style:normal;padding:0 40px}@keyframes kinetic{to{transform:translateX(-50%)}}
-.hero-slide{will-change:opacity,transform}.hero-content{isolation:isolate}.city-feature{transition:box-shadow .45s,transform .6s cubic-bezier(.2,.7,.2,1)}.city-feature:hover{box-shadow:0 40px 100px #002e173d}.partner-feature-copy h3 em{display:inline-block;transition:transform .6s}.partner-feature:hover .partner-feature-copy h3 em{transform:translateX(9px)}.brand-tile .brand-mark{filter:none}.brand-tile:hover{box-shadow:0 18px 35px #001e1228}
-/* Reveal image crops, not just opacity, on intersection */
-@supports(clip-path:inset(0)){.story-art.reveal:not(.visible){clip-path:inset(0 0 13% 0 round 10px)}.story-art.reveal.visible{clip-path:inset(0 0 0 0 round 0);transition:clip-path 1.3s cubic-bezier(.2,.8,.2,1),opacity .9s,transform .9s}}
-@media(max-width:800px){.scroll-cue{display:none}.stat-mark{top:17px;right:0;width:24px;height:24px}.stat-mark .src-spark{width:19px;height:19px}.stats{padding-bottom:68px!important;row-gap:45px!important}.stat{padding-top:45px!important}.stat strong{font-size:clamp(47px,11vw,92px)!important;line-height:1.05}.stat p{font-size:10px!important;letter-spacing:.11em!important;line-height:1.55}.story-film{margin-top:72px}.film-label{font-size:8px;line-height:1.5}.film-track{margin-right:-6vw;gap:12px}.film-track figure{flex-basis:76vw}.film-instruction{font-size:8px}.kinetic-banner{padding:14px 0}.kinetic-track{font-size:48px}.hero .pill{gap:7px}.ticker-track{font-size:20px}.hero-foot{padding-right:18px!important}.src-chevron{width:19px;height:19px}}
-@media(prefers-reduced-motion:reduce){.scroll-cue i:before,.kinetic-track{animation:none!important}.film-track img,.city-feature,.stat-mark{transition:none!important}}
-
-/* V18 mobile polish: spacing, contrast and typographic iconography */
-.city-register{display:inline-flex!important;align-items:center;justify-content:space-between;gap:18px;width:auto!important;max-width:100%;min-height:54px;padding:14px 17px 14px 22px!important;border:1px solid rgba(247,244,231,.78)!important;border-radius:100px!important;background:var(--cream)!important;color:var(--green)!important;font-size:12px!important;font-weight:800!important;letter-spacing:.11em!important;text-align:left!important;line-height:1.3!important;transition:transform .2s,background .2s!important}
-.city-register:hover{transform:translateY(-2px);background:#e3ebd3!important}.city-register .register-arrow,.city-register span{display:grid;place-items:center;flex:0 0 29px;width:29px;height:29px;border-radius:50%;background:var(--green);color:var(--cream);font-family:Arial,sans-serif;font-size:19px;line-height:1}
-.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Snatch a Matcha"] img{filter:none!important;opacity:1!important;width:83%!important;max-width:190px!important;max-height:65px!important;object-fit:contain!important}
-.stats{position:relative!important}.stats:before{pointer-events:none!important}.stat{min-width:0!important;position:relative!important}.stat-mark{position:absolute!important;top:12px!important;right:8px!important;display:block!important;width:18px!important;height:18px!important;line-height:0!important;z-index:1!important}.stat-spark-icon{width:18px!important;height:18px!important;display:block!important}
-@media(max-width:700px){
-.stats{padding:80px 6% 35px!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;min-height:0!important}
-.stats:before{top:29px!important;left:6%!important;font-size:10px!important;letter-spacing:.19em!important;white-space:nowrap!important}
-.stat{padding:16px 0 0!important;border-top:1px solid rgba(0,64,24,.28)!important;min-height:115px!important;overflow:visible!important}
-.stat strong{display:block!important;font-size:clamp(26px,7.2vw,45px)!important;line-height:1.12!important;letter-spacing:-.065em!important;padding:0!important;margin:0 0 10px!important;white-space:nowrap!important}
-.stat p{font-size:clamp(9px,2.45vw,12px)!important;letter-spacing:.025em!important;line-height:1.35!important;margin:0!important;overflow-wrap:normal!important}
-.stat-mark{top:17px!important;right:0!important;width:12px!important;height:12px!important;opacity:.55!important;transform:translate(2px,-10px)!important}
-.stat-spark-icon{width:12px!important;height:12px!important}
-.city-register{margin-top:25px!important;font-size:11px!important;letter-spacing:.07em!important;padding:12px 14px 12px 19px!important;min-height:52px!important}
-.city-detail{padding-bottom:25px!important}.city-detail p{margin-bottom:0!important}
-.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Snatch a Matcha"] img{width:92%!important;max-width:160px!important;max-height:58px!important}
-}
-@media(max-width:380px){.stats{gap:8px!important}.stat strong{font-size:clamp(24px,7vw,31px)!important}.stat p{font-size:9px!important}.stat-mark{display:none!important}}
-</style><style>
-/* Official SRC identity and transparent partner artwork */
-
-.nav a.logo {display:flex;align-items:center;justify-content:center;line-height:1;min-width:0}
-.nav a.logo img {display:block;width:clamp(108px,12vw,155px);height:auto;max-height:72px;object-fit:contain}
-footer .logo img, div.logo img {display:block;max-width:210px;width:100%;height:auto;object-fit:contain}
-.partner-marquee {display:none!important}
-.brand-grid.partner-grid-official {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:rgba(0,62,27,.16);border:1px solid rgba(0,62,27,.16);overflow:hidden;border-radius:12px}
-.brand-grid.partner-grid-official .partner-logo-tile {background:#f7f5e9;min-height:178px;padding:30px 25px;display:flex;align-items:center;justify-content:center;transition:background .35s ease,transform .35s ease;min-width:0}
-.brand-grid.partner-grid-official .partner-logo-tile:hover {background:#ebeede;transform:none}
-.brand-grid.partner-grid-official .partner-logo-tile img {display:block;max-width:86%;max-height:105px;width:auto;height:auto;object-fit:contain;filter:none;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
-.brand-grid.partner-grid-official .partner-logo-tile:hover img {transform:scale(1.08)}
-.brand-grid.partner-grid-official .partner-invite {min-height:178px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;text-align:center}
-.brand-grid.partner-grid-official .partner-invite span {font-size:clamp(18px,2vw,29px);line-height:1.1}
-.brand-grid.partner-grid-official .partner-invite small {font-size:10px}
-@media(max-width:900px){.brand-grid.partner-grid-official{grid-template-columns:repeat(3,minmax(0,1fr))}.brand-grid.partner-grid-official .partner-logo-tile{min-height:145px;padding:22px 14px}}
-@media(max-width:600px){.nav a.logo img{width:130px;max-height:64px}.brand-grid.partner-grid-official{grid-template-columns:repeat(2,minmax(0,1fr))}.brand-grid.partner-grid-official .partner-logo-tile{min-height:130px;padding:18px 12px}.brand-grid.partner-grid-official .partner-logo-tile img{max-height:80px;max-width:92%}.brand-grid.partner-grid-official .partner-invite{min-height:130px}}
-@media(prefers-reduced-motion:reduce){.partner-logo-tile img{transition:none!important}}
-
-/* SRC V9 official-logo polish — preserve the original artwork and aspect ratio */
-.opening-official-logo{margin:clamp(22px,4vw,40px) auto 22px!important;width:min(73vw,680px);max-width:100%;line-height:1!important;letter-spacing:normal!important;animation:srcLogoReveal 1.1s cubic-bezier(.2,.7,.2,1) both}
-.opening-official-logo img{display:block;width:100%;height:auto;max-height:57vh;object-fit:contain;filter:drop-shadow(0 16px 40px rgba(0,0,0,.09))}
-@keyframes srcLogoReveal{from{opacity:0;transform:translateY(24px) scale(.95);filter:blur(6px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
-.nav{min-height:76px;height:auto;padding:10px clamp(18px,2.4vw,35px);gap:clamp(15px,2vw,30px)}
-.nav a.logo{flex:0 0 auto;min-width:clamp(100px,10vw,132px);height:64px;overflow:visible}
-.nav a.logo img{width:auto!important;height:60px!important;max-width:132px!important;max-height:60px!important;object-fit:contain!important;object-position:center}
-.nav .links{min-width:0;align-items:center}
-.footer .logo img{width:clamp(160px,20vw,230px)!important;max-width:230px!important;height:auto;object-fit:contain;filter:drop-shadow(0 3px 12px #0002)}
-@media(max-width:780px){.opening-official-logo{width:min(82vw,440px)}.opening-official-logo img{max-height:49svh}.nav{min-height:72px;padding:8px 20px}.nav a.logo{height:55px;min-width:100px}.nav a.logo img{height:54px!important;max-height:54px!important;max-width:116px!important}.footer .logo img{width:185px!important}}
-@media(prefers-reduced-motion:reduce){.opening-official-logo{animation:none}}
-
-/* Partner logos are uniformly presented without individual colored tiles */
-.brand-grid.partner-grid-official .partner-logo-tile {background:var(--cream)!important}
-.brand-grid.partner-grid-official .partner-logo-tile:hover {background:#eeeddf!important}
-
-/* V18 mobile polish: spacing, contrast and typographic iconography */
-.city-register{display:inline-flex!important;align-items:center;justify-content:space-between;gap:18px;width:auto!important;max-width:100%;min-height:54px;padding:14px 17px 14px 22px!important;border:1px solid rgba(247,244,231,.78)!important;border-radius:100px!important;background:var(--cream)!important;color:var(--green)!important;font-size:12px!important;font-weight:800!important;letter-spacing:.11em!important;text-align:left!important;line-height:1.3!important;transition:transform .2s,background .2s!important}
-.city-register:hover{transform:translateY(-2px);background:#e3ebd3!important}.city-register .register-arrow,.city-register span{display:grid;place-items:center;flex:0 0 29px;width:29px;height:29px;border-radius:50%;background:var(--green);color:var(--cream);font-family:Arial,sans-serif;font-size:19px;line-height:1}
-.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Snatch a Matcha"] img{filter:none!important;opacity:1!important;width:83%!important;max-width:190px!important;max-height:65px!important;object-fit:contain!important}
-.stats{position:relative!important}.stats:before{pointer-events:none!important}.stat{min-width:0!important;position:relative!important}.stat-mark{position:absolute!important;top:12px!important;right:8px!important;display:block!important;width:18px!important;height:18px!important;line-height:0!important;z-index:1!important}.stat-spark-icon{width:18px!important;height:18px!important;display:block!important}
-@media(max-width:700px){
-.stats{padding:80px 6% 35px!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;min-height:0!important}
-.stats:before{top:29px!important;left:6%!important;font-size:10px!important;letter-spacing:.19em!important;white-space:nowrap!important}
-.stat{padding:16px 0 0!important;border-top:1px solid rgba(0,64,24,.28)!important;min-height:115px!important;overflow:visible!important}
-.stat strong{display:block!important;font-size:clamp(26px,7.2vw,45px)!important;line-height:1.12!important;letter-spacing:-.065em!important;padding:0!important;margin:0 0 10px!important;white-space:nowrap!important}
-.stat p{font-size:clamp(9px,2.45vw,12px)!important;letter-spacing:.025em!important;line-height:1.35!important;margin:0!important;overflow-wrap:normal!important}
-.stat-mark{top:17px!important;right:0!important;width:12px!important;height:12px!important;opacity:.55!important;transform:translate(2px,-10px)!important}
-.stat-spark-icon{width:12px!important;height:12px!important}
-.city-register{margin-top:25px!important;font-size:11px!important;letter-spacing:.07em!important;padding:12px 14px 12px 19px!important;min-height:52px!important}
-.city-detail{padding-bottom:25px!important}.city-detail p{margin-bottom:0!important}
-.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Snatch a Matcha"] img{width:92%!important;max-width:160px!important;max-height:58px!important}
-}
-@media(max-width:380px){.stats{gap:8px!important}.stat strong{font-size:clamp(24px,7vw,31px)!important}.stat p{font-size:9px!important}.stat-mark{display:none!important}}
-</style><style>
-/* V10: clarity, accessible location selection and safe logo sizing */
-html{scroll-padding-top:110px}
-.brand-grid.partner-grid-official .partner-logo-tile{min-width:0;box-sizing:border-box;overflow:hidden;padding:22px 24px!important}
-.brand-grid.partner-grid-official .partner-logo-tile img,
-.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Wello"] img{
- display:block!important;box-sizing:border-box!important;width:100%!important;height:100px!important;
- max-width:100%!important;max-height:100px!important;min-width:0!important;
- object-fit:contain!important;object-position:center!important;margin:0 auto!important;
- transform:none!important;filter:none!important
-}
-.brand-grid.partner-grid-official .partner-logo-tile:hover img{transform:none!important}
-#locations{scroll-margin-top:100px}
-#locations .section-head{margin-bottom:22px}
-#locations .section-head .lead{max-width:450px}
-.location-picker-title{font-size:12px;font-weight:800;letter-spacing:.17em;color:#004018;margin:18px 0 12px}
-#locations .city-switch{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;border:0;overflow:visible;margin:0 0 24px}
-#locations .city-switch button{min-width:0;margin:0;padding:18px 12px!important;border:1.5px solid #00401865!important;border-radius:7px;background:#f7f5e9!important;color:#004018!important;opacity:1!important;font-size:12px!important;letter-spacing:.075em!important;text-align:center;cursor:pointer;transition:background .2s,color .2s,border .2s}
-#locations .city-switch button.active{background:#004018!important;color:#f7f5e9!important;border-color:#004018!important}
-#locations .city-switch button.active:after{display:none!important}
-#locations .city-switch button:focus-visible{outline:3px solid #b5e68a;outline-offset:3px}
-#locations .city-visual{min-height:400px}
-#locations .city-detail{min-width:0}
-#locations .city-detail h3{overflow-wrap:anywhere}
-#locations .city-foot{margin-top:30px}
-.join .pill{display:inline-flex;align-items:center;gap:12px}
-.join .pill svg{flex-shrink:0}
-@media(max-width:600px){
- html{scroll-padding-top:90px}
- #locations .city-switch{gap:6px;margin-bottom:14px}
- #locations .city-switch button{font-size:10px!important;letter-spacing:0!important;padding:14px 4px!important;line-height:1.25}
- #locations .city-visual{min-height:300px}
- #locations .city-detail{min-height:270px;padding:30px 23px}
- #locations .city-detail h3{font-size:clamp(55px,16vw,78px)}
- .brand-grid.partner-grid-official .partner-logo-tile{padding:16px 18px!important;min-height:136px}
- .brand-grid.partner-grid-official .partner-logo-tile img,
- .brand-grid.partner-grid-official .partner-logo-tile[aria-label="Wello"] img{height:80px!important;max-height:80px!important;width:100%!important;max-width:100%!important}
- .join .pill{font-size:12px;letter-spacing:.04em;justify-content:center}
-}
-
-/* V18 mobile polish: spacing, contrast and typographic iconography */
-.city-register{display:inline-flex!important;align-items:center;justify-content:space-between;gap:18px;width:auto!important;max-width:100%;min-height:54px;padding:14px 17px 14px 22px!important;border:1px solid rgba(247,244,231,.78)!important;border-radius:100px!important;background:var(--cream)!important;color:var(--green)!important;font-size:12px!important;font-weight:800!important;letter-spacing:.11em!important;text-align:left!important;line-height:1.3!important;transition:transform .2s,background .2s!important}
-.city-register:hover{transform:translateY(-2px);background:#e3ebd3!important}.city-register .register-arrow,.city-register span{display:grid;place-items:center;flex:0 0 29px;width:29px;height:29px;border-radius:50%;background:var(--green);color:var(--cream);font-family:Arial,sans-serif;font-size:19px;line-height:1}
-.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Snatch a Matcha"] img{filter:none!important;opacity:1!important;width:83%!important;max-width:190px!important;max-height:65px!important;object-fit:contain!important}
-.stats{position:relative!important}.stats:before{pointer-events:none!important}.stat{min-width:0!important;position:relative!important}.stat-mark{position:absolute!important;top:12px!important;right:8px!important;display:block!important;width:18px!important;height:18px!important;line-height:0!important;z-index:1!important}.stat-spark-icon{width:18px!important;height:18px!important;display:block!important}
-@media(max-width:700px){
-.stats{padding:80px 6% 35px!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;min-height:0!important}
-.stats:before{top:29px!important;left:6%!important;font-size:10px!important;letter-spacing:.19em!important;white-space:nowrap!important}
-.stat{padding:16px 0 0!important;border-top:1px solid rgba(0,64,24,.28)!important;min-height:115px!important;overflow:visible!important}
-.stat strong{display:block!important;font-size:clamp(26px,7.2vw,45px)!important;line-height:1.12!important;letter-spacing:-.065em!important;padding:0!important;margin:0 0 10px!important;white-space:nowrap!important}
-.stat p{font-size:clamp(9px,2.45vw,12px)!important;letter-spacing:.025em!important;line-height:1.35!important;margin:0!important;overflow-wrap:normal!important}
-.stat-mark{top:17px!important;right:0!important;width:12px!important;height:12px!important;opacity:.55!important;transform:translate(2px,-10px)!important}
-.stat-spark-icon{width:12px!important;height:12px!important}
-.city-register{margin-top:25px!important;font-size:11px!important;letter-spacing:.07em!important;padding:12px 14px 12px 19px!important;min-height:52px!important}
-.city-detail{padding-bottom:25px!important}.city-detail p{margin-bottom:0!important}
-.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Snatch a Matcha"] img{width:92%!important;max-width:160px!important;max-height:58px!important}
-}
-@media(max-width:380px){.stats{gap:8px!important}.stat strong{font-size:clamp(24px,7vw,31px)!important}.stat p{font-size:9px!important}.stat-mark{display:none!important}}
-</style><style>
-/* V12 — editorial simplification and compact mobile layout */
-@media (min-width: 761px){.cities{padding-top:clamp(54px,6vw,95px)!important}}
 @media (max-width:760px){
- .cities{padding:48px 20px 54px!important;min-height:0!important}
- .cities .section-head{margin-bottom:22px!important}
- .cities .section-head h2{font-size:clamp(38px,11vw,56px)!important}
- .city-switch{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:0!important;width:100%!important}
- .city-switch button{font-size:10px!important;letter-spacing:.035em!important;padding:16px 3px!important;white-space:normal!important;min-width:0!important}
- .location-picker-title{font-size:11px!important;letter-spacing:.13em!important;margin-bottom:12px!important}
- .cities .city-panel,.cities .city-content{min-height:0!important}
- .story{padding-top:55px!important;padding-bottom:55px!important}
- .partners{padding-top:60px!important;padding-bottom:60px!important}
- .partner-top{margin-bottom:30px!important}
- .join{padding:70px 20px!important;min-height:0!important}
- .stats{padding-top:35px!important;padding-bottom:35px!important}
- .hero .hero-content p{max-width:300px}
+  body{font-size:16px}
+  .nav-links{display:none}
+  .menu-btn{display:block}
+  .nav,.nav.solid{height:64px}
+  .nav-logo,.nav.solid .nav-logo{width:52px;height:44px}
+  .hero-content{bottom:120px}
+  .scroll-cue{display:none}
+  .hero-arrows button{width:40px;height:40px}
+  .locations{min-height:0}
+  .loc-head{margin-bottom:24px}
+  .tabs{width:100%}
+  .tabs button{flex:1;padding:0 8px;font-size:12px;letter-spacing:.1em}
+  .loc-info h3{margin-bottom:14px}
+  .gallery-head .film-nav{display:none}
+  .film{gap:12px}
+  .film figure{width:82vw}
+  .logos{grid-template-columns:repeat(2,1fr)}
+  .join h2{white-space:normal}
+  .footer-base{flex-direction:column}
 }
+@media (prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation:none!important;transition:none!important}
+  .intro{display:none}
+  .split .w>span,.loc-img img{transform:none!important}
+  .loc-img img:not(.on){opacity:0}
+  .rv,.rv-img,.rv-img img,.hero h1 .line>span,.hero p,.hero-eyebrow{opacity:1!important;transform:none!important;clip-path:none!important}
+  .slides img{transform:none}
+}
+</style>
+</head>
+<body class="locked">
 
-/* V18 mobile polish: spacing, contrast and typographic iconography */
-.city-register{display:inline-flex!important;align-items:center;justify-content:space-between;gap:18px;width:auto!important;max-width:100%;min-height:54px;padding:14px 17px 14px 22px!important;border:1px solid rgba(247,244,231,.78)!important;border-radius:100px!important;background:var(--cream)!important;color:var(--green)!important;font-size:12px!important;font-weight:800!important;letter-spacing:.11em!important;text-align:left!important;line-height:1.3!important;transition:transform .2s,background .2s!important}
-.city-register:hover{transform:translateY(-2px);background:#e3ebd3!important}.city-register .register-arrow,.city-register span{display:grid;place-items:center;flex:0 0 29px;width:29px;height:29px;border-radius:50%;background:var(--green);color:var(--cream);font-family:Arial,sans-serif;font-size:19px;line-height:1}
-.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Snatch a Matcha"] img{filter:none!important;opacity:1!important;width:83%!important;max-width:190px!important;max-height:65px!important;object-fit:contain!important}
-.stats{position:relative!important}.stats:before{pointer-events:none!important}.stat{min-width:0!important;position:relative!important}.stat-mark{position:absolute!important;top:12px!important;right:8px!important;display:block!important;width:18px!important;height:18px!important;line-height:0!important;z-index:1!important}.stat-spark-icon{width:18px!important;height:18px!important;display:block!important}
-@media(max-width:700px){
-.stats{padding:80px 6% 35px!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;min-height:0!important}
-.stats:before{top:29px!important;left:6%!important;font-size:10px!important;letter-spacing:.19em!important;white-space:nowrap!important}
-.stat{padding:16px 0 0!important;border-top:1px solid rgba(0,64,24,.28)!important;min-height:115px!important;overflow:visible!important}
-.stat strong{display:block!important;font-size:clamp(26px,7.2vw,45px)!important;line-height:1.12!important;letter-spacing:-.065em!important;padding:0!important;margin:0 0 10px!important;white-space:nowrap!important}
-.stat p{font-size:clamp(9px,2.45vw,12px)!important;letter-spacing:.025em!important;line-height:1.35!important;margin:0!important;overflow-wrap:normal!important}
-.stat-mark{top:17px!important;right:0!important;width:12px!important;height:12px!important;opacity:.55!important;transform:translate(2px,-10px)!important}
-.stat-spark-icon{width:12px!important;height:12px!important}
-.city-register{margin-top:25px!important;font-size:11px!important;letter-spacing:.07em!important;padding:12px 14px 12px 19px!important;min-height:52px!important}
-.city-detail{padding-bottom:25px!important}.city-detail p{margin-bottom:0!important}
-.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Snatch a Matcha"] img{width:92%!important;max-width:160px!important;max-height:58px!important}
-}
-@media(max-width:380px){.stats{gap:8px!important}.stat strong{font-size:clamp(24px,7vw,31px)!important}.stat p{font-size:9px!important}.stat-mark{display:none!important}}
-</style><style>
-/* SRC V13 — mobile polish and consistent partner artwork */
-.brand-grid.partner-grid-official .partner-logo-tile{display:flex!important;align-items:center!important;justify-content:center!important;min-width:0!important;overflow:hidden!important;padding:clamp(15px,2.5vw,30px)!important}
-.brand-grid.partner-grid-official .partner-logo-tile img,.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Wello"] img{display:block!important;width:auto!important;height:auto!important;max-width:84%!important;max-height:112px!important;object-fit:contain!important;object-position:center!important;margin:auto!important;transform:none!important;flex-shrink:1!important}
-.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Wello"] img{max-width:76%!important;max-height:100px!important}
-.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Joe & The Juice"] img{max-height:110px!important}
-.stat-mark{display:flex!important;justify-content:flex-end!important;align-items:center!important;min-height:25px!important;overflow:visible!important}
-.stat-star{font-family:Arial,sans-serif!important;font-size:25px!important;line-height:1!important;display:block!important;letter-spacing:0!important;transform:none!important}
-.nav .links{display:flex;gap:clamp(14px,2vw,32px);align-items:center}
-.nav .links a{white-space:nowrap}
-@media(max-width:760px){
- .brand-grid.partner-grid-official{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:1px!important}
- .brand-grid.partner-grid-official .partner-logo-tile{min-height:90px!important;height:104px!important;padding:10px 8px!important}
- .brand-grid.partner-grid-official .partner-logo-tile img,.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Wello"] img{width:auto!important;height:auto!important;max-width:94%!important;max-height:64px!important;object-fit:contain!important}
- .brand-grid.partner-grid-official .partner-logo-tile[aria-label="Wello"] img{max-width:82%!important;max-height:55px!important}
- .brand-grid.partner-grid-official .partner-logo-tile[aria-label="Joe & The Juice"] img{max-height:75px!important}
- .partners{padding-top:42px!important;padding-bottom:48px!important}
- .partner-wall-label{margin-bottom:18px!important}
- .stats{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important;padding:44px 20px!important}
- .stats .stat{min-width:0!important;padding:14px 2px 6px!important}
- .stats .stat strong{font-size:clamp(29px,8vw,48px)!important;white-space:nowrap!important}
- .stats .stat p{font-size:9px!important;line-height:1.35!important;letter-spacing:.07em!important}
- .stats .stat-mark{min-height:21px!important}
- .stat-star{font-size:19px!important}
- .mobile-panel.open{gap:0!important;padding:105px 30px 30px!important}
- .mobile-panel a{display:block;padding:15px 0!important;border-bottom:1px solid #00401825;font-size:clamp(25px,7vw,34px)!important}
-}
-@media(max-width:370px){.brand-grid.partner-grid-official .partner-logo-tile{height:90px!important;min-height:90px!important}.stats .stat strong{font-size:27px!important}}
-/* V14: restore original mobile hamburger navigation; retain requested link order. */
-@media (max-width:800px){
- .nav .links{display:none!important}
- .nav .menu{display:block!important;flex:0 0 auto;position:relative;z-index:2}
- .nav{justify-content:space-between!important}
- .nav a.logo{flex:0 0 auto}
-}
-
-/* V18 mobile polish: spacing, contrast and typographic iconography */
-.city-register{display:inline-flex!important;align-items:center;justify-content:space-between;gap:18px;width:auto!important;max-width:100%;min-height:54px;padding:14px 17px 14px 22px!important;border:1px solid rgba(247,244,231,.78)!important;border-radius:100px!important;background:var(--cream)!important;color:var(--green)!important;font-size:12px!important;font-weight:800!important;letter-spacing:.11em!important;text-align:left!important;line-height:1.3!important;transition:transform .2s,background .2s!important}
-.city-register:hover{transform:translateY(-2px);background:#e3ebd3!important}.city-register .register-arrow,.city-register span{display:grid;place-items:center;flex:0 0 29px;width:29px;height:29px;border-radius:50%;background:var(--green);color:var(--cream);font-family:Arial,sans-serif;font-size:19px;line-height:1}
-.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Snatch a Matcha"] img{filter:none!important;opacity:1!important;width:83%!important;max-width:190px!important;max-height:65px!important;object-fit:contain!important}
-.stats{position:relative!important}.stats:before{pointer-events:none!important}.stat{min-width:0!important;position:relative!important}.stat-mark{position:absolute!important;top:12px!important;right:8px!important;display:block!important;width:18px!important;height:18px!important;line-height:0!important;z-index:1!important}.stat-spark-icon{width:18px!important;height:18px!important;display:block!important}
-@media(max-width:700px){
-.stats{padding:80px 6% 35px!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;min-height:0!important}
-.stats:before{top:29px!important;left:6%!important;font-size:10px!important;letter-spacing:.19em!important;white-space:nowrap!important}
-.stat{padding:16px 0 0!important;border-top:1px solid rgba(0,64,24,.28)!important;min-height:115px!important;overflow:visible!important}
-.stat strong{display:block!important;font-size:clamp(26px,7.2vw,45px)!important;line-height:1.12!important;letter-spacing:-.065em!important;padding:0!important;margin:0 0 10px!important;white-space:nowrap!important}
-.stat p{font-size:clamp(9px,2.45vw,12px)!important;letter-spacing:.025em!important;line-height:1.35!important;margin:0!important;overflow-wrap:normal!important}
-.stat-mark{top:17px!important;right:0!important;width:12px!important;height:12px!important;opacity:.55!important;transform:translate(2px,-10px)!important}
-.stat-spark-icon{width:12px!important;height:12px!important}
-.city-register{margin-top:25px!important;font-size:11px!important;letter-spacing:.07em!important;padding:12px 14px 12px 19px!important;min-height:52px!important}
-.city-detail{padding-bottom:25px!important}.city-detail p{margin-bottom:0!important}
-.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Snatch a Matcha"] img{width:92%!important;max-width:160px!important;max-height:58px!important}
-}
-@media(max-width:380px){.stats{gap:8px!important}.stat strong{font-size:clamp(24px,7vw,31px)!important}.stat p{font-size:9px!important}.stat-mark{display:none!important}}
-</style><style>/* V17: restrained editorial film grain, preserves palette */
-body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:.095;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='.24'/%3E%3C/svg%3E");background-size:180px 180px;mix-blend-mode:multiply}
-.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Wello"] img{width:76%!important;max-width:260px!important;height:90px!important;max-height:90px!important;object-fit:contain!important;margin:auto!important}
-.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Snatch a Matcha"] img{filter:none!important;object-fit:contain!important}
-.city-register{display:inline-flex;align-items:center;justify-content:space-between;gap:24px;margin:20px 0 18px;padding:15px 22px;border:1px solid #00401e;background:#f7f5e9;color:#00401e;font:700 12px/1.4 inherit;letter-spacing:.13em;cursor:pointer;transition:background .2s,color .2s}.city-register:hover{background:#00401e;color:#f7f5e9}.registration-dialog{border:1px solid #b2bca8;background:#f7f5e9;color:#00401e;width:min(440px,calc(100vw - 32px));padding:0;box-shadow:0 24px 90px #001b1070}.registration-dialog::backdrop{background:#001c11a8;backdrop-filter:blur(5px)}.registration-inner{padding:35px;position:relative}.registration-inner h3{font-size:clamp(38px,6vw,58px);margin:20px 0 12px}.registration-inner p{line-height:1.6}.registration-close{position:absolute;right:18px;top:12px;border:0;background:none;font-size:30px;color:#00401e;cursor:pointer}.registration-social{display:inline-block;margin-top:20px;border-bottom:1px solid currentColor;padding-bottom:6px;font-weight:700;font-size:12px;letter-spacing:.12em}
-@media(max-width:600px){.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Wello"] img{width:82%!important;height:66px!important;max-height:66px!important}.city-register{width:100%;margin-top:14px}}
-@media(prefers-reduced-motion:reduce){.city-register{transition:none}}
-
-/* V18 mobile polish: spacing, contrast and typographic iconography */
-.city-register{display:inline-flex!important;align-items:center;justify-content:space-between;gap:18px;width:auto!important;max-width:100%;min-height:54px;padding:14px 17px 14px 22px!important;border:1px solid rgba(247,244,231,.78)!important;border-radius:100px!important;background:var(--cream)!important;color:var(--green)!important;font-size:12px!important;font-weight:800!important;letter-spacing:.11em!important;text-align:left!important;line-height:1.3!important;transition:transform .2s,background .2s!important}
-.city-register:hover{transform:translateY(-2px);background:#e3ebd3!important}.city-register .register-arrow,.city-register span{display:grid;place-items:center;flex:0 0 29px;width:29px;height:29px;border-radius:50%;background:var(--green);color:var(--cream);font-family:Arial,sans-serif;font-size:19px;line-height:1}
-.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Snatch a Matcha"] img{filter:none!important;opacity:1!important;width:83%!important;max-width:190px!important;max-height:65px!important;object-fit:contain!important}
-.stats{position:relative!important}.stats:before{pointer-events:none!important}.stat{min-width:0!important;position:relative!important}.stat-mark{position:absolute!important;top:12px!important;right:8px!important;display:block!important;width:18px!important;height:18px!important;line-height:0!important;z-index:1!important}.stat-spark-icon{width:18px!important;height:18px!important;display:block!important}
-@media(max-width:700px){
-.stats{padding:80px 6% 35px!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;min-height:0!important}
-.stats:before{top:29px!important;left:6%!important;font-size:10px!important;letter-spacing:.19em!important;white-space:nowrap!important}
-.stat{padding:16px 0 0!important;border-top:1px solid rgba(0,64,24,.28)!important;min-height:115px!important;overflow:visible!important}
-.stat strong{display:block!important;font-size:clamp(26px,7.2vw,45px)!important;line-height:1.12!important;letter-spacing:-.065em!important;padding:0!important;margin:0 0 10px!important;white-space:nowrap!important}
-.stat p{font-size:clamp(9px,2.45vw,12px)!important;letter-spacing:.025em!important;line-height:1.35!important;margin:0!important;overflow-wrap:normal!important}
-.stat-mark{top:17px!important;right:0!important;width:12px!important;height:12px!important;opacity:.55!important;transform:translate(2px,-10px)!important}
-.stat-spark-icon{width:12px!important;height:12px!important}
-.city-register{margin-top:25px!important;font-size:11px!important;letter-spacing:.07em!important;padding:12px 14px 12px 19px!important;min-height:52px!important}
-.city-detail{padding-bottom:25px!important}.city-detail p{margin-bottom:0!important}
-.brand-grid.partner-grid-official .partner-logo-tile[aria-label="Snatch a Matcha"] img{width:92%!important;max-width:160px!important;max-height:58px!important}
-}
-@media(max-width:380px){.stats{gap:8px!important}.stat strong{font-size:clamp(24px,7vw,31px)!important}.stat p{font-size:9px!important}.stat-mark{display:none!important}}
-</style><style id="src-v19-tactile">
-/* V19 — tactile editorial finish, no emoji arrows */
-:root{--src-hairline:rgba(0,64,24,.19)}
-body{background-color:var(--cream)}
-/* Film-grain and paper fibers across the site, without changing brand colors. */
-body::after{opacity:.19!important;mix-blend-mode:multiply!important;background-size:145px 145px!important}
-body::before{content:"";position:fixed;inset:0;z-index:8999;pointer-events:none;opacity:.11;background-image:repeating-linear-gradient(0deg,transparent 0px,transparent 3px,rgba(55,51,35,.07) 4px,transparent 5px);background-size:100% 7px}
-.city-detail,.stats,.partners-v6,.story-v6,.cities-v6,.join{isolation:isolate}
-.city-feature{box-shadow:0 18px 48px rgba(0,35,15,.16)!important}
-.brand-grid.partner-grid-official .partner-logo-tile{transition:background-color .25s,box-shadow .25s,transform .25s!important}
-.brand-grid.partner-grid-official .partner-logo-tile:hover{background-color:#e9eddf!important;box-shadow:inset 0 0 0 2px rgba(0,64,24,.23)!important}
-.src-action-arrow{display:block;width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-.city-register{cursor:pointer!important;box-shadow:0 7px 20px rgba(0,22,9,.15)!important;transition:transform .22s ease,box-shadow .22s ease,background-color .22s ease!important}
-.city-register .register-arrow,.city-register span.register-arrow{font-size:0!important;line-height:0!important;width:32px!important;height:32px!important;flex:0 0 32px!important;background:var(--green)!important;color:var(--cream)!important;border-radius:50%!important}
-.city-register .register-arrow svg{width:17px;height:17px}
-.city-register:hover,.city-register:focus-visible{transform:translateY(-3px)!important;box-shadow:0 12px 26px rgba(0,22,9,.23)!important}
-.city-register:active{transform:translateY(0) scale(.985)!important}
-.partner-invite .partner-action-icon{display:inline-flex;vertical-align:middle;align-items:center;justify-content:center;width:30px;height:30px;border:1px solid currentColor;border-radius:50%;margin-left:5px}
-.partner-invite .partner-action-icon svg{width:17px;height:17px}
-.registration-social{display:inline-flex!important;align-items:center;gap:12px;padding:12px 0!important;transition:opacity .2s,transform .2s}
-.registration-social:hover{opacity:.7;transform:translateX(3px)}
-a,button{-webkit-tap-highlight-color:transparent}
-a:focus-visible,button:focus-visible{outline:3px solid #a7c67a!important;outline-offset:4px!important}
-.nav .links a,.mobile-panel a{transition:opacity .2s,transform .2s}
-.nav .links a:hover,.mobile-panel a:hover{opacity:.68}
-.city-switch button{cursor:pointer;transition:background-color .2s,color .2s,box-shadow .2s!important}
-.city-switch button:hover,.city-switch button:focus-visible{box-shadow:inset 0 0 0 2px rgba(0,64,24,.35)!important}
-.city-switch button.active{box-shadow:inset 0 -3px 0 #d7f29d!important}
-.partner-invite{transition:box-shadow .2s,filter .2s!important}
-.partner-invite:hover,.partner-invite:focus-visible{box-shadow:inset 0 0 0 2px var(--green)!important;filter:brightness(.97)}
-@media(max-width:700px){
- .city-register{width:100%!important;max-width:100%!important;min-height:57px!important;padding:11px 13px 11px 18px!important;gap:8px!important}
- .city-register .register-label{font-size:11px!important;letter-spacing:.055em!important;line-height:1.25!important;min-width:0}
- .city-register .register-arrow{flex:0 0 32px!important}
- .brand-grid.partner-grid-official .partner-logo-tile{min-width:0!important}
- .partner-invite .partner-action-icon{width:25px;height:25px;margin-left:2px}
- .partner-invite .partner-action-icon svg{width:15px;height:15px}
- .stats:before{letter-spacing:.13em!important}
-}
-@media(prefers-reduced-motion:reduce){.city-register,.partner-invite,.city-switch button{transition:none!important}}
-</style><style>
-/* V22 refined: ordered, compact, and responsive. */
-body.intro-active .src-mobile-dock,body.intro-active .src-dock-sheet,body.intro-active .src-dock-backdrop,body.intro-active .nav{visibility:hidden!important;pointer-events:none!important}
-.hero h1{font-size:clamp(66px,9.8vw,150px)!important;line-height:.94!important;max-width:100%}
-.hero-content{right:7%}.hero-content p{max-width:100%;font-size:clamp(16px,1.7vw,22px)}
-.hero-foot>.eyebrow{visibility:hidden}
-#story,#locations,#partners{scroll-margin-top:100px}
-.story-copy p{font-size:16px;line-height:1.7;margin:0 0 17px}
-.stats{grid-template-columns:repeat(3,minmax(0,1fr))!important;text-align:center!important;align-items:center!important;padding:75px 7% 45px!important}
-.stats:before{left:0!important;right:0!important;top:26px!important;text-align:center!important}
-.stat{display:flex!important;flex-direction:column;align-items:center;justify-content:center;padding:24px 10px!important;min-height:0!important;text-align:center!important}
-.stat strong{width:100%;text-align:center!important;letter-spacing:-.045em!important}
-.stat p{width:100%;text-align:center!important}.stat-mark{display:none!important}
-.cities{padding:48px 7%!important}.cities .section-head{margin-bottom:16px!important}.cities .section-head h2{font-size:clamp(44px,5vw,72px)!important;margin:12px 0!important}
-.location-picker-title{margin:18px 0 12px!important}.city-switch{margin:0 0 18px!important;display:flex!important;gap:10px!important}
-.city-switch button{flex:1;margin:0!important;padding:13px 18px!important;min-height:46px;border-radius:100px!important;font-size:12px!important}
-.city-feature{grid-template-columns:1fr 1fr!important;min-height:0!important;align-items:stretch!important}
-.city-visual{min-height:0!important;height:auto!important;max-height:430px!important}.city-visual img{width:100%;height:100%;position:absolute;object-fit:cover}.city-visual{position:relative}
-.city-detail{min-height:0!important;padding:32px!important;gap:0!important}.city-detail h3{font-size:clamp(46px,5vw,72px)!important;margin:12px 0!important}.city-detail p{font-size:15px!important;line-height:1.6!important;max-width:100%!important;margin:0 0 18px!important}
-.city-outline{font-size:135px!important;opacity:.12}.city-foot{margin-top:20px!important;padding-top:12px!important}.city-register{margin-top:12px!important;min-height:54px!important}.chapter-route{display:none}
-.popup-cities{display:grid;gap:12px;margin-top:18px}.popup-cities[hidden]{display:none!important}.popup-cities>div{display:grid;gap:4px}.popup-cities strong{font-size:15px}.popup-cities span{font-size:13px;line-height:1.5;opacity:.85}
-.partner-top h2{font-size:clamp(42px,6.6vw,100px)!important;line-height:1!important;margin:20px 0!important;letter-spacing:-.055em!important;overflow-wrap:normal}
-.collaboration-subtitle{font:italic 24px Georgia,serif;margin:0 0 32px}
-.collaboration-invite{border-top:1px solid #00401835;text-align:center;padding:42px 20px 0;margin:36px auto 0;display:flex;flex-direction:column;align-items:center;gap:13px}
-.collaboration-invite h3{font-size:clamp(36px,4.8vw,65px);font-weight:400;margin:0}.collaboration-invite p{margin:0 0 10px}.collaboration-invite .pill{justify-content:center;min-height:50px}.collaboration-invite svg{width:19px;height:19px;stroke:currentColor;stroke-width:1.8;fill:none}
-@media(max-width:950px){.story-copy p{max-width:100%}.city-feature{grid-template-columns:1fr 1fr!important}}
-@media(max-width:800px){#story,#locations,#partners{scroll-margin-top:20px}.src-mobile-dock{grid-template-columns:1fr 1fr 1.35fr}.src-dock-sheet{max-height:calc(100svh - 125px);overflow-y:auto}.src-dock-item{font-size:clamp(9px,2.4vw,12px)}.hero-foot{bottom:110px!important}.hero-content{left:6%;right:6%}.hero h1{font-size:clamp(58px,13vw,102px)!important}}
-@media(max-width:600px){.stats{padding:65px 5% 25px!important;gap:10px!important}.stat{padding:17px 0!important}.stat strong{font-size:clamp(28px,8vw,46px)!important}.stat p{font-size:10px!important;letter-spacing:.02em!important}.cities{padding:30px 5%!important}.city-feature{grid-template-columns:1fr!important}.city-visual{height:145px!important;max-height:145px!important}.city-detail{padding:22px!important}.city-detail h3{font-size:46px!important;margin:10px 0!important}.city-detail p{font-size:14px!important}.city-foot{font-size:9px}.city-switch{gap:7px!important}.city-switch button{font-size:11px!important;padding:12px 8px!important}.location-picker-title{font-size:10px!important}.story-copy p{font-size:15px}.partner-top h2{font-size:clamp(36px,8.5vw,51px)!important}.collaboration-subtitle{font-size:21px}.collaboration-invite{padding:30px 10px 0}.hero-foot .progress{width:70px}.hero-foot .eyebrow{font-size:9px}.hero-foot{gap:8px}.hero-foot>div{width:100%;justify-content:flex-end}.src-sheet-kicker{padding-right:25px}}
-</style><style id="v23-refinements">
-.story.story-v6{min-height:0;padding-top:64px;padding-bottom:48px;row-gap:32px}
-.story-copy p{font-size:16px;line-height:1.6;margin:14px 0;max-width:510px}
-.story-v6 .story-copy h2{font-size:clamp(52px,6vw,90px);margin:12px 0 20px}.story-signoff{margin-top:22px}
-.story-art-main img{object-position:center 42%}.story-art{max-height:510px}
-.story-film{margin-top:0}.film-track img{image-rendering:auto}
-@media(max-width:800px){.story.story-v6{padding:38px 6% 30px;gap:26px}.story-copy p{font-size:15px;line-height:1.55;margin:12px 0}.story-v6 .story-copy h2{font-size:52px;margin:10px 0 18px}.story-art{height:280px;max-height:280px;min-height:0}.story-signoff{margin-top:18px;font-size:9px}.story-film{margin-top:4px}.film-track figure{flex-shrink:0}.film-track img{object-fit:cover}}
-</style><style id="v24-refinements">
-.archive-section{background:var(--green);color:var(--cream);padding:38px 7% 45px}.archive-section .story-film{margin:0}.archive-section .film-label{margin-bottom:18px}
-.city-visual{max-height:none!important;align-self:stretch!important;overflow:hidden}.city-visual img{inset:0!important;height:100%!important;width:100%!important;object-fit:cover}
-.city-register[hidden]{display:none!important}.popup-cities{gap:10px;margin-top:15px}.popup-city-card{border:1px solid #f7f4e755;border-radius:15px;padding:17px;background:#ffffff09;gap:8px!important}.popup-cities .popup-city-card strong{font:normal 29px Georgia,serif;color:var(--cream)}.popup-cities .popup-city-card span{font-size:12px}
-.popup-register{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--cream);color:var(--green);border:1px solid var(--cream);padding:12px 17px;border-radius:40px;font-size:12px;font-weight:700;width:100%;margin-top:5px}.popup-register svg{height:19px;width:19px;fill:none;stroke:currentColor;stroke-width:1.8}.popup-register:hover{box-shadow:0 4px 18px #0003;transform:translateY(-1px)}.popup-register:focus-visible{outline:3px solid #c8ef8b;outline-offset:3px}
-@media(max-width:600px){.archive-section{padding:28px 6% 32px}.popup-city-card{padding:14px}.popup-cities .popup-city-card strong{font-size:27px}.city-visual{max-height:145px!important}}
-</style><style id="v25-mobile-balance">
-.stats{align-items:stretch!important}.stats .stat{display:grid!important;grid-template-rows:auto auto!important;align-content:start!important;justify-content:stretch!important;align-items:start!important;margin:0!important;transform:none!important}
-.stats .stat strong{display:block!important;font-variant-numeric:lining-nums tabular-nums;line-height:1.12!important;margin:0 0 12px!important;padding:0!important}
-.stats .stat p{display:block!important;line-height:1.5!important;min-height:3em!important;margin:0!important;padding:0!important}
-@media(max-width:800px){.hero-content{top:38%!important;transform:translateY(-40%)!important}.hero-slide{object-position:50% 68%!important}.stats .stat{padding:17px 0!important}.stats .stat strong{font-size:clamp(28px,8vw,46px)!important;line-height:1.12!important;min-height:1.12em!important}.stats .stat p{font-size:clamp(8px,2.25vw,11px)!important;letter-spacing:.02em!important;line-height:1.5!important;min-height:3em!important}.hero h1{margin-top:22px!important;margin-bottom:22px!important}}
-@media(max-width:380px){.hero-content{top:36%!important}.hero-content p{font-size:15px!important}.hero h1{font-size:clamp(53px,15.4vw,60px)!important}}
-@media(max-height:540px) and (max-width:800px){.hero-content{top:35%!important}.hero h1{font-size:48px!important}.hero-content p{font-size:14px!important}}
-</style><style id="v26-refined-dock">
-@media(max-width:800px){
-.src-mobile-dock{left:14px;right:14px;padding:5px;gap:3px;border-radius:25px;background:linear-gradient(135deg,#174d32ee,#00371eed);box-shadow:0 10px 34px #001c1840,inset 0 1px #ffffff22;grid-template-columns:1fr 1fr 1.3fr}
-.src-dock-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:11px 4px;min-height:63px;border-radius:19px;position:relative;font-size:clamp(8px,2.25vw,10px);letter-spacing:.055em;font-weight:700}
-.src-dock-item:first-child{background:transparent}.src-dock-item .dock-icon{height:19px;width:19px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;opacity:.9}
-.src-dock-item[aria-expanded=true]{background:var(--cream);color:var(--green);box-shadow:0 3px 12px #00220e22}.src-dock-item:hover{background:#ffffff16}.src-dock-item[aria-expanded=true]:hover{background:var(--cream)}
-.src-dock-sheet{bottom:calc(max(12px,env(safe-area-inset-bottom)) + 85px);padding:28px 22px 22px;border-radius:25px;background-color:var(--cream);box-shadow:0 16px 50px #001c1840}
-.src-sheet-kicker{font-size:9px;letter-spacing:.2em;opacity:.65}.src-sheet-title{font-size:38px;margin-bottom:13px}.src-sheet-desc{font-size:13px;line-height:1.6;margin-bottom:18px}.src-sheet-link{border-radius:15px;min-height:48px;padding:14px 17px;font-size:11px;letter-spacing:.025em;transition:background .2s,transform .2s}.src-sheet-link.secondary{background:#00401807;border-color:#00401828}.src-sheet-link:active{transform:scale(.985)}.src-sheet-link.secondary:hover{background:#00401812}.src-sheet-close{background:#00401808;border:0}
-}
-</style><style id="v27-mobile-hero">
-@media(max-width:800px){.hero .hero-content{top:clamp(28px,6svh,54px)!important;transform:none!important;left:6%;right:6%}.hero .hero-content>.eyebrow{margin-top:0!important}.hero .hero-content h1{margin:20px 0!important}.hero .hero-content p{margin:0!important;max-width:310px}.hero .hero-slide{object-position:50% 100%!important}.hero{min-height:540px!important}.hero .shade{background:linear-gradient(180deg,rgba(0,25,12,.46),transparent 60%),linear-gradient(90deg,rgba(0,24,13,.4),transparent 90%),linear-gradient(0deg,rgba(0,20,9,.4),transparent 35%)}}
-@media(max-height:540px) and (max-width:800px){.hero .hero-content{top:24px!important}.hero .hero-content h1{font-size:48px!important;margin:14px 0!important}}
-</style><style id="v28-hero-proportions">
-@media(max-width:800px){.hero .hero-content{top:clamp(56px,10svh,86px)!important}.hero .hero-content h1{font-size:clamp(64px,15.3vw,114px)!important;line-height:.96!important;margin:22px 0!important}}
-@media(max-width:380px){.hero .hero-content h1{font-size:clamp(57px,16vw,64px)!important}}
-@media(max-height:540px) and (max-width:800px){.hero .hero-content{top:40px!important}.hero .hero-content h1{font-size:52px!important;margin:16px 0!important}}
-</style><style id="v29-larger-title">
-@media(max-width:800px){.hero .hero-content h1{font-size:clamp(70px,18vw,134px)!important;line-height:.94!important;letter-spacing:-.065em!important}}
-@media(max-width:380px){.hero .hero-content h1{font-size:clamp(60px,18vw,69px)!important}}
-@media(max-height:540px) and (max-width:800px){.hero .hero-content h1{font-size:58px!important}}
-</style></head><body class="intro-active"><div aria-label="Saturday Run Club introduction" class="opening" id="opening"><div class="opening-grain"></div><div class="opening-orbit orbit-one"></div><div class="opening-orbit orbit-two"></div><div class="opening-inner"><div class="opening-kicker">EST. 2024 · SAUDI ARABIA</div><div class="opening-word opening-official-logo"><img alt="Saturday Run Club — official logo" fetchpriority="high" src="assets/src-official-logo-cream.png"/></div><div class="opening-rule"><span></span></div><p>WHERE COMMUNITY MEETS MOVEMENT</p></div><button aria-label="Skip introduction" class="skip-intro" id="skip-intro">SKIP INTRO <span><svg aria-hidden="true" class="src-arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M5 19 19 5M8 5h11v11"></path></svg></span></button><div class="opening-counter" id="opening-counter">00</div></div><nav class="nav"><a class="logo" href="#home"><img alt="Saturday Run Club official logo" src="assets/src-official-logo.png"/></a><div class="links"><a href="#story">Our Story</a><a href="#locations">Locations</a><a href="#partners">Collaborations</a></div><button aria-label="Toggle menu" class="menu" id="menu">☰</button></nav><main><header class="hero" id="home"><div id="hero-images"></div><div class="shade"></div><div class="hero-content"><div class="eyebrow">SAUDI ARABIA · EST. 2024</div><h1 class="serif campaign-headline">Saturday<br/><em>Run Club.</em></h1><p>Where community meets movement.</p></div><div class="hero-foot"><span class="eyebrow">WHERE COMMUNITY MEETS MOVEMENT</span><div style="display:flex;align-items:center;gap:15px"><span class="eyebrow" id="slide-no">01 / 07</span><div class="progress"><span id="bar"></span></div><div class="hero-controls"><button aria-label="Previous photo" class="circle" id="prev"><svg aria-hidden="true" class="src-chevron left" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="m9 5 7 7-7 7"></path></svg></button><button aria-label="Next photo" class="circle" id="next"><svg aria-hidden="true" class="src-chevron right" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="m9 5 7 7-7 7"></path></svg></button></div></div></div><div aria-hidden="true" class="hero-route"><svg preserveaspectratio="none" viewbox="0 0 680 520"><path class="route-base" d="M40 460 C120 300 240 440 280 260 S470 50 640 80"></path><path class="route-draw" d="M40 460 C120 300 240 440 280 260 S470 50 640 80"></path><circle cx="640" cy="80" fill="#d7f29d" r="9"></circle></svg></div><div aria-hidden="true" class="scroll-cue"><span>SCROLL TO EXPLORE</span><i></i></div></header><section class="story story-v6" id="story"><div aria-hidden="true" class="story-progress"><span></span></div><div class="story-copy reveal"><div class="eyebrow">01 / OUR STORY · EST. 2024</div><h2 class="serif">Our <em>story.</em></h2><p>Six runners. One Saturday morning. Founded in Khobar in 2024, SRC brings people together through running, connection, and shared growth.</p><p>Now in Riyadh, with pop-up runs in Jeddah and Bahrain, the spirit stays the same: show up, find your people, and feel part of something.</p><div class="story-signoff">WHERE COMMUNITY MEETS MOVEMENT <span><svg aria-hidden="true" class="src-arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M5 19 19 5M8 5h11v11"></path></svg></span></div></div><div aria-label="Saturday Run Club photographic story" class="story-art reveal"><div class="story-art-main"><img alt="The Saturday Run Club green jersey" loading="lazy" src="assets/v23-jersey.png"/></div><div class="story-art-small"><img alt="Saturday Run Club lifestyle moment" loading="lazy" src="assets/photo-04.webp"/></div><div class="story-art-bottom"><img alt="SRC community and running" loading="lazy" src="assets/hero-hq-06.jpg"/></div><div class="story-stamp">EST.<strong>2024</strong><span>MADE TO MOVE</span></div><div class="story-art-caption">THE PEOPLE MAKE THE PACE. / SRC 001</div><div class="story-photo-index">01 — 03 / REAL SRC MOMENTS</div></div></section><section class="stats" id="community"><div class="stat reveal"><span aria-hidden="true" class="stat-mark"><svg class="stat-spark-icon" viewBox="0 0 32 32" width="23" height="23" aria-hidden="true" focusable="false"><path d="M16 3V29M3 16H29M6.8 6.8L25.2 25.2M25.2 6.8L6.8 25.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><strong data-count="500">0</strong><p>Community members</p></div><div class="stat reveal"><span aria-hidden="true" class="stat-mark"><svg class="stat-spark-icon" viewBox="0 0 32 32" width="23" height="23" aria-hidden="true" focusable="false"><path d="M16 3V29M3 16H29M6.8 6.8L25.2 25.2M25.2 6.8L6.8 25.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><strong data-count="4500">0</strong><p>Followers</p></div><div class="stat reveal"><span aria-hidden="true" class="stat-mark"><svg class="stat-spark-icon" viewBox="0 0 32 32" width="23" height="23" aria-hidden="true" focusable="false"><path d="M16 3V29M3 16H29M6.8 6.8L25.2 25.2M25.2 6.8L6.8 25.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><strong data-count="20">0</strong><p>Collaborations</p></div></section><section class="cities cities-v6" id="locations"><div class="section-head reveal"><div><div class="eyebrow">02 / LOCATIONS</div><h2 class="serif">Our <em>locations.</em></h2></div></div><div class="location-picker-title">CHOOSE YOUR LOCATION</div><div aria-label="Choose your city" class="city-switch" role="tablist"><button aria-selected="true" class="active" data-city="0" id="location-tab-0" tabindex="0" role="tab" aria-controls="location-panel">KHOBAR</button><button aria-selected="false" data-city="1" id="location-tab-1" tabindex="-1" role="tab" aria-controls="location-panel">RIYADH</button><button aria-selected="false" data-city="2" id="location-tab-2" tabindex="-1" role="tab" aria-controls="location-panel">POP-UPS</button></div><div class="city-feature reveal" id="location-panel" role="tabpanel" aria-labelledby="location-tab-0"><svg aria-hidden="true" class="chapter-route" viewbox="0 0 520 210"><path d="M10 180 Q100 15 210 110 T510 25"></path></svg><div class="city-visual"><img alt="SRC community photography" id="city-feature-img" loading="lazy" src="assets/hero-hq-01.jpg"/></div><div class="city-detail"><div class="eyebrow" id="city-eyebrow">THE ORIGINAL CHAPTER · 2024</div><div class="city-outline" id="city-number">01</div><h3 class="serif" id="city-title">Khobar<span class="city-dot">.</span></h3><p id="city-description">Where the movement began in 2024. Runs hosted every Saturday, all paces are welcome.</p><button type="button" class="city-register" id="city-register" aria-label="Registration information for Khobar"><span class="register-label">REGISTER FOR KHOBAR</span> <span class="register-arrow" aria-hidden="true"><svg class="src-action-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5"/></svg></span></button><div id="popup-cities" class="popup-cities" hidden><div class="popup-city-card"><strong>Jeddah</strong><span>Pop-up runs · Dates announced per event</span><button type="button" class="popup-register" data-register-city="Jeddah">Register for Jeddah<svg class="src-action-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5"/></svg></button></div><div class="popup-city-card"><strong>Bahrain</strong><span>Pop-up runs · Dates announced per event</span><button type="button" class="popup-register" data-register-city="Bahrain">Register for Bahrain<svg class="src-action-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5"/></svg></button></div></div><div class="city-foot"><span id="city-run-format">RUN TOGETHER · GROW TOGETHER</span></div></div></div></section><section id="archive" class="archive-section"><div aria-label="Moments from Saturday Run Club" class="story-film"><div class="film-label"><span>THE PEOPLE. THE PLACES. THE SATURDAYS.</span><span>THE SRC ARCHIVE / 01—06</span></div><div class="film-track"><figure><img alt="The Saturday run" loading="lazy" src="assets/v23-community.jpg"/><figcaption>THE RUN / 01</figcaption></figure><figure><img alt="Warming up together" loading="lazy" src="assets/v23-warmup.jpg"/><figcaption>THE MORNING / 02</figcaption></figure><figure><img alt="SRC community gathering" loading="lazy" src="assets/v23-gathering.jpg"/><figcaption>THE PEOPLE / 03</figcaption></figure><figure><img alt="Saturday Run Club runner" loading="lazy" src="assets/v23-runner.jpg"/><figcaption>THE MILES / 04</figcaption></figure><figure><img alt="The SRC community outdoors" loading="lazy" src="assets/v23-club.jpg"/><figcaption>THE COMMUNITY / 05</figcaption></figure><figure><img alt="Saturday Run Club green jersey" loading="lazy" src="assets/v23-shirt.jpg"/><figcaption>THE CLUB / 06</figcaption></figure></div><div class="film-instruction">← SWIPE TO EXPLORE THE SRC ARCHIVE →</div></div></section><div class="manifesto"><span class="manifesto-tag">THE SRC WAY / 001</span><p class="serif reveal">Not about being the fastest.<br/><em>About showing up together.</em></p><span aria-hidden="true" class="manifesto-icon"><svg aria-hidden="true" class="src-arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M5 19 19 5M8 5h11v11"></path></svg></span></div><div aria-hidden="true" class="kinetic-banner"><div class="kinetic-track">MOVE WITH US <span>—</span> BELONG WITH US <span>—</span> MOVE WITH US <span>—</span> BELONG WITH US <span>—</span></div></div><section class="partners partners-v6" id="partners"><div class="partner-top reveal"><div><div class="eyebrow">03 / COLLABORATIONS &amp; PARTNERSHIPS</div><h2 class="serif">Collaborations<br/><em>and Partnership.</em></h2><p class="collaboration-subtitle">Better Together</p></div></div><div class="partner-feature reveal"><div class="partner-feature-photo"><img alt="Saturday Run Club branded event and community experience" loading="lazy" src="assets/hero-hq-05.jpg"/><span>03 / COLLABORATION SPOTLIGHT</span></div><div class="partner-feature-copy"><div class="eyebrow">BEYOND THE RUN</div><h3 class="serif">Brands meet<br/><em>community.</em></h3><p>Thoughtful collaborations turn a Saturday into a shared experience. From movement to the moments afterward, we build real connections.</p></div></div><div class="eyebrow partner-wall-label">OUR COMMUNITY OF COLLABORATORS</div><div class="brand-grid brand-grid-v6 partner-grid-official"><div aria-label="Wello" class="brand-tile partner-logo-tile reveal"><img alt="Wello logo" decoding="async" loading="lazy" src="assets/logos/wello.png"/></div><div aria-label="Offbrief" class="brand-tile partner-logo-tile reveal"><img alt="Offbrief logo" decoding="async" loading="lazy" src="assets/logos/offbrief.png"/></div><div aria-label="Barry’s" class="brand-tile partner-logo-tile reveal"><img alt="Barry’s logo" decoding="async" loading="lazy" src="assets/logos/barrys.png"/></div><div aria-label="Happyland Matcha" class="brand-tile partner-logo-tile reveal"><img alt="Happyland Matcha logo" decoding="async" loading="lazy" src="assets/logos/happyland.png"/></div><div aria-label="Lakma" class="brand-tile partner-logo-tile reveal"><img alt="Lakma logo" decoding="async" loading="lazy" src="assets/logos/lakma.png"/></div><div aria-label="Salt Al Bahar" class="brand-tile partner-logo-tile reveal"><img alt="Salt Al Bahar logo" decoding="async" loading="lazy" src="assets/logos/salt-al-bahar.png"/></div><div aria-label="Sports District" class="brand-tile partner-logo-tile reveal"><img alt="Sports District logo" decoding="async" loading="lazy" src="assets/logos/sports-district.png"/></div><div aria-label="Dyno" class="brand-tile partner-logo-tile reveal"><img alt="Dyno logo" decoding="async" loading="lazy" src="assets/logos/dyno.png"/></div><div aria-label="Snatch a Matcha" class="brand-tile partner-logo-tile reveal"><img alt="Snatch a Matcha logo" decoding="async" loading="lazy" src="assets/logos/snatch-a-matcha-forest.png"/></div><div aria-label="Let’s Matcha" class="brand-tile partner-logo-tile reveal"><img alt="Let’s Matcha logo" decoding="async" loading="lazy" src="assets/logos/lets-matcha.png"/></div><div aria-label="Roast Coffee Roastery" class="brand-tile partner-logo-tile reveal"><img alt="Roast Coffee Roastery logo" decoding="async" loading="lazy" src="assets/logos/roast.png"/></div><div aria-label="Powerhouse" class="brand-tile partner-logo-tile reveal"><img alt="Powerhouse logo" decoding="async" loading="lazy" src="assets/logos/powerhouse.png"/></div><div aria-label="Gielia" class="brand-tile partner-logo-tile reveal"><img alt="Gielia logo" decoding="async" loading="lazy" src="assets/logos/gielia.png"/></div><div aria-label="Go Greek" class="brand-tile partner-logo-tile reveal"><img alt="Go Greek logo" decoding="async" loading="lazy" src="assets/logos/go-greek.png"/></div><div aria-label="Joe &amp; The Juice" class="brand-tile partner-logo-tile reveal"><img alt="Joe &amp; The Juice logo" decoding="async" loading="lazy" src="assets/logos/joe-and-the-juice.png"/></div><div aria-label="Nafas" class="brand-tile partner-logo-tile reveal"><img alt="Nafas logo" decoding="async" loading="lazy" src="assets/logos/nafas.png"/></div><div aria-label="F45 Training" class="brand-tile partner-logo-tile reveal"><img alt="F45 Training logo" decoding="async" loading="lazy" src="assets/logos/f45-training.png"/></div><div aria-label="Wood Pizza" class="brand-tile partner-logo-tile reveal"><img alt="Wood Pizza logo" decoding="async" loading="lazy" src="assets/logos/wood-pizza.png"/></div><div aria-label="Four Squares Cafe" class="brand-tile partner-logo-tile reveal"><img alt="Four Squares Cafe logo" decoding="async" loading="lazy" src="assets/logos/four-squares-cafe.png"/></div><div aria-label="Soulbowl" class="brand-tile partner-logo-tile reveal"><img alt="Soulbowl logo" decoding="async" loading="lazy" src="assets/logos/soulbowl.png"/></div></div><div class="collaboration-invite"><h3 class="serif">Your brand here.</h3><p>Let’s create something.</p><a class="pill" href="mailto:saturdayrunclub.sa@gmail.com?subject=SRC%20Collaboration%20Inquiry">CONNECT WITH US <svg class="src-action-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5"/></svg></a></div></section><section class="join"><h2 class="serif">See you<br/><em>Saturday.</em></h2><a class="pill" href="https://www.instagram.com/saturdayrunclub.sa/" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" fill="none" height="19" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24" width="19"><rect height="19" rx="5" width="19" x="2.5" y="2.5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.6" cy="6.5" fill="currentColor" r="1" stroke="none"></circle></svg> FOLLOW US</a></section></main><footer class="footer"><div class="logo"><img alt="Saturday Run Club official logo" src="assets/src-official-logo-cream.png"/></div><div><strong>Khobar · Riyadh · Jeddah &amp; Bahrain pop-ups</strong><br/><small>Saudi Arabia · Est. 2024</small></div><div><a href="mailto:saturdayrunclub.sa@gmail.com">Email us</a>   </div></footer><div class="src-mobile-dock" aria-label="SRC mobile navigation">
-  <button type="button" class="src-dock-item" data-panel="story" aria-expanded="false"><svg class="dock-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h5c2 0 2 1 2 2v15c0-2-1-3-3-3H4V4h1Zm14 0h-5c-2 0-2 1-2 2m0 15c0-2 1-3 3-3h5V4h-1Z"/></svg><span>OUR STORY</span></button>
-  <button type="button" class="src-dock-item" data-panel="join" aria-expanded="false"><svg class="dock-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0ZM9 10a3 3 0 1 0 6 0 3 3 0 0 0-6 0"/></svg><span>LOCATIONS</span></button>
-  <button type="button" class="src-dock-item" data-panel="partner" aria-expanded="false"><svg class="dock-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8l3-3h5l5 5-7 8-4-1-7-7 5-5m0 3 4 4 3-3m-5 8-3 2-5-5 2-3"/></svg><span>COLLABORATIONS</span></button>
+<div class="intro" id="intro" aria-hidden="true">
+  <img src="assets/src-official-logo-cream.png" alt="">
+  <div class="intro-line"></div>
 </div>
-<div class="src-dock-sheet" id="src-dock-sheet" aria-hidden="true" inert>
- <button type="button" class="src-sheet-close" aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
- <div class="src-sheet-content" id="src-sheet-content"></div>
+
+<nav class="nav" id="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="nav-logo" href="#home" aria-label="Saturday Run Club home">
+      <img class="on-dark" src="assets/src-official-logo-cream.png" alt="">
+      <img class="on-light" src="assets/src-official-logo.png" alt="">
+    </a>
+    <div class="nav-links">
+      <a href="#story">Our Story</a>
+      <a href="#locations">Locations</a>
+      <a href="#collaborations">Collaborations</a>
+      <a class="btn" href="#join">Join a run</a>
+    </div>
+    <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="sheet"><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="sheet" id="sheet">
+  <a href="#story">Our Story</a>
+  <a href="#locations">Locations</a>
+  <a href="#collaborations">Collaborations</a>
+  <a href="#join">Join a run</a>
+  <small>Where community meets movement</small>
 </div>
-<div class="src-dock-backdrop" id="src-dock-backdrop"></div><script>
-const hero=[{"src": "assets/v23-jersey.png", "alt": "Saturday Run Club running community"}, {"src": "assets/hero-hq-02.jpg", "alt": "Saturday Run Club running community"}, {"src": "assets/hero-hq-03.jpg", "alt": "Saturday Run Club running community"}, {"src": "assets/hero-hq-04.jpg", "alt": "Saturday Run Club running community"}, {"src": "assets/hero-hq-05.jpg", "alt": "Saturday Run Club running community"}, {"src": "assets/hero-hq-06.jpg", "alt": "Saturday Run Club running community"}, {"src": "assets/hero-hq-07.jpg", "alt": "Saturday Run Club running community"}, {"src": "assets/v23-runner.jpg", "alt": "SRC runner in the green club jersey outdoors"}];const holder=document.getElementById('hero-images');hero.forEach((p,i)=>{let img=document.createElement('img');img.src=p.src;img.alt=p.alt;img.className='hero-slide'+(i===0?' active':'');holder.appendChild(img)});let index=0,interval=6500,last=performance.now(),paused=false;const slides=[...document.querySelectorAll('.hero-slide')],bar=document.getElementById('bar');function show(n){index=(n+slides.length)%slides.length;slides.forEach((s,i)=>s.classList.toggle('active',i===index));document.getElementById('slide-no').textContent=String(index+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');last=performance.now()}document.getElementById('prev').onclick=()=>show(index-1);document.getElementById('next').onclick=()=>show(index+1);function tick(t){let pct=Math.min(1,(t-last)/interval);bar.style.width=pct*100+'%';if(pct>=1&&!document.hidden)show(index+1);requestAnimationFrame(tick)}requestAnimationFrame(tick);const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.09});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));const countObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(!e.isIntersecting)return;let el=e.target,end=+el.dataset.count,start=performance.now(),duration=1900;function count(now){let t=Math.min((now-start)/duration,1);let v=Math.round(end*(1-Math.pow(1-t,4)));el.textContent=v.toLocaleString()+(end===2?'':'+');if(t<1)requestAnimationFrame(count)}requestAnimationFrame(count);countObserver.unobserve(el)}),{threshold:.5});document.querySelectorAll('[data-count]').forEach(el=>countObserver.observe(el));document.getElementById('menu').onclick=()=>document.getElementById('mobile').classList.toggle('open');document.querySelectorAll('#mobile a').forEach(a=>a.onclick=()=>document.getElementById('mobile').classList.remove('open'));
 
-// Cinematic entrance: one-time per tab; skip and accessibility supported.
-(function(){const o=document.getElementById('opening'),skip=document.getElementById('skip-intro'),counter=document.getElementById('opening-counter');if(!o)return;const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;let ended=false;let start=performance.now();let timer;function close(){if(ended)return;ended=true;clearTimeout(timer);o.classList.add('done');setTimeout(()=>{o.remove();document.body.classList.remove('intro-active')},1000)}skip.addEventListener('click',close);if(reduced||sessionStorage.getItem('srcIntroSeen')==='yes'){close();return}sessionStorage.setItem('srcIntroSeen','yes');function animate(t){if(ended)return;counter.textContent=String(Math.min(100,Math.floor((t-start)/31))).padStart(2,'0');requestAnimationFrame(animate)}requestAnimationFrame(animate);timer=setTimeout(close,3600)})();
-// Dismiss mobile navigation with escape or outside tap.
-document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('mobile')?.classList.remove('open')});
+<main>
+  <header class="hero" id="home">
+    <div class="slides" id="slides"></div>
+    <div class="hero-content">
+      <div class="wrap">
+        <div class="eyebrow hero-eyebrow">Saudi Arabia · Est. 2024</div>
+        <h1><span class="line"><span>Saturday</span></span><span class="line"><span>Run Club.</span></span></h1>
+        <p>Where community meets <span class="script">movement.</span></p>
+      </div>
+    </div>
+    <div class="hero-foot">
+      <div class="wrap">
+        <div class="scroll-cue"><i></i>SCROLL</div>
+        <div class="hero-count">
+          <span id="slide-no">01 / 07</span>
+          <div class="hero-bar"><i id="hero-bar"></i></div>
+          <div class="hero-arrows">
+            <button id="prev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 5l-7 7 7 7"/></svg></button>
+            <button id="next" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 
-// Chapter switcher: no fabricated links or location-specific photo claims.
-(function(){const chapters=[{"name": "Khobar", "label": "THE ORIGINAL CHAPTER \u00b7 2024", "desc": "Where the movement began in 2024. Runs hosted every Saturday, all paces are welcome.", "img": "assets/photo-04.webp"}, {"name": "Riyadh", "label": "OUR FIRST CHAPTER BEYOND KHOBAR", "desc": "First chapter outside Khobar. Same Saturday runs, same community. Make new connections, and find your people through movement.", "img": "assets/hero-hq-03.jpg"}, {"name": "Pop-ups", "label": "JEDDAH & BAHRAIN", "desc": "Runs held outside the regular cities. Dates and locations are announced on Instagram before each one.", "img": "assets/v23-community.jpg"}];document.querySelectorAll('[data-city]').forEach(btn=>btn.addEventListener('click',()=>{const i=Number(btn.dataset.city),c=chapters[i],img=document.getElementById('city-feature-img');document.querySelectorAll('[data-city]').forEach(b=>{b.classList.toggle('active',b===btn);b.setAttribute('aria-selected',String(b===btn));b.tabIndex=b===btn?0:-1});document.getElementById('location-panel').setAttribute('aria-labelledby',btn.id);document.getElementById('popup-cities').hidden=i!==2;document.getElementById('city-register').hidden=i===2;img.style.opacity='0';setTimeout(()=>{img.src=c.img;img.style.opacity='1'},180);document.getElementById('city-title').innerHTML=c.name+'<span class="city-dot">.</span>';document.getElementById('city-eyebrow').textContent=c.label;document.getElementById('city-number').textContent=String(i+1).padStart(2,'0');document.getElementById('city-description').textContent=c.desc;document.getElementById('city-run-format').textContent=i===2?'POP-UP RUNS · DATES ANNOUNCED PER EVENT':'RUN TOGETHER · GROW TOGETHER'}))})();
-</script><div aria-hidden="true" id="scroll-line"></div><script>
-(function(){
- const line=document.getElementById('scroll-line');
- let scheduled=false;
- function update(){const max=document.documentElement.scrollHeight-innerHeight;line.style.width=(max>0?scrollY/max*100:0)+'%';scheduled=false}
- addEventListener('scroll',()=>{if(!scheduled){requestAnimationFrame(update);scheduled=true}},{passive:true});update();
- const intro=document.querySelector('.opening');
- if(intro){document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElementById('skip-intro')?.click()}})}
-})();
-</script><script>
-(()=>{const story=document.querySelector('#story'),fill=document.querySelector('.story-progress span');let pending=false;function progress(){if(story&&fill){let r=story.getBoundingClientRect(),total=r.height+innerHeight;let pct=Math.max(0,Math.min(1,(innerHeight-r.top)/total));fill.style.height=(pct*100)+'%'}pending=false}addEventListener('scroll',()=>{if(!pending){requestAnimationFrame(progress);pending=true}},{passive:true});progress();
-const buttons=[...document.querySelectorAll('[data-city]')];function shift(n){let active=buttons.findIndex(b=>b.classList.contains('active'));buttons[(active+n+buttons.length)%buttons.length]?.click()}
-document.getElementById('chapter-prev')?.addEventListener('click',()=>shift(-1));document.getElementById('chapter-next')?.addEventListener('click',()=>shift(1));
-const visual=document.querySelector('.city-feature');let x0=null,y0=null;if(visual){visual.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});visual.addEventListener('touchend',e=>{if(x0===null)return;let dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;if(Math.abs(dx)>65&&Math.abs(dx)>Math.abs(dy)*1.3)shift(dx<0?1:-1);x0=y0=null},{passive:true})}
-})();
-</script><dialog id="registration-dialog" class="registration-dialog"><div class="registration-inner"><button type="button" class="registration-close" aria-label="Close registration information" id="registration-close">×</button><div class="eyebrow">SRC / REGISTRATION</div><h3 class="serif" id="registration-city">Khobar</h3><p>Registration link coming soon. Check our Instagram for the latest registration announcements.</p><a href="https://www.instagram.com/saturdayrunclub.sa/" target="_blank" rel="noopener noreferrer" class="registration-social">OPEN INSTAGRAM <svg class="src-action-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13m-5-5 5 5-5 5"/></svg></a></div></dialog><script>(function(){const names=['Khobar','Riyadh','Pop-ups'];const button=document.getElementById('city-register'),dialog=document.getElementById('registration-dialog');function sync(){const i=[...document.querySelectorAll('[data-city]')].findIndex(x=>x.classList.contains('active'));const name=names[Math.max(0,i)];button.querySelector('.register-label').textContent='REGISTER FOR '+name.toUpperCase();button.setAttribute('aria-label','Registration information for '+name)}document.querySelectorAll('[data-city]').forEach(b=>b.addEventListener('click',sync));button.addEventListener('click',()=>{sync();document.getElementById('registration-city').textContent=names[Math.max(0,[...document.querySelectorAll('[data-city]')].findIndex(x=>x.classList.contains('active')))];dialog.showModal()});document.getElementById('registration-close').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});sync()})();</script>
+  <section class="story" id="story">
+    <div class="wrap">
+      <div class="story-copy">
+        <div class="eyebrow rv">Our Story · Est. 2024</div>
+        <h2 class="rv d1">More than <span class="script">miles.</span></h2>
+        <p class="lead rv d2">What started with six runners on a Saturday morning in Khobar in 2024 has grown into a community built on connection, support, and personal growth.</p>
+        <p class="muted rv d3">People came for the miles and stayed for the company. Today we run in Khobar and Riyadh, with pop-ups in Jeddah and Bahrain, and wherever you are in your running journey, there’s a place for you here.</p>
+      </div>
+      <div class="story-art shot rv-img"><img src="assets/photos/story-crew.jpg" alt="SRC runners together in club jerseys" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="numbers" id="community" aria-label="SRC in numbers">
+    <div class="wrap">
+      <div class="eyebrow rv">The movement in numbers</div>
+      <div class="numbers-grid">
+        <div class="stat rv"><strong data-count="500" data-suffix="+">0</strong><span>Community members</span></div>
+        <div class="stat rv d1"><strong data-count="4500" data-suffix="+">0</strong><span>Followers</span></div>
+        <div class="stat rv d2"><strong data-count="20" data-suffix="+">0</strong><span>Collaborations</span></div>
+        <div class="stat rv d3"><strong data-count="4">0</strong><span>Cities</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="locations" id="locations">
+    <div class="wrap">
+      <div class="loc-head">
+        <div>
+          <div class="eyebrow rv">Locations</div>
+          <h2 class="rv d1">Find your <span class="script">run.</span></h2>
+        </div>
+        <div class="tabs rv d2" role="tablist" aria-label="Choose a location">
+          <button role="tab" aria-selected="true" aria-controls="loc-panel" data-loc="khobar">Khobar</button>
+          <button role="tab" aria-selected="false" aria-controls="loc-panel" data-loc="riyadh" tabindex="-1">Riyadh</button>
+          <button role="tab" aria-selected="false" aria-controls="loc-panel" data-loc="popups" tabindex="-1">Pop-ups</button>
+        </div>
+      </div>
+      <div class="loc-panel rv" id="loc-panel" role="tabpanel">
+        <div class="loc-img shot">
+          <img class="on" data-loc="khobar" src="assets/photos/khobar.jpg" alt="Runners on the Khobar waterfront">
+          <img data-loc="riyadh" src="assets/photos/riyadh.jpg" alt="SRC runners on a Riyadh street" loading="lazy">
+          <img data-loc="popups" src="assets/photos/popups.jpg" alt="A pop-up run by the water" loading="lazy">
+        </div>
+        <div class="loc-info" id="loc-info">
+          <div class="eyebrow fade" id="loc-eyebrow">The original chapter · 2024</div>
+          <h3 class="fade" id="loc-title">Khobar</h3>
+          <div class="subtabs fade" id="subtabs" role="tablist" aria-label="Pop-up cities" hidden>
+            <button role="tab" aria-selected="true" data-city="jeddah">Jeddah</button>
+            <button role="tab" aria-selected="false" data-city="bahrain" tabindex="-1">Bahrain</button>
+          </div>
+          <p class="fade" id="loc-text">Where the movement began in 2024. Runs hosted every Saturday, all paces are welcome.</p>
+          <div class="fade"><button class="btn btn-cream" id="loc-register" data-register="khobar">Register for Khobar <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery" id="gallery" aria-label="Gallery">
+    <div class="wrap gallery-head">
+      <div>
+        <div class="eyebrow rv">The people. The places.</div>
+        <h2 class="rv d1">Our <span class="script">Saturdays.</span></h2>
+      </div>
+      <div class="film-nav">
+        <button id="film-prev" aria-label="Scroll gallery left"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button id="film-next" aria-label="Scroll gallery right"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+    <div class="film rv" id="film">
+      <figure class="shot"><img src="assets/photos/g-warmup.jpg" alt="Group warm-up before the run" loading="lazy"></figure>
+      <figure class="shot"><img src="assets/photos/g-run.jpg" alt="Runners along a palm-lined path" loading="lazy"></figure>
+      <figure class="shot"><img src="assets/photos/g-mats.jpg" alt="Stretching together after the run" loading="lazy"></figure>
+      <figure class="shot"><img src="assets/photos/g-smiles.jpg" alt="Smiles during the cool-down" loading="lazy"></figure>
+      <figure class="shot"><img src="assets/photos/g-crowd.jpg" alt="The community gathering at the start" loading="lazy"></figure>
+      <figure class="shot"><img src="assets/photos/g-shore.jpg" alt="A run along the shore" loading="lazy"></figure>
+    </div>
+    <div class="film-progress" aria-hidden="true"><i id="film-bar"></i></div>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div class="marquee-track" id="marquee-track"><span>Where community meets <em class="script">movement</em> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2v20M2 12h20M4.9 4.9l14.2 14.2M19.1 4.9L4.9 19.1"/></svg></span><span>Khobar · Riyadh · Pop-ups <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2v20M2 12h20M4.9 4.9l14.2 14.2M19.1 4.9L4.9 19.1"/></svg></span><span>Where community meets <em class="script">movement</em> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2v20M2 12h20M4.9 4.9l14.2 14.2M19.1 4.9L4.9 19.1"/></svg></span><span>Khobar · Riyadh · Pop-ups <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2v20M2 12h20M4.9 4.9l14.2 14.2M19.1 4.9L4.9 19.1"/></svg></span></div></div>
+
+  <section class="collab" id="collaborations">
+    <div class="wrap">
+      <div class="collab-head">
+        <div>
+          <div class="eyebrow rv">Beyond the run</div>
+          <h2 class="rv d1">Collaborations &amp; <span class="script">partnerships</span></h2>
+          <p class="lead muted rv d2">Better together.</p>
+        </div>
+        <div class="shot rv-img"><img src="assets/photos/collab-wello.jpg" alt="A partner activation at an SRC run" loading="lazy"></div>
+      </div>
+
+      <div class="logos" id="logos"></div>
+
+      <div class="invite">
+        <h3 class="rv">Your brand <span class="script">here.</span></h3>
+        <p class="muted rv d1">Let’s create something together.</p>
+        <a class="btn btn-green rv d2" href="mailto:saturdayrunclub.sa@gmail.com?subject=SRC%20Collaboration%20Inquiry">Connect with us <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="join" id="join">
+    <div class="wrap">
+      <h2 class="rv">See you <span class="script">Saturday.</span></h2>
+      <p class="rv d1">Join the community in your city.</p>
+      <div class="join-links rv d2">
+        <button class="btn btn-line" data-register="khobar">Khobar</button>
+        <button class="btn btn-line" data-register="riyadh">Riyadh</button>
+        <button class="btn btn-line" data-register="jeddah">Jeddah</button>
+        <button class="btn btn-line" data-register="bahrain">Bahrain</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <img class="footer-logo" src="assets/src-official-logo-cream.png" alt="Saturday Run Club">
+    <div class="footer-mid">Khobar · Riyadh · Jeddah &amp; Bahrain pop-ups<br>Saudi Arabia · Est. 2024</div>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/saturdayrunclub.sa/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>Follow us</a>
+      <a href="mailto:saturdayrunclub.sa@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>saturdayrunclub.sa@gmail.com</a>
+    </div>
+    <div class="footer-base"><span>© <span id="year">2026</span> Saturday Run Club</span><span>Where community meets movement</span></div>
+  </div>
+</footer>
+
+<dialog id="register-dialog">
+  <div class="dlg">
+    <button class="dlg-close" id="dlg-close" aria-label="Close">×</button>
+    <div class="eyebrow">Registration</div>
+    <h3 id="dlg-city">Khobar</h3>
+    <p>Registration opens soon. Follow us on Instagram for the next run announcement.</p>
+    <a class="btn btn-green" href="https://www.instagram.com/saturdayrunclub.sa/" target="_blank" rel="noopener noreferrer">Open Instagram <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a>
+  </div>
+</dialog>
+
 <script>
-(function(){
- const dock=document.querySelector('.src-mobile-dock'),sheet=document.getElementById('src-dock-sheet'),content=document.getElementById('src-sheet-content'),backdrop=document.getElementById('src-dock-backdrop');if(!dock||!sheet)return;
- const arrow='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>';
- const sections={
- story:{kicker:'01 / OUR STORY',title:'Our story.',desc:'From six runners in Khobar to a growing community. Discover how SRC began.',links:[['Discover our story','#story',false]]},
- join:{kicker:'02 / LOCATIONS',title:'Join the run club.',desc:'Choose Khobar, Riyadh, or pop-up runs in Jeddah and Bahrain.',links:[['Discover our locations','#locations',false],['Khobar','#locations',true],['Riyadh','#locations',true],['Pop-ups · Jeddah & Bahrain','#locations',true]]},
- partner:{kicker:'03 / COLLABORATIONS',title:'Better Together.',desc:'Have an idea for a collaboration with SRC? Connect with us on Instagram or by email.',links:[['Explore collaborations','#partners',false],['Instagram','https://www.instagram.com/saturdayrunclub.sa/',true],['Email us','mailto:saturdayrunclub.sa@gmail.com',true]]}
- };
- let active=null;
- function close(){active=null;sheet.classList.remove('open');backdrop.classList.remove('open');sheet.setAttribute('aria-hidden','true');sheet.inert=true;dock.querySelectorAll('button').forEach(b=>b.setAttribute('aria-expanded','false'))}
- function open(key){if(document.body.classList.contains('intro-active'))return;if(active===key){close();return}active=key;const d=sections[key];content.innerHTML='<div class="src-sheet-kicker">'+d.kicker+'</div><h2 class="src-sheet-title">'+d.title+'</h2><p class="src-sheet-desc">'+d.desc+'</p>'+d.links.map(([label,url,secondary])=>'<a class="src-sheet-link '+(secondary?'secondary':'')+'" href="'+url+'" '+(url.startsWith('https')?'target="_blank" rel="noopener noreferrer"':'')+'>'+label+arrow+'</a>').join('');sheet.classList.add('open');backdrop.classList.add('open');sheet.setAttribute('aria-hidden','false');sheet.inert=false;dock.querySelectorAll('button').forEach(b=>b.setAttribute('aria-expanded',String(b.dataset.panel===key)));
- content.querySelectorAll('a').forEach(a=>a.addEventListener('click',event=>{
- const target=a.getAttribute('href');if(!target||!target.startsWith('#')){close();return}
- event.preventDefault();const label=a.textContent.trim();if(key==='join'){
- const cityIndex=label==='Khobar'?0:label==='Riyadh'?1:label.startsWith('Pop-ups')?2:null;
- if(cityIndex!==null)document.querySelector('.city-switch [data-city="'+cityIndex+'"]').click();
- }
- close();const section=document.querySelector(target);requestAnimationFrame(()=>{if(section){section.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});history.replaceState(null,'',target)}});
- }));
- }
- dock.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>open(b.dataset.panel)));
- backdrop.addEventListener('click',close);sheet.querySelector('.src-sheet-close').addEventListener('click',close);
- document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
-})();
+// Registration links: paste each city's form URL here. Empty = show the "opens soon" dialog.
+const REGISTRATION = {khobar: "", riyadh: "", jeddah: "", bahrain: ""};
+
+const HERO_IMAGES = ["hero-hq-07.jpg","photos/hero-sea.jpg","hero-hq-02.jpg","photos/hero-group.jpg","hero-hq-04.jpg","photos/hero-path.jpg","hero-hq-03.jpg"];
+
+const PARTNERS = [
+  ["Wello","wello.png"],["Offbrief","offbrief.png"],["Barry’s","barrys.png"],["Happyland Matcha","happyland.png",1],
+  ["Lakma","lakma.png"],["Salt Al Bahar","salt-al-bahar.png",1],["Sports District","sports-district.png"],["Dyno","dyno.png"],
+  ["Snatch a Matcha","snatch-a-matcha-forest.png"],["Let’s Matcha","lets-matcha.png",1],["Roast Coffee Roastery","roast.png",1],
+  ["Powerhouse","powerhouse.png"],["Gielia","gielia.png"],["Go Greek","go-greek.png",1],["Joe & The Juice","joe-and-the-juice.png",1],
+  ["Nafas","nafas.png",1],["F45 Training","f45-training.png"],["Wood Pizza","wood-pizza.png"],["Four Squares Cafe","four-squares-cafe.png",1],["Soulbowl","soulbowl.png"]
+];
+
+const LOCATIONS = {
+  khobar: {eyebrow: "The original chapter · 2024", title: "Khobar", text: "Where the movement began in 2024. Runs hosted every Saturday, all paces are welcome."},
+  riyadh: {eyebrow: "Our first chapter outside Khobar", title: "Riyadh", text: "Same Saturday runs, same community. Make new connections, and find your people through movement."},
+  popups: {eyebrow: "Announced on Instagram", title: "Pop-ups", text: "Runs held outside the regular cities. Dates and locations are announced on Instagram before each one."}
+};
+const POPUP_CITIES = {
+  jeddah: {name: "Jeddah", text: "Pop-up runs throughout the year. No fixed weekly run."},
+  bahrain: {name: "Bahrain", text: "Pop-up runs throughout the year. No fixed weekly run."}
+};
+const CITY_NAMES = {khobar: "Khobar", riyadh: "Riyadh", jeddah: "Jeddah", bahrain: "Bahrain"};
+
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+
+// Intro
+const intro = $("#intro");
+function endIntro() {
+  if (document.body.classList.contains("ready")) return;
+  intro.classList.add("out");
+  document.body.classList.remove("locked");
+  document.body.classList.add("ready");
+  setTimeout(() => intro.remove(), 1200);
+}
+if (reduceMotion || sessionStorageGet("srcIntroSeen")) { intro.remove(); document.body.classList.remove("locked"); document.body.classList.add("ready"); }
+else { addEventListener("load", () => setTimeout(endIntro, 900)); setTimeout(endIntro, 3500); sessionStorageSet("srcIntroSeen", "1"); }
+function sessionStorageGet(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }
+function sessionStorageSet(k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} }
+
+// Nav
+const nav = $("#nav");
+const hero = $("#home");
+function onScrollNav() { nav.classList.toggle("solid", scrollY > hero.offsetHeight - 90); }
+addEventListener("scroll", onScrollNav, {passive: true}); onScrollNav();
+
+const menuBtn = $("#menu-btn");
+function setMenu(open) {
+  document.body.classList.toggle("menu-open", open);
+  document.body.classList.toggle("locked", open);
+  menuBtn.setAttribute("aria-expanded", open);
+  menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+}
+menuBtn.addEventListener("click", () => setMenu(!document.body.classList.contains("menu-open")));
+$$("#sheet a").forEach(a => a.addEventListener("click", () => setMenu(false)));
+addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
+
+// Hero slideshow
+const slides = $("#slides");
+HERO_IMAGES.forEach((src, i) => {
+  const img = new Image();
+  img.src = "assets/" + src; img.alt = ""; if (i > 0) img.loading = "lazy";
+  if (i === 0) img.className = "on";
+  slides.appendChild(img);
+});
+const slideImgs = $$("img", slides);
+const bar = $("#hero-bar");
+let slide = 0, timer;
+function showSlide(n) {
+  slideImgs[slide].classList.remove("on");
+  slide = (n + slideImgs.length) % slideImgs.length;
+  slideImgs[slide].loading = "eager";
+  slideImgs[slide].classList.add("on");
+  $("#slide-no").textContent = String(slide + 1).padStart(2, "0") + " / " + String(slideImgs.length).padStart(2, "0");
+  bar.classList.remove("run"); void bar.offsetWidth; bar.classList.add("run");
+  clearTimeout(timer); timer = setTimeout(() => showSlide(slide + 1), 6000);
+}
+$("#prev").addEventListener("click", () => showSlide(slide - 1));
+$("#next").addEventListener("click", () => showSlide(slide + 1));
+showSlide(0);
+
+// Reveal on scroll
+const io = new IntersectionObserver(entries => entries.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+}), {threshold: .15, rootMargin: "0px 0px -40px 0px"});
+$$(".rv, .rv-img").forEach(el => io.observe(el));
+
+// Count-up numbers
+const countIO = new IntersectionObserver(entries => entries.forEach(e => {
+  if (!e.isIntersecting) return;
+  countIO.unobserve(e.target);
+  const el = e.target, end = +el.dataset.count, suffix = el.dataset.suffix || "";
+  if (reduceMotion) { el.textContent = end.toLocaleString("en-US") + suffix; return; }
+  const t0 = performance.now(), dur = 1800;
+  (function tick(t) {
+    const p = Math.min((t - t0) / dur, 1), eased = 1 - Math.pow(1 - p, 4);
+    el.textContent = Math.round(end * eased).toLocaleString("en-US") + suffix;
+    if (p < 1) requestAnimationFrame(tick);
+  })(t0);
+}), {threshold: .6});
+$$("[data-count]").forEach(el => countIO.observe(el));
+
+// Scroll-linked motion: hero drift, image parallax, marquee velocity
+const heroInner = $(".hero-content .wrap");
+const parImgs = $$(".story-art img, .collab-head .shot img");
+const marquee = $("#marquee-track");
+let lastY = scrollY, marqueeX = 0, velocity = 0;
+function frame() {
+  const y = scrollY;
+  velocity += ((y - lastY) - velocity) * .12;
+  lastY = y;
+  if (y < innerHeight) {
+    const p = y / innerHeight;
+    heroInner.style.transform = `translate3d(0,${y * .35}px,0)`;
+    heroInner.style.opacity = 1 - p * 1.4;
+    slides.style.transform = `scale(${1 + p * .08}) translate3d(0,${y * .2}px,0)`;
+  }
+  parImgs.forEach(img => {
+    const r = img.parentElement.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > innerHeight) return;
+    const c = (r.top + r.height / 2 - innerHeight / 2) / innerHeight;
+    img.style.transform = `scale(1.14) translate3d(0,${c * -7}%,0)`;
+  });
+  if (marquee) {
+    marqueeX -= .6 + Math.min(Math.abs(velocity) * .25, 14);
+    const w = marquee.scrollWidth / 2;
+    if (-marqueeX >= w) marqueeX += w;
+    marquee.style.transform = `translate3d(${marqueeX}px,0,0) skewX(${Math.max(-8, Math.min(8, -velocity * .15))}deg)`;
+  }
+  requestAnimationFrame(frame);
+}
+if (!reduceMotion) requestAnimationFrame(frame);
+
+// Headlines reveal word by word
+$$("h2, .invite h3").forEach(h => {
+  const parts = [];
+  h.childNodes.forEach(n => {
+    if (n.nodeType === 3) n.textContent.split(/(\s+)/).forEach(w => parts.push(w.trim() ? `<span class="w"><span>${w}</span></span>` : w));
+    else if (n.nodeName === "BR") parts.push("<br>");
+    else parts.push(`<span class="w"><span>${n.outerHTML}</span></span>`);
+  });
+  h.innerHTML = parts.join("");
+  $$(".w>span", h).forEach((s, i) => s.style.transitionDelay = (i * .07) + "s");
+  h.classList.add("split");
+});
+
+// Magnetic buttons and custom cursor (fine pointers only)
+if (matchMedia("(hover: hover) and (pointer: fine)").matches && !reduceMotion) {
+  $$(".btn, .hero-arrows button, .film-nav button").forEach(b => {
+    b.addEventListener("pointermove", e => {
+      const r = b.getBoundingClientRect();
+      b.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .25}px,${(e.clientY - r.top - r.height / 2) * .35}px)`;
+    });
+    b.addEventListener("pointerleave", () => b.style.transform = "");
+  });
+  const cursor = document.createElement("div");
+  cursor.className = "cursor"; cursor.innerHTML = "<span>Drag</span>";
+  document.body.appendChild(cursor);
+  let cx = innerWidth / 2, cy = innerHeight / 2, tx = cx, ty = cy;
+  addEventListener("pointermove", e => {
+    tx = e.clientX; ty = e.clientY;
+    cursor.classList.add("on");
+    const t = e.target.closest("a, button, #film, .shot");
+    cursor.classList.toggle("link", !!t && t.matches("a, button"));
+    cursor.classList.toggle("drag", !!t && t.id === "film" || !!e.target.closest("#film"));
+    cursor.classList.toggle("img", !!t && t.matches(".shot") && !e.target.closest("#film"));
+  });
+  document.addEventListener("pointerleave", () => cursor.classList.remove("on"));
+  (function loop() {
+    cx += (tx - cx) * .2; cy += (ty - cy) * .2;
+    cursor.style.transform = `translate3d(${cx}px,${cy}px,0)`;
+    requestAnimationFrame(loop);
+  })();
+}
+
+// Locations
+const locTabs = $$(".tabs [data-loc]");
+const locInfo = $("#loc-info");
+const subtabs = $("#subtabs");
+const regBtn = $("#loc-register");
+let popupCity = "jeddah";
+function setRegister(key) {
+  regBtn.dataset.register = key;
+  regBtn.firstChild.textContent = "Register for " + CITY_NAMES[key] + " ";
+}
+function showPopupCity(key) {
+  popupCity = key;
+  $$("button", subtabs).forEach(b => { const on = b.dataset.city === key; b.setAttribute("aria-selected", on); b.tabIndex = on ? 0 : -1; });
+  $("#loc-text").textContent = POPUP_CITIES[key].text;
+  setRegister(key);
+}
+function showLocation(key, focus) {
+  locTabs.forEach(b => { const on = b.dataset.loc === key; b.setAttribute("aria-selected", on); b.tabIndex = on ? 0 : -1; if (on && focus) b.focus(); });
+  $$(".loc-img img").forEach(img => img.classList.toggle("on", img.dataset.loc === key));
+  locInfo.classList.add("swap");
+  setTimeout(() => {
+    const d = LOCATIONS[key];
+    $("#loc-eyebrow").textContent = d.eyebrow;
+    $("#loc-title").textContent = d.title;
+    subtabs.hidden = key !== "popups";
+    if (key === "popups") showPopupCity(popupCity);
+    else { $("#loc-text").textContent = d.text; setRegister(key); }
+    locInfo.classList.remove("swap");
+  }, reduceMotion ? 0 : 280);
+}
+locTabs.forEach((b, i) => {
+  b.addEventListener("click", () => showLocation(b.dataset.loc));
+  b.addEventListener("keydown", e => {
+    const dir = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+    if (dir) showLocation(locTabs[(i + dir + locTabs.length) % locTabs.length].dataset.loc, true);
+  });
+});
+$$("button", subtabs).forEach(b => b.addEventListener("click", () => showPopupCity(b.dataset.city)));
+
+// Registration
+const dlg = $("#register-dialog");
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-register]");
+  if (!b) return;
+  const key = b.dataset.register, url = REGISTRATION[key];
+  if (url) { window.open(url, "_blank", "noopener"); return; }
+  $("#dlg-city").textContent = CITY_NAMES[key];
+  dlg.showModal();
+});
+$("#dlg-close").addEventListener("click", () => dlg.close());
+dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+
+// Gallery: drag to scroll + progress
+const film = $("#film"), filmBar = $("#film-bar");
+function filmProgress() {
+  const max = film.scrollWidth - film.clientWidth;
+  const ratio = film.clientWidth / film.scrollWidth;
+  filmBar.style.width = (ratio * 100) + "%";
+  filmBar.style.transform = `translateX(${max ? (film.scrollLeft / max) * ((1 - ratio) / ratio) * 100 : 0}%)`;
+}
+film.addEventListener("scroll", filmProgress, {passive: true}); addEventListener("resize", filmProgress); filmProgress();
+let drag = null;
+film.addEventListener("pointerdown", e => { if (e.pointerType !== "mouse") return; drag = {x: e.clientX, left: film.scrollLeft}; film.classList.add("dragging"); });
+addEventListener("pointermove", e => { if (drag) film.scrollLeft = drag.left - (e.clientX - drag.x); });
+addEventListener("pointerup", () => { drag = null; film.classList.remove("dragging"); });
+const step = () => film.clientWidth * .7;
+$("#film-prev").addEventListener("click", () => film.scrollBy({left: -step(), behavior: "smooth"}));
+$("#film-next").addEventListener("click", () => film.scrollBy({left: step(), behavior: "smooth"}));
+
+// Partner logos
+const logos = $("#logos");
+PARTNERS.forEach(([name, file, tall], i) => {
+  const tile = document.createElement("div");
+  tile.className = "logo-tile rv" + (tall ? " tall" : "");
+  tile.style.transitionDelay = (i % 5) * 60 + "ms";
+  tile.innerHTML = `<img src="assets/logos/${file}" alt="${name}" loading="lazy" decoding="async">`;
+  logos.appendChild(tile);
+  io.observe(tile);
+});
+
+$("#year").textContent = new Date().getFullYear();
 </script>
-<script>document.querySelector('.city-switch').addEventListener('keydown',e=>{const b=[...document.querySelectorAll('.city-switch button')];let i=b.indexOf(document.activeElement);if(i<0)return;if(!['ArrowRight','ArrowLeft','Home','End'].includes(e.key))return;e.preventDefault();i=e.key==='Home'?0:e.key==='End'?b.length-1:(i+(e.key==='ArrowRight'?1:-1)+b.length)%b.length;b[i].focus();b[i].click()});</script><script>document.querySelectorAll('[data-register-city]').forEach(button=>button.addEventListener('click',()=>{document.getElementById('registration-city').textContent=button.dataset.registerCity;document.getElementById('registration-dialog').showModal()}));</script></body></html>
+</body>
+</html>
