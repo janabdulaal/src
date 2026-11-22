@@ -1,0 +1,53 @@
+# Admin for the SRC website (Pages CMS: https://app.pagescms.org).
+# Sign in with GitHub, open this repo, and edit "Website content".
+media:
+  input: assets
+  output: assets
+content:
+  - name: site
+    label: Website content
+    type: file
+    path: content.json
+    format: json
+    fields:
+      - name: stats
+        label: Numbers
+        type: object
+        fields:
+          - { name: members, label: Community members, type: number }
+          - { name: followers, label: Instagram followers, type: number }
+          - { name: collaborations, label: Collaborations, type: number }
+          - { name: cities, label: Cities, type: number }
+      - name: registration
+        label: Registration links (leave empty to show "opens soon")
+        type: object
+        fields:
+          - { name: khobar, label: Khobar, type: string }
+          - { name: riyadh, label: Riyadh, type: string }
+          - { name: jeddah, label: Jeddah, type: string }
+          - { name: bahrain, label: Bahrain, type: string }
+      - name: instagram
+        label: Instagram
+        type: object
+        fields:
+          - { name: username, label: Username (without @), type: string }
+          - { name: feed_url, label: Feed URL (from Behold; when set, the archive shows the latest posts), type: string }
+      - name: hero
+        label: Hero slideshow photos
+        type: image
+        list: true
+      - name: gallery
+        label: Archive photos (used when no Instagram feed is set)
+        type: object
+        list: true
+        fields:
+          - { name: image, label: Photo, type: image }
+          - { name: caption, label: Caption, type: string }
+      - name: partners
+        label: Partners
+        type: object
+        list: true
+        fields:
+          - { name: name, label: Name, type: string }
+          - { name: logo, label: Logo (transparent PNG), type: image }
+          - { name: tall, label: Square or tall logo, type: boolean }
