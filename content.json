@@ -15,25 +15,42 @@
     "username": "saturdayrunclub.sa",
     "feed_url": ""
   },
+  "weekly": [
+    {
+      "city": "Khobar",
+      "time": "",
+      "place": ""
+    },
+    {
+      "city": "Riyadh",
+      "time": "",
+      "place": ""
+    }
+  ],
+  "runs": [],
   "hero": [
     {
-      "image": "assets/hero-hq-07.jpg",
+      "image": "assets/photos/hero-crowd.jpg",
       "focus": ""
+    },
+    {
+      "image": "assets/photos/hero-jersey.jpg",
+      "focus": "center 45%"
     },
     {
       "image": "assets/photos/hero-sea.jpg",
       "focus": "40% center"
     },
     {
-      "image": "assets/hero-hq-02.jpg",
-      "focus": ""
+      "image": "assets/photos/hero-hanging.jpg",
+      "focus": "38% center"
     },
     {
       "image": "assets/photos/hero-group.jpg",
       "focus": ""
     },
     {
-      "image": "assets/hero-hq-04.jpg",
+      "image": "assets/photos/hero-sunset.jpg",
       "focus": ""
     },
     {
