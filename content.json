@@ -16,44 +16,169 @@
     "feed_url": ""
   },
   "hero": [
-    "assets/hero-hq-07.jpg",
-    "assets/photos/hero-sea.jpg",
-    "assets/hero-hq-02.jpg",
-    "assets/photos/hero-group.jpg",
-    "assets/hero-hq-04.jpg",
-    "assets/photos/hero-path.jpg"
+    {
+      "image": "assets/hero-hq-07.jpg",
+      "focus": ""
+    },
+    {
+      "image": "assets/photos/hero-sea.jpg",
+      "focus": "40% center"
+    },
+    {
+      "image": "assets/hero-hq-02.jpg",
+      "focus": ""
+    },
+    {
+      "image": "assets/photos/hero-group.jpg",
+      "focus": ""
+    },
+    {
+      "image": "assets/hero-hq-04.jpg",
+      "focus": ""
+    },
+    {
+      "image": "assets/photos/hero-path.jpg",
+      "focus": "30% center"
+    }
   ],
   "gallery": [
-    {"image": "assets/photos/g-warmup.jpg", "caption": "The warm-up"},
-    {"image": "assets/photos/g-run.jpg", "caption": "The run"},
-    {"image": "assets/photos/story-women.jpg", "caption": "The people"},
-    {"image": "assets/photos/g-mats.jpg", "caption": "The stretch"},
-    {"image": "assets/photos/g-crowd.jpg", "caption": "The community"},
-    {"image": "assets/photos/story-shore.jpg", "caption": "The shoreline"},
-    {"image": "assets/photos/g-smiles.jpg", "caption": "The smiles"},
-    {"image": "assets/photos/g-shore.jpg", "caption": "The miles"},
-    {"image": "assets/photos/story-smiles.jpg", "caption": "The after"}
+    {
+      "image": "assets/photos/g-warmup.jpg",
+      "caption": "The warm-up"
+    },
+    {
+      "image": "assets/photos/g-run.jpg",
+      "caption": "The run"
+    },
+    {
+      "image": "assets/photos/story-women.jpg",
+      "caption": "The people"
+    },
+    {
+      "image": "assets/photos/g-mats.jpg",
+      "caption": "The stretch"
+    },
+    {
+      "image": "assets/photos/g-crowd.jpg",
+      "caption": "The community"
+    },
+    {
+      "image": "assets/photos/story-shore.jpg",
+      "caption": "The shoreline"
+    },
+    {
+      "image": "assets/photos/g-smiles.jpg",
+      "caption": "The smiles"
+    },
+    {
+      "image": "assets/photos/g-shore.jpg",
+      "caption": "The miles"
+    },
+    {
+      "image": "assets/photos/story-smiles.jpg",
+      "caption": "The after"
+    }
   ],
   "partners": [
-    {"name": "Wello", "logo": "assets/logos/wello.png", "tall": false},
-    {"name": "Offbrief", "logo": "assets/logos/offbrief.png", "tall": false},
-    {"name": "Barry’s", "logo": "assets/logos/barrys.png", "tall": false},
-    {"name": "Happyland Matcha", "logo": "assets/logos/happyland.png", "tall": true},
-    {"name": "Lakma", "logo": "assets/logos/lakma.png", "tall": false},
-    {"name": "Salt Al Bahar", "logo": "assets/logos/salt-al-bahar.png", "tall": true},
-    {"name": "Sports District", "logo": "assets/logos/sports-district.png", "tall": false},
-    {"name": "Dyno", "logo": "assets/logos/dyno.png", "tall": false},
-    {"name": "Snatch a Matcha", "logo": "assets/logos/snatch-a-matcha-forest.png", "tall": false},
-    {"name": "Let’s Matcha", "logo": "assets/logos/lets-matcha.png", "tall": true},
-    {"name": "Roast Coffee Roastery", "logo": "assets/logos/roast.png", "tall": true},
-    {"name": "Powerhouse", "logo": "assets/logos/powerhouse.png", "tall": false},
-    {"name": "Gielia", "logo": "assets/logos/gielia.png", "tall": false},
-    {"name": "Go Greek", "logo": "assets/logos/go-greek.png", "tall": true},
-    {"name": "Joe & The Juice", "logo": "assets/logos/joe-and-the-juice.png", "tall": true},
-    {"name": "Nafas", "logo": "assets/logos/nafas.png", "tall": true},
-    {"name": "F45 Training", "logo": "assets/logos/f45-training.png", "tall": false},
-    {"name": "Wood Pizza", "logo": "assets/logos/wood-pizza.png", "tall": false},
-    {"name": "Four Squares Cafe", "logo": "assets/logos/four-squares-cafe.png", "tall": true},
-    {"name": "Soulbowl", "logo": "assets/logos/soulbowl.png", "tall": false}
+    {
+      "name": "Wello",
+      "logo": "assets/logos/wello.png",
+      "tall": false
+    },
+    {
+      "name": "Offbrief",
+      "logo": "assets/logos/offbrief.png",
+      "tall": false
+    },
+    {
+      "name": "Barry’s",
+      "logo": "assets/logos/barrys.png",
+      "tall": false
+    },
+    {
+      "name": "Happyland Matcha",
+      "logo": "assets/logos/happyland.png",
+      "tall": true
+    },
+    {
+      "name": "Lakma",
+      "logo": "assets/logos/lakma.png",
+      "tall": false
+    },
+    {
+      "name": "Salt Al Bahar",
+      "logo": "assets/logos/salt-al-bahar.png",
+      "tall": true
+    },
+    {
+      "name": "Sports District",
+      "logo": "assets/logos/sports-district.png",
+      "tall": false
+    },
+    {
+      "name": "Dyno",
+      "logo": "assets/logos/dyno.png",
+      "tall": false
+    },
+    {
+      "name": "Snatch a Matcha",
+      "logo": "assets/logos/snatch-a-matcha-forest.png",
+      "tall": false
+    },
+    {
+      "name": "Let’s Matcha",
+      "logo": "assets/logos/lets-matcha.png",
+      "tall": true
+    },
+    {
+      "name": "Roast Coffee Roastery",
+      "logo": "assets/logos/roast.png",
+      "tall": true
+    },
+    {
+      "name": "Powerhouse",
+      "logo": "assets/logos/powerhouse.png",
+      "tall": false
+    },
+    {
+      "name": "Gielia",
+      "logo": "assets/logos/gielia.png",
+      "tall": false
+    },
+    {
+      "name": "Go Greek",
+      "logo": "assets/logos/go-greek.png",
+      "tall": true
+    },
+    {
+      "name": "Joe & The Juice",
+      "logo": "assets/logos/joe-and-the-juice.png",
+      "tall": true
+    },
+    {
+      "name": "Nafas",
+      "logo": "assets/logos/nafas.png",
+      "tall": true
+    },
+    {
+      "name": "F45 Training",
+      "logo": "assets/logos/f45-training.png",
+      "tall": false
+    },
+    {
+      "name": "Wood Pizza",
+      "logo": "assets/logos/wood-pizza.png",
+      "tall": false
+    },
+    {
+      "name": "Four Squares Cafe",
+      "logo": "assets/logos/four-squares-cafe.png",
+      "tall": true
+    },
+    {
+      "name": "Soulbowl",
+      "logo": "assets/logos/soulbowl.png",
+      "tall": false
+    }
   ]
 }

@@ -34,8 +34,11 @@ content:
           - { name: feed_url, label: Feed URL (from Behold; when set, the archive shows the latest posts), type: string }
       - name: hero
         label: Hero slideshow photos
-        type: image
+        type: object
         list: true
+        fields:
+          - { name: image, label: Photo, type: image }
+          - { name: focus, label: Phone crop focus (e.g. "30% center" keeps the left side; leave empty for the middle), type: string }
       - name: gallery
         label: Archive photos (used when no Instagram feed is set)
         type: object
