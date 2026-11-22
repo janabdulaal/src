@@ -33,11 +33,12 @@
   --grain:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;overflow-x:clip}
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
 .lenis.lenis-stopped{overflow:hidden}
-body{margin:0;background:var(--cream);color:var(--green);font:400 16px/1.65 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{margin:0;background:var(--cream);color:var(--green);font:400 16px/1.65 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-x:clip;overscroll-behavior-x:none}
+main,footer{overflow-x:clip}
 body.locked{overflow:hidden}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
@@ -184,10 +185,6 @@ body.ready .hero p{opacity:.92;transform:none}
 .collage .arch{left:8%;top:0;width:62%;height:78%;border-radius:var(--radius)}
 .collage .round{right:2%;top:14%;width:38%;aspect-ratio:4/5;border-radius:calc(var(--radius) + 6px);border:6px solid var(--green)}
 .collage .card{left:0;bottom:0;width:52%;height:34%;border-radius:calc(var(--radius) + 6px);border:6px solid var(--green)}
-.stamp{position:absolute;right:6%;bottom:4%;width:clamp(120px,12vw,160px);aspect-ratio:1;display:grid;place-items:center;text-align:center}
-.stamp svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 18s linear infinite}
-.stamp text{font:700 9.5px var(--sans);letter-spacing:.32em;fill:var(--cream)}
-.stamp strong{font:400 clamp(34px,3.4vw,46px)/1 var(--serif);letter-spacing:-.04em}
 @keyframes spin{to{transform:rotate(360deg)}}
 .collage [data-depth]{will-change:transform}
 
@@ -276,21 +273,28 @@ body.ready .hero p{opacity:.92;transform:none}
 .marquee-track svg{width:.4em;height:.4em;flex:none}
 
 /* ---------- Collaborations ---------- */
-.collab{padding:clamp(100px,11vw,160px) 0}
-.collab-head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,100px);align-items:center;margin-bottom:clamp(50px,7vw,90px)}
-.collab-head h2{font-size:clamp(40px,4.6vw,72px)}
-.collab-head .sub{margin:20px 0 0;font:italic 24px var(--serif);letter-spacing:-.02em}
-.collab-head .tile{aspect-ratio:4/3;border-radius:var(--radius);overflow:hidden}
-.collab-head .tile img{width:100%;height:100%;object-fit:cover}
-.logos{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-.logo-tile{display:grid;place-items:center;aspect-ratio:16/10;background:#fbf9f0;border:1px solid var(--line);border-radius:16px;padding:22px;transition:transform .5s var(--ease),box-shadow .5s,border-color .4s}
-.logo-tile img{max-width:66%;max-height:60px;object-fit:contain;transition:transform .6s var(--ease)}
-.logo-tile.tall img{max-height:86px}
-.logo-tile:hover{transform:translateY(-6px);box-shadow:0 24px 40px -24px rgba(0,40,15,.4);border-color:transparent}
-.logo-tile:hover img{transform:scale(1.07)}
-.invite{text-align:center;padding-top:clamp(80px,9vw,130px);display:flex;flex-direction:column;align-items:center}
-.invite h3{font-size:clamp(38px,4.2vw,64px)}
-.invite p{margin:16px 0 34px;opacity:.75}
+.collab{background:var(--green-deep);color:var(--cream);padding:clamp(100px,11vw,160px) 0 clamp(90px,10vw,140px);overflow:hidden}
+.collab-head{text-align:center;margin-bottom:clamp(40px,5vw,64px)}
+.collab-head h2{margin-top:16px}
+.collab-head .sub{margin:18px 0 0;font:italic clamp(20px,1.8vw,24px) var(--serif);opacity:.8}
+.track-meta{display:flex;justify-content:space-between;font:700 10px var(--sans);letter-spacing:.3em;opacity:.6;margin-bottom:14px}
+.track-field{perspective:1300px}
+.track-tilt{position:relative;transform-origin:50% 0;transform:rotateX(24deg);border-radius:var(--radius);overflow:hidden;background:linear-gradient(180deg,#0d5229,#003a18);border:1px solid rgba(247,244,231,.14);box-shadow:0 70px 120px -60px rgba(0,0,0,.7);will-change:transform}
+.track-tilt:before{content:"";position:absolute;inset:0;background-image:var(--grain);opacity:.12;pointer-events:none;z-index:3;mix-blend-mode:overlay}
+.lane{position:relative;display:flex;align-items:center;height:clamp(84px,8.4vw,112px);border-bottom:1px solid rgba(247,244,231,.4);overflow:hidden}
+.lane-no{position:absolute;left:0;top:0;bottom:0;z-index:2;width:clamp(64px,7vw,104px);display:grid;place-items:center;font:italic 400 clamp(32px,3.4vw,52px)/1 var(--serif);letter-spacing:-.04em;background:linear-gradient(90deg,#0d5229 62%,rgba(13,82,41,0));border-right:3px solid var(--cream)}
+.lane-run{display:flex;gap:14px;width:max-content;padding-left:14px;animation:lane var(--dur,44s) linear infinite}
+.lane:hover .lane-run{animation-play-state:paused}
+@keyframes lane{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.chip{flex:none;display:grid;place-items:center;width:clamp(132px,12.5vw,176px);height:clamp(56px,5.6vw,74px);padding:10px 24px;border-radius:100px;background:var(--cream);box-shadow:0 10px 24px -12px rgba(0,0,0,.5);transition:transform .5s var(--ease)}
+.chip img{max-width:100%;max-height:40px;object-fit:contain}
+.chip.tall img{max-height:54px}
+.chip:hover{transform:translateY(-4px) scale(1.04)}
+.lane-open{height:auto;min-height:clamp(110px,10vw,140px);border-bottom:0;padding:24px clamp(20px,3vw,40px) 24px calc(clamp(64px,7vw,104px) + clamp(20px,3vw,40px));justify-content:space-between;gap:20px;flex-wrap:wrap;background:repeating-linear-gradient(90deg,transparent 0 26px,rgba(247,244,231,.045) 26px 52px)}
+.lane-open .lane-no{opacity:.5}
+.lane-open h3{font-size:clamp(32px,3.6vw,54px)}
+.lane-open p{margin:8px 0 0;opacity:.7}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* ---------- Join ---------- */
 .join{background:var(--green);color:var(--cream);padding:clamp(90px,10vw,140px) 0;text-align:center;overflow:hidden}
@@ -324,13 +328,12 @@ dialog::backdrop{background:rgba(0,30,10,.6);backdrop-filter:blur(5px)}
 
 /* ---------- Responsive ---------- */
 @media (max-width:950px){
-  .story .wrap,.collab-head{grid-template-columns:1fr}
+  .story .wrap{grid-template-columns:1fr}
   .numbers-grid{grid-template-columns:repeat(2,1fr)}
   .stat:nth-child(3):before{display:none}
   .loc-stage{grid-template-columns:1fr;height:auto}
   .map{aspect-ratio:1/.92}
   .loc-img{flex:none;height:220px}
-  .logos{grid-template-columns:repeat(3,1fr)}
   .footer .wrap{grid-template-columns:1fr}
   .footer-links{justify-content:flex-start}
 }
@@ -345,7 +348,6 @@ dialog::backdrop{background:rgba(0,30,10,.6);backdrop-filter:blur(5px)}
   .hero-foot .wrap{justify-content:flex-end}
   .collage{height:420px}
   .collage .arch{left:0;width:70%}
-  .stamp{right:0;bottom:2%}
   .tabs{width:100%}
   .tabs button{flex:1;padding:0 6px;letter-spacing:.14em}
   .pin text{font-size:calc(44px / var(--z,1))}
@@ -354,9 +356,41 @@ dialog::backdrop{background:rgba(0,30,10,.6);backdrop-filter:blur(5px)}
   .map-meta>span:first-child{display:none}
   .archive-head .film-nav{display:none}
   .film figure{width:72vw}
-  .logos{grid-template-columns:repeat(2,1fr)}
+  .chip{width:118px;height:52px;padding:8px 18px}
+  .chip img{max-height:30px}
+  .chip.tall img{max-height:40px}
+  .lane{height:76px}
+  .lane-no{width:52px;font-size:28px}
+  .lane-open{padding-left:72px}
+  .track-meta span:last-child{display:none}
   .join h2{white-space:normal}
   .footer-base{flex-direction:column}
+  /* Mobile layout: steady, aligned, photos framed for a phone */
+  .wrap{width:calc(100% - 40px)}
+  .story{padding:96px 0 80px}
+  .story .ghost{display:none}
+  .story h2{margin:16px 0 22px}
+  .collage{height:auto;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+  .collage .tile{position:relative;inset:auto;left:auto;right:auto;top:auto;bottom:auto;width:auto;height:auto;border:0;border-radius:var(--radius);transform:none!important}
+  .collage .arch{grid-column:1/-1;aspect-ratio:4/3}
+  .collage .arch img{object-position:center!important}
+  .collage .round,.collage .card{aspect-ratio:1}
+  .numbers{padding:80px 0}
+  .stat{padding:22px 8px}
+  .loc-head{margin-bottom:20px}
+  .loc-img{height:auto;aspect-ratio:16/10}
+  .film{gap:12px;padding:0 20px 4px;scroll-padding-inline:20px}
+  .film figure{width:84vw;aspect-ratio:4/3}
+  .archive-head{margin-bottom:28px}
+  .manifesto{padding:90px 0 60px}
+  .track-tilt{transform:none!important}
+  .lane-open{height:auto;flex-direction:column;align-items:flex-start;padding:22px 20px 24px 72px}
+  .lane-open .pill{margin-top:6px}
+  .collab-head h2 .w:first-child{display:block}
+  .join{padding:90px 0 100px}
+  .join-links{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .join-links .pill{width:100%}
+  .hero-foot{bottom:24px}
   .footer{padding-bottom:110px}
   .m-cta{display:inline-flex;position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom));z-index:40;min-height:52px;transform:translate(-50%,160%);box-shadow:0 14px 34px rgba(0,30,10,.35);transition:transform .6s var(--ease)}
   .m-cta.show{transform:translate(-50%,0)}
@@ -365,6 +399,8 @@ dialog::backdrop{background:rgba(0,30,10,.6);backdrop-filter:blur(5px)}
 @media (prefers-reduced-motion:reduce){
   *,*:before,*:after{animation:none!important;transition:none!important}
   .intro{display:none}
+  .lane{overflow-x:auto}
+  .track-tilt{transform:none!important}
   .rv,.rv-img,.rv-img img,.split .w>span,.hero h1 .line>span,.hero p,.hero .eyebrow{opacity:1!important;transform:none!important;clip-path:none!important}
   .loc-img img{transform:none!important}
   .loc-img img:not(.on){opacity:0}
@@ -455,10 +491,6 @@ dialog::backdrop{background:rgba(0,30,10,.6);backdrop-filter:blur(5px)}
         <div class="tile arch rv-img" data-depth="-0.05"><img src="assets/photos/story-shore.jpg" alt="SRC runners along the shore" loading="lazy" style="object-position:60% center"></div>
         <div class="tile round rv-img d2" data-depth="0.08"><img src="assets/photos/story-hug.jpg" alt="Runners embracing after a Saturday run" loading="lazy"></div>
         <div class="tile card rv-img d1" data-depth="0.03"><img src="assets/photos/story-crew.jpg" alt="SRC members together in club jerseys" loading="lazy"></div>
-        <div class="stamp rv d3" data-depth="0.12" aria-hidden="true">
-          <svg viewBox="0 0 100 100"><defs><path id="ring" d="M50 50 m-38 0 a38 38 0 1 1 76 0 a38 38 0 1 1 -76 0"/></defs><circle cx="50" cy="50" r="48" fill="none" stroke="rgba(247,244,231,.35)" stroke-width=".6"/><text><textPath href="#ring">MADE TO MOVE · EST. 2024 · MADE TO MOVE · </textPath></text></svg>
-          <strong>2024</strong>
-        </div>
       </div>
     </div>
   </section>
@@ -552,21 +584,27 @@ dialog::backdrop{background:rgba(0,30,10,.6);backdrop-filter:blur(5px)}
 
   <div class="marquee" aria-hidden="true"><div class="marquee-track" id="marquee-track"></div></div>
 
-  <section class="collab" id="collaborations">
+  <section class="collab grain" id="collaborations">
     <div class="wrap">
       <div class="collab-head">
-        <div>
-          <div class="eyebrow rv">03 / Beyond the run</div>
-          <h2 class="rv">Collaborations<br><em>&amp; Partnerships.</em></h2>
-          <p class="sub rv d1">Better together.</p>
-        </div>
-        <div class="tile rv-img"><img src="assets/photos/collab-wello.jpg" alt="A partner activation at an SRC run" loading="lazy"></div>
+        <div class="eyebrow rv">03 / Beyond the run</div>
+        <h2 class="rv">Collaborations <em>&amp; Partnerships.</em></h2>
+        <p class="sub rv d1">Better together. 20+ brands running alongside us.</p>
       </div>
-      <div class="logos" id="logos"></div>
-      <div class="invite">
-        <h3 class="rv">Your brand <em>here.</em></h3>
-        <p class="rv d1">Let’s create something together.</p>
-        <a class="pill pill-green rv d2" href="mailto:saturdayrunclub.sa@gmail.com?subject=SRC%20Collaboration%20Inquiry">Connect with us <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a>
+      <div class="track-meta rv"><span>Lane / Partners</span><span>Hover a lane to pause</span></div>
+      <div class="track-field rv">
+        <div class="track-tilt" id="track-tilt">
+          <ul class="sr-only" id="partner-list"></ul>
+          <div id="lanes"></div>
+          <div class="lane lane-open">
+            <span class="lane-no" aria-hidden="true">05</span>
+            <div>
+              <h3>Your brand <em>here.</em></h3>
+              <p>This lane is open. Let’s create something together.</p>
+            </div>
+            <a class="pill pill-cream" href="mailto:saturdayrunclub.sa@gmail.com?subject=SRC%20Collaboration%20Inquiry">Connect with us <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -734,7 +772,7 @@ $("#next").addEventListener("click", () => showSlide(slide + 1));
 showSlide(0);
 
 // ----- Headlines rise word by word -----
-$$("h2, .invite h3").forEach(h => {
+$$("h2").forEach(h => {
   const parts = [];
   h.childNodes.forEach(n => {
     const words = (n.textContent || "").split(/(\s+)/);
@@ -828,7 +866,7 @@ marquee.innerHTML = `<span>Move with us ${star}</span><span>Belong with us ${sta
 // ----- One animation loop -----
 const track = $("#track"), heroInner = $(".hero-content .wrap");
 const routePath = $("#route-path"), runner = $("#runner"), routeLen = routePath.getTotalLength();
-const depthEls = $$("[data-depth]"), tiltImgs = $$(".collab-head .tile img");
+const depthEls = $$("[data-depth]"), trackTilt = $("#track-tilt");
 let lastY = scrollY, velocity = 0, marqueeX = 0, runT = 0;
 function frame() {
   const y = scrollY, maxY = document.documentElement.scrollHeight - innerHeight;
@@ -836,25 +874,27 @@ function frame() {
   track.style.transform = `scaleX(${maxY > 0 ? y / maxY : 0})`;
   if (y < innerHeight * 1.1) {
     const p = y / innerHeight;
+    if (finePointer) {
     heroInner.style.transform = `translate3d(0,${y * .38}px,0)`;
     heroInner.style.opacity = Math.max(0, 1 - p * 1.5);
     slides.style.transform = `scale(${1 + p * .1}) translate3d(0,${y * .22}px,0)`;
+    }
     if (document.body.classList.contains("ready")) {
       runT = (runT + .0016) % 1;
       const pt = routePath.getPointAtLength(runT * routeLen);
       runner.setAttribute("cx", pt.x); runner.setAttribute("cy", pt.y);
     }
   }
-  depthEls.forEach(el => {
+  if (finePointer) depthEls.forEach(el => {
     const r = el.parentElement.getBoundingClientRect();
     if (r.bottom < -200 || r.top > innerHeight + 200) return;
     el.style.transform = `translate3d(0,${(r.top + r.height / 2 - innerHeight / 2) * +el.dataset.depth}px,0)`;
   });
-  tiltImgs.forEach(img => {
-    const r = img.parentElement.getBoundingClientRect();
-    if (r.bottom < 0 || r.top > innerHeight) return;
-    img.style.transform = `scale(1.12) translate3d(0,${((r.top + r.height / 2) / innerHeight - .5) * -8}%,0)`;
-  });
+  const tr = trackTilt.getBoundingClientRect();
+  if (finePointer && tr.bottom > 0 && tr.top < innerHeight) {
+    const p = Math.min(Math.max((innerHeight - tr.top) / (innerHeight * .85), 0), 1);
+    trackTilt.style.transform = `rotateX(${(1 - p) * 26 + 4}deg)`;
+  }
   const mr = map.getBoundingClientRect();
   if (mr.bottom > 0 && mr.top < innerHeight) legs.forEach(l => {
     l.t = (l.t + .004) % 1;
@@ -938,17 +978,15 @@ const step = () => film.clientWidth * .6;
 $("#film-prev").addEventListener("click", () => film.scrollBy({left: -step(), behavior: "smooth"}));
 $("#film-next").addEventListener("click", () => film.scrollBy({left: step(), behavior: "smooth"}));
 
-// ----- Partner logos -----
-const logos = $("#logos");
-PARTNERS.forEach(([name, file, tall], i) => {
-  const tile = document.createElement("div");
-  tile.className = "logo-tile rv" + (tall ? " tall" : "");
-  tile.style.transitionDelay = (i % 5) * 70 + "ms";
-  tile.innerHTML = `<img src="assets/logos/${file}" alt="${name}" loading="lazy" decoding="async">`;
-  logos.appendChild(tile);
-  io.observe(tile);
-  tile.addEventListener("transitionend", () => tile.style.transitionDelay = "", {once: true});
-});
+// ----- Partner lanes: each lane runs at its own pace -----
+const lanesEl = $("#lanes"), partnerList = $("#partner-list");
+PARTNERS.forEach(([name]) => partnerList.insertAdjacentHTML("beforeend", `<li>${name}</li>`));
+const LANE_PACE = [46, 38, 54, 42];
+for (let l = 0; l < 4; l++) {
+  const group = PARTNERS.slice(l * 5, l * 5 + 5);
+  const chips = group.map(([name, file, tall]) => `<span class="chip${tall ? " tall" : ""}"><img src="assets/logos/${file}" alt="" loading="lazy" decoding="async" title="${name}"></span>`).join("");
+  lanesEl.insertAdjacentHTML("beforeend", `<div class="lane" aria-hidden="true"><span class="lane-no">0${l + 1}</span><div class="lane-run" style="--dur:${LANE_PACE[l]}s">${chips.repeat(4)}</div></div>`);
+}
 
 // ----- Nav state + mobile "Join a run" button (after the hero, hidden at the join section) -----
 const mcta = $("#m-cta"), joinSec = $("#join");
