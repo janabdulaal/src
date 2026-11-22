@@ -311,7 +311,14 @@ body.ready .hero p{opacity:.92;transform:none}
 .archive{background:var(--sage);padding:clamp(90px,10vw,140px) 0}
 .archive-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:clamp(28px,4vw,44px)}
 .archive-head h2{margin-top:16px}
-.archive-head .hint{text-align:right;font:700 10px/1.8 var(--sans);letter-spacing:.24em;text-transform:uppercase;opacity:.6}
+.ig-handle{display:inline-flex;align-items:center;gap:10px;padding-bottom:5px;border-bottom:1px solid currentColor;font:italic 19px var(--serif);opacity:.8;transition:opacity .3s}
+.ig-handle:hover{opacity:1}
+.ig-handle svg{width:18px;height:18px}
+.g-more{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:rgba(0,40,14,.62);color:var(--cream);transition:background .5s var(--ease)}
+.g-more b{font:italic 400 clamp(44px,4.4vw,64px)/1 var(--serif);letter-spacing:-.03em}
+.g-more small{font:700 10px var(--sans);letter-spacing:.26em;text-transform:uppercase;opacity:.8}
+.g-item:hover .g-more{background:rgba(0,40,14,.5)}
+.g-item:has(.g-more) .cap{display:none}
 .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.4vw,18px)}
 .g-item{position:relative;display:block;width:100%;text-align:left;border-radius:var(--radius);overflow:hidden;background:rgba(0,64,24,.08);cursor:zoom-in}
 .g-item[hidden]{display:none}
@@ -324,7 +331,6 @@ body.ready .hero p{opacity:.92;transform:none}
 .g-item .zoom-ico{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(247,244,231,.9);color:var(--green);opacity:0;transform:scale(.8);transition:opacity .35s,transform .35s var(--ease)}
 .g-item .zoom-ico svg{width:14px;height:14px}
 .g-item:hover .zoom-ico,.g-item:focus-visible .zoom-ico{opacity:1;transform:none}
-.gallery-foot{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:clamp(28px,3vw,40px)}
 .pill-line{border:1px solid var(--green);padding:0 26px;justify-content:center}
 .pill-line:hover{background:var(--green);color:var(--cream)}
 .lightbox{border:0;padding:0;background:transparent;max-width:none;max-height:none;width:100vw;height:100svh;margin:0;overflow:hidden}
@@ -460,13 +466,12 @@ body.ready .hero p{opacity:.92;transform:none}
   .cal-count b{font-size:28px}
   /* Archive */
   .archive{padding:84px 0}
-  .archive-head .hint{display:none}
-  .gallery-foot .pill{min-height:50px}
+  .archive-head{flex-wrap:wrap;align-items:flex-start}
+  .ig-handle{font-size:17px}
   .gallery{grid-template-columns:1fr 1fr;gap:10px}
   .g-item .ph{aspect-ratio:1}
   .g-item .cap{padding:30px 12px 10px;font-size:15px}
   .g-item .cap b{display:none}
-  .gallery-foot .pill{flex:1 1 100%}
   .lightbox .lb-prev,.lightbox .lb-next{display:none}
   /* Partners */
   .chip{width:132px;height:64px;padding:10px 20px}
@@ -674,12 +679,9 @@ body.ready .hero p{opacity:.92;transform:none}
           <div class="eyebrow rv">04 / The people. The places.</div>
           <h2 class="rv">The SRC <em>archive.</em></h2>
         </div>
+        <a class="ig-handle rv d1" id="gallery-ig" href="https://www.instagram.com/saturdayrunclub.sa/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg><span>@saturdayrunclub.sa</span></a>
       </div>
       <div class="gallery" id="gallery"></div>
-      <div class="gallery-foot">
-        <button class="pill pill-green" id="gallery-more" hidden><span id="gallery-more-label">View all photos</span> <i><svg><use href="#i-arrow"/></svg></i></button>
-        <a class="pill pill-line" id="gallery-ig" href="https://www.instagram.com/saturdayrunclub.sa/" target="_blank" rel="noopener noreferrer">More on Instagram</a>
-      </div>
     </div>
   </section>
 
@@ -1003,7 +1005,7 @@ function renderPartners(partners) {
 }
 
 // ----- Archive: photo grid (or the Instagram feed), tap any photo to view it -----
-const gallery = $("#gallery"), moreBtn = $("#gallery-more");
+const gallery = $("#gallery");
 const FIRST_SHOWN = 4;
 let items = [];
 async function loadInstagram(url) {
@@ -1025,13 +1027,10 @@ const thumbOf = src => /^assets\/photos\/[^/]+\.jpg$/.test(src) ? src.replace("a
 function renderGallery(list, fromInstagram) {
   items = list;
   gallery.classList.toggle("ig", !!fromInstagram);
-  gallery.innerHTML = list.map((it, i) => `<button type="button" class="g-item rv" data-i="${i}"${i >= FIRST_SHOWN ? " hidden" : ""} aria-label="View photo${it.caption ? ": " + esc(it.caption) : ""}"><div class="ph"><img src="${esc(thumbOf(it.image))}" data-full="${esc(it.image)}" alt="" loading="lazy" onerror="if(this.src!==this.dataset.full)this.src=this.dataset.full"></div><span class="cap">${esc(it.caption || "")}<b>${String(i + 1).padStart(2, "0")}</b></span><span class="zoom-ico" aria-hidden="true"><svg><use href="#i-up"/></svg></span></button>`).join("");
+  gallery.innerHTML = list.map((it, i) => `<button type="button" class="g-item rv" data-i="${i}"${i >= FIRST_SHOWN ? " hidden" : ""} aria-label="View photo${it.caption ? ": " + esc(it.caption) : ""}"><div class="ph"><img src="${esc(thumbOf(it.image))}" data-full="${esc(it.image)}" alt="" loading="lazy" onerror="if(this.src!==this.dataset.full)this.src=this.dataset.full"></div><span class="cap">${esc(it.caption || "")}<b>${String(i + 1).padStart(2, "0")}</b></span>${i === FIRST_SHOWN - 1 && list.length > FIRST_SHOWN ? `<span class="g-more"><b>+${list.length - FIRST_SHOWN}</b><small>View all</small></span>` : `<span class="zoom-ico" aria-hidden="true"><svg><use href="#i-up"/></svg></span>`}</button>`).join("");
   $$(".g-item", gallery).forEach((el, i) => { el.style.transitionDelay = (i % 3) * 80 + "ms"; io.observe(el); });
-  moreBtn.hidden = list.length <= FIRST_SHOWN;
-  $("#gallery-more-label").textContent = `View all ${list.length} photos`;
   $("#gallery-ig").href = `https://www.instagram.com/${CONTENT.instagram.username}/`;
 }
-moreBtn.addEventListener("click", () => openLightbox(0));
 gallery.addEventListener("click", e => {
   const b = e.target.closest(".g-item");
   if (b) openLightbox(+b.dataset.i);
