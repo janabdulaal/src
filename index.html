@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tinos:ital@0;1&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/photos/hero-crowd.jpg">
+<link rel="preload" as="image" href="assets/photos/hero-crowd.jpg" imagesrcset="assets/photos/m/hero-crowd.jpg 1400w, assets/photos/hero-crowd.jpg 2730w" imagesizes="100vw">
 <link rel="preload" as="fetch" href="content.json" crossorigin>
 <style>
 /* ---------- Brand: green, cream, ink. Times serif headlines, Arial labels ---------- */
@@ -29,6 +29,11 @@
   --gutter:clamp(20px,5vw,72px);
   --max:1320px;
   --ease:cubic-bezier(.2,.7,.1,1);
+  /* Motion: out = arriving, io = moving across the screen, drawer = sheets, stride = the logo's glide */
+  --out:cubic-bezier(.23,1,.32,1);
+  --io:cubic-bezier(.77,0,.175,1);
+  --drawer:cubic-bezier(.32,.72,0,1);
+  --stride:cubic-bezier(.65,0,.35,1);
   --radius:22px;
   --grain:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
@@ -58,42 +63,69 @@ h2{font-size:clamp(42px,5.4vw,86px)}
 .pill{display:inline-flex;align-items:center;justify-content:space-between;gap:18px;min-height:54px;padding:0 10px 0 24px;border-radius:100px;font:700 12px var(--sans);letter-spacing:.2em;text-transform:uppercase;transition:transform .4s var(--ease),background .3s,color .3s}
 .pill i{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;transition:transform .5s var(--ease)}
 .pill svg{width:15px;height:15px}
-.pill:hover i{transform:rotate(-45deg)}
+@media (hover:hover) and (pointer:fine){.pill:hover i{transform:rotate(-45deg)}}
 .pill-cream{background:var(--cream);color:var(--green)}
 .pill-cream i{background:var(--green);color:var(--cream)}
 .pill-green{background:var(--green);color:var(--cream)}
 .pill-green i{background:var(--cream);color:var(--green)}
 .pill-ghost{border:1px solid rgba(247,244,231,.45);padding:0 26px;justify-content:center}
-.pill-ghost:hover{background:var(--cream);color:var(--green)}
+@media (hover:hover) and (pointer:fine){.pill-ghost:hover{background:var(--cream);color:var(--green)}}
 
 /* ---------- Intro ---------- */
-.intro{position:fixed;inset:0;z-index:150;background:radial-gradient(120% 90% at 50% 40%,#0a5a2a 0%,var(--green) 45%,var(--green-deep) 100%);color:var(--cream);display:grid;place-items:center;overflow:hidden;clip-path:inset(0 0 0 0);transition:clip-path 1.2s var(--ease)}
-.intro:before{content:"";position:absolute;inset:0;background-image:var(--grain);opacity:.17;pointer-events:none}
-.intro.out{clip-path:inset(0 0 100% 0)}
+.intro{position:fixed;inset:0;z-index:150;color:var(--cream);display:grid;place-items:center;cursor:pointer}
+.intro-bg{position:absolute;inset:0;overflow:hidden;background:radial-gradient(120% 90% at 50% 40%,#0a5a2a 0%,var(--green) 45%,var(--green-deep) 100%);clip-path:inset(0 0 0 0);transition:clip-path .95s var(--io)}
+.intro-bg:before{content:"";position:absolute;inset:0;background-image:var(--grain);opacity:.17;pointer-events:none}
+.intro.out{pointer-events:none}
+.intro.out .intro-bg{clip-path:inset(var(--ty,50%) 0 calc(100% - var(--ty,50%)) 0)}
 .intro-orbit{position:absolute;left:50%;top:50%;width:90vmax;height:90vmax;margin:-45vmax 0 0 -45vmax;border:1px solid rgba(247,244,231,.1);border-radius:50%;transform:rotate(-22deg) scaleX(.7);animation:orbit 9s linear infinite}
 .intro-orbit.two{width:60vmax;height:60vmax;margin:-30vmax 0 0 -30vmax;animation-duration:13s;animation-direction:reverse}
 @keyframes orbit{to{transform:rotate(338deg) scaleX(.7)}}
-.intro-inner{position:relative;text-align:center;padding:20px;transition:transform 1.2s var(--ease),opacity .8s}
-.intro.out .intro-inner{transform:translateY(-12vh) scale(.92);opacity:0}
-.intro-kicker{opacity:0;animation:rise .9s .2s var(--ease) forwards}
-.intro-logo{display:block;width:clamp(230px,34vw,470px);height:auto;margin:30px auto 26px;overflow:visible}
+.intro-inner{position:relative;text-align:center;padding:20px}
+.intro-logo{display:block;width:clamp(230px,34vw,470px);height:auto;margin:30px auto 26px;overflow:visible;will-change:transform}
 /* Signature draw: the logo's outline traces itself, then the ink fills it */
-.ink-strokes path{fill:none;stroke:var(--cream);stroke-width:2;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;opacity:0;animation:ink 1.9s var(--d) cubic-bezier(.45,0,.25,1) forwards}
-.ink-fill{fill:var(--cream);fill-rule:evenodd;opacity:0;animation:inkFill 1s 2.1s ease forwards}
+.ink-strokes path{fill:none;stroke:var(--cream);stroke-width:2;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;opacity:0;animation:ink 1.1s calc(var(--d) * .6) cubic-bezier(.45,0,.25,1) forwards}
+.ink-fill{fill:var(--cream);fill-rule:evenodd;opacity:0;animation:inkFill .55s 1.3s ease forwards}
 @keyframes ink{0%{opacity:0;stroke-dashoffset:1}3%{opacity:1}100%{opacity:1;stroke-dashoffset:0}}
 @keyframes inkFill{to{opacity:1}}
-.intro-rule{width:min(270px,55vw);height:1px;background:rgba(247,244,231,.3);margin:0 auto 22px;overflow:hidden}
-.intro-rule span{display:block;height:100%;background:var(--cream);transform:scaleX(0);transform-origin:left}
-.intro-tag{opacity:0;animation:rise .9s 3.2s var(--ease) forwards}
+.intro.quick .ink-strokes{display:none}
+.intro.quick .ink-fill{animation:none;opacity:1}
+.intro.quick .intro-tag{animation-delay:0s}
+.intro.out .ink-strokes{opacity:0;transition:opacity .2s}
+/* The starting line: drawn while the logo writes, snaps apart when the run starts */
+.intro-rule{position:relative;width:min(270px,55vw);height:1px;margin:0 auto 22px;background:rgba(247,244,231,.3);transition:background .2s}
+.intro-rule span{position:absolute;top:0;width:50%;height:100%;background:var(--cream);transform:scaleX(0);transform-origin:left}
+.intro-rule .l{left:0}.intro-rule .r{right:0}
+.intro.out .intro-rule{background:transparent}
+.intro.out .intro-rule span{transform:scaleX(0)!important;transition:transform .5s var(--out)}
+.intro.out .intro-rule .r{transform-origin:right}
+.intro-tag{opacity:0;animation:rise .7s .95s var(--out) forwards}
+.intro.out .intro-tag,.intro.out .intro-orbit,.intro.out .skip{opacity:0!important;transition:opacity .25s}
 .skip{position:absolute;bottom:30px;right:var(--gutter);display:flex;align-items:center;gap:10px;height:40px;padding:0 18px;border:1px solid rgba(247,244,231,.35);border-radius:100px;font:700 10px var(--sans);letter-spacing:.25em;text-transform:uppercase;transition:background .3s,color .3s}
 .skip svg{width:12px;height:12px}
-.skip:hover{background:var(--cream);color:var(--green)}
+@media (hover:hover) and (pointer:fine){.skip:hover{background:var(--cream);color:var(--green)}}
 @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @keyframes wipeUp{to{clip-path:inset(0 0 0 0)}}
 
 /* ---------- Scroll track ---------- */
 .track{position:fixed;left:0;right:0;top:0;height:2px;z-index:60;pointer-events:none}
 .track i{position:absolute;inset:0;background:#7fa98a;transform-origin:left;transform:scaleX(0)}
+.track b{position:absolute;left:-3px;top:-2px;width:6px;height:6px;border-radius:50%;background:#7fa98a}
+/* The route: section markers along the right edge, a runner dot for where you are */
+.route-nav{position:fixed;right:clamp(14px,1.6vw,26px);top:50%;z-index:40;height:min(300px,42vh);width:20px;margin-top:calc(min(300px,42vh) / -2);color:var(--cream);opacity:0;visibility:hidden;transition:opacity .5s var(--out),visibility 0s .5s,color .5s}
+.route-nav.show{opacity:1;visibility:visible;transition:opacity .5s var(--out),visibility 0s,color .5s}
+.route-nav.ink{color:var(--green)}
+.rn-line,.rn-fill{position:absolute;right:9px;top:0;bottom:0;width:1px;background:currentColor;opacity:.22}
+.rn-fill{opacity:.9;transform-origin:top;transform:scaleY(0)}
+.rn-runner{position:absolute;right:6px;top:-3.5px;width:7px;height:7px;border-radius:50%;background:currentColor}
+.route-nav a{position:absolute;right:0;top:calc(var(--p) * 100%);height:22px;margin-top:-11px;display:flex;align-items:center;justify-content:flex-end;gap:10px;padding-left:20px}
+.route-nav a:after{content:"";width:9px;height:1px;margin-right:5px;background:currentColor;opacity:.5;transition:width .4s var(--out),opacity .4s}
+.route-nav a.on:after{width:17px;margin-right:1px;opacity:1}
+.route-nav a span{font:700 9.5px var(--sans);letter-spacing:.24em;text-transform:uppercase;white-space:nowrap;opacity:0;transform:translateX(8px);transition:opacity .3s var(--out),transform .4s var(--out)}
+.route-nav a b{font:700 9px var(--sans);letter-spacing:.16em;opacity:0;transition:opacity .3s}
+@media (hover:hover) and (pointer:fine){.route-nav:hover a span,.route-nav:focus-within a span{opacity:.9;transform:none}}
+@media (hover:hover) and (pointer:fine){.route-nav:hover a b,.route-nav:focus-within a b{opacity:.5}}
+@media (hover:hover) and (pointer:fine){.route-nav:hover a:nth-of-type(2) span{transition-delay:.03s}.route-nav:hover a:nth-of-type(3) span{transition-delay:.06s}.route-nav:hover a:nth-of-type(4) span{transition-delay:.09s}.route-nav:hover a:nth-of-type(5) span{transition-delay:.12s}}
+@media (max-width:1180px){.route-nav{display:none}}
 
 /* ---------- Nav ---------- */
 .nav{position:fixed;top:14px;left:50%;z-index:50;width:min(100% - 28px,1380px);height:62px;transform:translateX(-50%);color:var(--cream);border-radius:100px;transition:background .5s,color .5s,box-shadow .5s,height .5s,top .5s}
@@ -101,10 +133,13 @@ h2{font-size:clamp(42px,5.4vw,86px)}
 .nav-logo{position:relative;width:66px;height:52px}
 .nav-logo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .4s}
 .nav-logo .dark{opacity:0}
+body:not(.landed) .nav-logo{visibility:hidden}
+body:not(.ready) .nav-right{opacity:0;transform:translateY(-8px)}
+.nav-right{transition:opacity .7s .35s var(--out),transform .7s .35s var(--out)}
 .nav-links{display:flex;gap:clamp(18px,2.6vw,36px);font:700 11px var(--sans);letter-spacing:.22em;text-transform:uppercase}
 .nav-links a{position:relative;padding:6px 0}
 .nav-links a:after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .45s var(--ease)}
-.nav-links a:hover:after{transform:scaleX(1);transform-origin:left}
+@media (hover:hover) and (pointer:fine){.nav-links a:hover:after,.nav-links a.on:after{transform:scaleX(1);transform-origin:left}}
 .nav.solid{top:10px;height:54px;background:rgba(247,244,231,.88);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);color:var(--green);box-shadow:0 10px 40px rgba(0,40,15,.12)}
 .nav.solid .nav-logo{height:44px}
 .nav.solid .light{opacity:0}
@@ -118,9 +153,12 @@ body.menu-open .nav .nav-join{background:var(--cream);color:var(--green)}
 .menu-btn span:first-child{top:17px}.menu-btn span:last-child{top:26px}
 body.menu-open .menu-btn span:first-child{top:21px;transform:rotate(45deg)}
 body.menu-open .menu-btn span:last-child{top:21px;transform:rotate(-45deg)}
-.sheet{position:fixed;inset:0;z-index:45;background:var(--green);color:var(--cream);display:flex;flex-direction:column;justify-content:center;padding:100px var(--gutter) 40px;clip-path:circle(0% at calc(100% - 50px) 45px);transition:clip-path .8s var(--ease);visibility:hidden}
-body.menu-open .sheet{clip-path:circle(150% at calc(100% - 50px) 45px);visibility:visible}
-.sheet a{font:400 clamp(46px,13vw,72px)/1.08 var(--serif);letter-spacing:-.05em}
+.sheet{position:fixed;inset:0;z-index:45;background:var(--green);color:var(--cream);display:flex;flex-direction:column;justify-content:center;padding:100px var(--gutter) 40px;clip-path:circle(0% at calc(100% - 50px) 45px);transition:clip-path .7s var(--io),visibility 0s .7s;visibility:hidden}
+body.menu-open .sheet{clip-path:circle(150% at calc(100% - 50px) 45px);visibility:visible;transition:clip-path .8s var(--io),visibility 0s}
+.sheet a{font:400 clamp(46px,13vw,72px)/1.08 var(--serif);letter-spacing:-.05em;opacity:0;transform:translateY(26px);transition:opacity .25s,transform .25s}
+body.menu-open .sheet a{opacity:1;transform:none;transition:opacity .6s var(--out),transform .8s var(--out)}
+body.menu-open .sheet a:nth-child(1){transition-delay:.16s}body.menu-open .sheet a:nth-child(2){transition-delay:.21s}body.menu-open .sheet a:nth-child(3){transition-delay:.26s}body.menu-open .sheet a:nth-child(4){transition-delay:.31s}body.menu-open .sheet a:nth-child(5){transition-delay:.36s}
+.sheet a.on:before{content:"";display:inline-block;width:.16em;height:.16em;margin:0 .28em .2em 0;border-radius:50%;background:currentColor;vertical-align:middle}
 .sheet a:nth-child(even){font-style:italic}
 .sheet small{margin-top:40px;font:700 10px var(--sans);letter-spacing:.3em;text-transform:uppercase;opacity:.6}
 body.menu-open .nav{color:var(--cream);background:transparent;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
@@ -129,8 +167,11 @@ body.menu-open .nav .light{opacity:1}body.menu-open .nav .dark{opacity:0}
 /* ---------- Hero ---------- */
 .hero{position:relative;height:100svh;min-height:620px;color:var(--cream);overflow:hidden;background:var(--green-deep)}
 .slides{position:absolute;inset:0;will-change:transform}
-.slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.14);transition:opacity 1.8s ease,transform 9s linear}
-.slides img.on{opacity:1;transform:scale(1)}
+.slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;visibility:hidden;clip-path:inset(0 0 0 100%);transform:scale(1.12);transition:clip-path 1.15s var(--io),transform 1.15s var(--io),visibility 0s 1.15s}
+.slides.back img:not(.on):not(.past){clip-path:inset(0 100% 0 0)}
+.slides img.on{z-index:2;visibility:visible;clip-path:inset(0 0 0 0);transform:scale(1);transition:clip-path 1.15s var(--io),transform 8s cubic-bezier(.2,.6,.3,1),visibility 0s}
+.slides img.past{z-index:1;visibility:visible;clip-path:inset(0 0 0 0);transform:translateX(-7%) scale(1.04);transition:transform 1.15s var(--io),visibility 0s 1.15s}
+.slides.back img.past{transform:translateX(7%) scale(1.04)}
 .hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,40,15,.72) 0%,rgba(0,40,15,.25) 55%,rgba(0,0,0,.05) 100%),linear-gradient(0deg,rgba(0,0,0,.45),transparent 40%),linear-gradient(180deg,rgba(0,0,0,.35),transparent 22%);pointer-events:none}
 .route{position:absolute;inset:0;z-index:1;width:100%;height:100%;pointer-events:none}
 .route path{fill:none;stroke:rgba(247,244,231,.55);stroke-width:1.4;stroke-dasharray:1;stroke-dashoffset:1;vector-effect:non-scaling-stroke;transition:stroke-dashoffset 3.2s .6s cubic-bezier(.6,.05,.2,1)}
@@ -141,11 +182,11 @@ body.ready .route path{stroke-dashoffset:0}
 .hero .eyebrow{display:block;margin-bottom:28px;opacity:0;transition:opacity 1s .3s}
 .hero h1{font-size:clamp(56px,8.2vw,136px)}
 .hero h1 .line{display:block;overflow:hidden;padding:0 .1em .08em 0}
-.hero h1 .line>span{display:inline-block;transform:translateY(110%) rotate(3deg);transform-origin:left bottom;transition:transform 1.4s var(--ease)}
+.hero h1 .line>span{display:inline-block;transform:translateY(110%) rotate(3deg);transform-origin:left bottom;transition:transform 1.3s var(--out) .25s}
 .hero p{margin:26px 0 0;font-size:clamp(17px,1.5vw,20px);max-width:420px;opacity:0;transform:translateY(14px);transition:opacity 1s .7s,transform 1s .7s var(--ease)}
 body.ready .hero .eyebrow{opacity:.85}
 body.ready .hero h1 .line>span{transform:none}
-body.ready .hero h1 .line:nth-child(2)>span{transition-delay:.14s}
+body.ready .hero h1 .line:nth-child(2)>span{transition-delay:.37s}
 body.ready .hero p{opacity:.92;transform:none}
 .hero-foot{position:absolute;z-index:2;left:0;right:0;bottom:34px}
 .hero-foot .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
@@ -155,7 +196,7 @@ body.ready .hero p{opacity:.92;transform:none}
 .hero-bar i.run{animation:bar 6s linear forwards}
 @keyframes bar{to{transform:scaleX(1)}}
 .circle{width:44px;height:44px;border-radius:50%;border:1px solid rgba(247,244,231,.5);display:grid;place-items:center;transition:background .3s,color .3s}
-.circle:hover{background:var(--cream);color:var(--green)}
+@media (hover:hover) and (pointer:fine){.circle:hover{background:var(--cream);color:var(--green)}}
 .circle svg{width:16px;height:16px}
 .hero-arrows{display:flex;gap:10px}
 .scroll-cue{display:flex;align-items:center;gap:14px;font:700 10px var(--sans);letter-spacing:.3em}
@@ -193,10 +234,10 @@ body.ready .hero p{opacity:.92;transform:none}
 .story-cards figure:nth-child(4){--t:translate(-105%,60px) rotate(14deg);--to:rotate(3deg) translateY(8px);transition-delay:.24s}
 .story-cards figure{transform:var(--t)}
 .story.in .story-cards figure{opacity:1;transform:var(--to)}
-.story.in .story-cards figure:hover{transform:translateY(-14px) rotate(0);transition-delay:0s;transition-duration:.6s}
+@media (hover:hover) and (pointer:fine){.story.in .story-cards figure:hover{transform:translateY(-14px) rotate(0);transition-delay:0s;transition-duration:.6s}}
 .story-cards .ph{aspect-ratio:3/4;border-radius:var(--radius);overflow:hidden;background:rgba(247,244,231,.06);box-shadow:0 30px 60px -24px rgba(0,0,0,.55)}
-.story-cards img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
-.story-cards figure:hover img{transform:scale(1.06)}
+.story-cards img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease),opacity .7s var(--out)}
+@media (hover:hover) and (pointer:fine){.story-cards figure:hover img{transform:scale(1.06)}}
 .story-cards figcaption{margin-top:14px;font:italic clamp(16px,1.3vw,19px)/1.25 var(--serif)}
 .story-cards figcaption b{display:block;margin-bottom:4px;font:700 10px var(--sans);letter-spacing:.26em;text-transform:uppercase;font-style:normal;opacity:.6}
 .story-copy .mark{position:relative;white-space:nowrap;font-style:italic;font-family:var(--serif);font-size:1.12em}
@@ -214,6 +255,12 @@ body.ready .hero p{opacity:.92;transform:none}
 .stat+.stat:before{content:"";position:absolute;left:0;top:20%;bottom:20%;width:1px;background:var(--line)}
 .stat strong{font:400 clamp(44px,5vw,80px)/1 var(--serif);letter-spacing:-.06em;font-variant-numeric:tabular-nums}
 .stat span{font:700 10px var(--sans);letter-spacing:.28em;text-transform:uppercase;opacity:.75}
+.odo{display:inline-flex;align-items:flex-start}
+.odo .col{display:inline-block;height:1em;overflow:hidden}
+.odo .col>span{display:flex;flex-direction:column;transform:translateY(0);transition:transform 1.9s var(--out)}
+.odo .col i{display:block;height:1em;font-style:normal;text-align:center}
+.stat strong span,.stat strong i{font:inherit;letter-spacing:inherit;text-transform:none;opacity:1}
+.odo>i{font-style:normal}
 
 /* ---------- Locations: animated map ---------- */
 .locations{background:var(--green);color:var(--cream);padding:clamp(80px,8vw,110px) 0;overflow:hidden}
@@ -221,7 +268,7 @@ body.ready .hero p{opacity:.92;transform:none}
 .loc-head h2{margin-top:16px}
 .tabs{display:flex;gap:8px;flex-wrap:wrap}
 .tabs button{height:46px;padding:0 28px;border-radius:100px;border:1px solid rgba(247,244,231,.3);font:700 11px var(--sans);letter-spacing:.24em;text-transform:uppercase;transition:background .4s var(--ease),color .4s,border-color .4s}
-.tabs button:hover{border-color:var(--cream)}
+@media (hover:hover) and (pointer:fine){.tabs button:hover{border-color:var(--cream)}}
 .tabs button[aria-selected="true"]{background:var(--cream);color:var(--green);border-color:var(--cream)}
 .loc-stage{display:grid;grid-template-columns:1.35fr 1fr;gap:clamp(16px,2.4vw,32px);min-height:clamp(460px,64svh,620px)}
 .map{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid rgba(247,244,231,.12);background:radial-gradient(70% 60% at 62% 45%,rgba(247,244,231,.08),transparent 70%),var(--green-deep)}
@@ -235,6 +282,9 @@ body.ready .hero p{opacity:.92;transform:none}
 .map .leg{fill:none;stroke:var(--cream);stroke-width:1.6;vector-effect:non-scaling-stroke;stroke-dasharray:5 7;opacity:0;transition:opacity 1s 1.4s}
 .map.in .leg{opacity:.55;animation:march 2.4s linear infinite}
 @keyframes march{to{stroke-dashoffset:-24}}
+.map .pacer{fill:var(--cream);filter:drop-shadow(0 0 8px rgba(247,244,231,.95))}
+.map .pacer,.map .pacer-trail{transition:opacity .8s var(--out)}
+.map .pacer-trail{fill:none;stroke:var(--cream);stroke-width:2;stroke-linecap:round;vector-effect:non-scaling-stroke;opacity:.85}
 .map .runner{fill:var(--cream);filter:drop-shadow(0 0 6px rgba(247,244,231,.9));opacity:0;transition:opacity .8s 2s}
 .map.in .runner{opacity:1}
 .pin{cursor:pointer;opacity:.4;transition:opacity .5s}
@@ -291,7 +341,7 @@ body.ready .hero p{opacity:.92;transform:none}
 .cal-next>*{position:relative}
 .cal-next>.eyebrow{grid-area:top;opacity:.7}
 .cal-next p{margin:0;opacity:.8}
-.cal-when{grid-area:when;display:flex;align-items:flex-end;gap:18px}
+.cal-when{grid-area:when;display:flex;align-items:center;gap:22px}
 .cal-day{font:italic 400 clamp(84px,8vw,128px)/.78 var(--serif);letter-spacing:-.06em}
 .cal-when h3{font-size:clamp(30px,2.8vw,44px)}
 .cal-when small{display:block;margin-top:8px;font:700 10px var(--sans);letter-spacing:.26em;text-transform:uppercase;opacity:.7}
@@ -299,7 +349,19 @@ body.ready .hero p{opacity:.92;transform:none}
 .cal-count>small{display:block;margin-bottom:10px;font:700 10px var(--sans);letter-spacing:.26em;text-transform:uppercase;opacity:.7}
 .cal-count>div{display:flex;gap:10px}
 .cal-count>div div{min-width:78px;padding:12px 10px;border-radius:14px;background:rgba(247,244,231,.08);border:1px solid rgba(247,244,231,.1);text-align:center}
-.cal-count b{display:block;font:400 clamp(30px,3vw,40px)/1 var(--serif);font-variant-numeric:tabular-nums}
+.cal-count b{display:flex;justify-content:center;font:400 clamp(30px,3vw,40px)/1 var(--serif);font-variant-numeric:tabular-nums}
+.cal-count .dg{display:inline-grid;overflow:hidden;height:1em;margin:0;font:inherit;letter-spacing:0;text-transform:none;opacity:1}
+.dg>i{grid-area:1/1;font-style:normal;transition:transform .55s var(--out),opacity .55s var(--out)}
+.dg>i.from{transform:translateY(90%);opacity:0}
+.dg>i.gone{transform:translateY(-90%);opacity:0}
+.cal-ring{position:relative;display:grid;place-items:center;flex:none;width:clamp(128px,11vw,160px);aspect-ratio:1}
+.cal-ring svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg);overflow:visible}
+.cal-ring circle{fill:none;stroke:var(--cream);stroke-width:1.5}
+.cal-ring .trk{opacity:.16}
+.cal-ring .prg{stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.8s .4s var(--out)}
+.cal-ring .cal-day{font-size:clamp(64px,5.6vw,84px);line-height:1;transform:translateX(-.04em)}
+.cal-ring small{position:absolute;left:50%;bottom:-2px;transform:translate(-50%,50%);padding:3px 8px;border-radius:100px;background:var(--green);font:700 8.5px var(--sans);letter-spacing:.22em;text-transform:uppercase;white-space:nowrap;opacity:.8}
+.cal-run .busy,.busy{opacity:.7;pointer-events:none}
 .cal-count span{display:block;margin-top:6px;font:700 9px var(--sans);letter-spacing:.24em;text-transform:uppercase;opacity:.65}
 .cal-runs{grid-area:runs;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
 .cal-run{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-radius:14px;background:rgba(247,244,231,.07)}
@@ -314,34 +376,48 @@ body.ready .hero p{opacity:.92;transform:none}
 .g-more{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:rgba(0,40,14,.62);color:var(--cream);transition:background .5s var(--ease)}
 .g-more b{font:italic 400 clamp(44px,4.4vw,64px)/1 var(--serif);letter-spacing:-.03em}
 .g-more small{font:700 10px var(--sans);letter-spacing:.26em;text-transform:uppercase;opacity:.8}
-.g-item:hover .g-more{background:rgba(0,40,14,.5)}
+@media (hover:hover) and (pointer:fine){.g-item:hover .g-more{background:rgba(0,40,14,.5)}}
 .g-item:has(.g-more) .cap{display:none}
 .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.4vw,18px)}
-.g-item{position:relative;display:block;width:100%;text-align:left;border-radius:var(--radius);overflow:hidden;background:rgba(0,64,24,.08);cursor:zoom-in}
+.g-item{position:relative;display:block;width:100%;text-align:left;border-radius:var(--radius);overflow:hidden;background:rgba(0,64,24,.08);cursor:zoom-in;transition:transform .3s var(--out)}
+.g-item.rv{opacity:1;transform:none;clip-path:inset(100% 0 0 0 round var(--radius));transition:clip-path 1.1s var(--io),transform .3s var(--out)}
+.g-item.rv.in{clip-path:inset(0 0 0 0 round var(--radius))}
+.g-item.rv img{transform:scale(1.18)}
+.g-item.rv.in img{transform:none}
+.g-item.open{visibility:hidden}
 .g-item[hidden]{display:none}
 .g-item .ph{aspect-ratio:3/4}
 .gallery.ig .g-item .ph{aspect-ratio:1}
-.g-item img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
-.g-item:hover img,.g-item:focus-visible img{transform:scale(1.05)}
+.g-item img{width:100%;height:100%;object-fit:cover;transition:transform 1.6s var(--out),opacity .7s var(--out)}
+@media (hover:hover) and (pointer:fine){.g-item.in:hover img,.g-item.in:focus-visible img{transform:scale(1.05)}}
 .g-item .cap{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:40px 18px 14px;color:var(--cream);background:linear-gradient(0deg,rgba(0,25,8,.7),transparent);font:italic 19px var(--serif)}
 .g-item .cap b{font:700 10px var(--sans);letter-spacing:.24em;font-style:normal;opacity:.8}
 .g-item .zoom-ico{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(247,244,231,.9);color:var(--green);opacity:0;transform:scale(.8);transition:opacity .35s,transform .35s var(--ease)}
 .g-item .zoom-ico svg{width:14px;height:14px}
-.g-item:hover .zoom-ico,.g-item:focus-visible .zoom-ico{opacity:1;transform:none}
+@media (hover:hover) and (pointer:fine){.g-item:hover .zoom-ico,.g-item:focus-visible .zoom-ico{opacity:1;transform:none}}
 .pill-line{border:1px solid var(--green);padding:0 26px;justify-content:center}
-.pill-line:hover{background:var(--green);color:var(--cream)}
+@media (hover:hover) and (pointer:fine){.pill-line:hover{background:var(--green);color:var(--cream)}}
 .lightbox{border:0;padding:0;background:transparent;max-width:none;max-height:none;width:100vw;height:100svh;margin:0;overflow:hidden}
 .lightbox::backdrop{background:rgba(0,20,8,.92);backdrop-filter:blur(8px)}
 .lightbox[open]{display:grid;place-items:center}
 .lightbox figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:16px;padding:70px 20px 30px;max-width:100%;max-height:100%}
-.lightbox img{max-width:min(92vw,1200px);max-height:calc(100svh - 170px);object-fit:contain;border-radius:var(--radius);animation:lbIn .6s var(--ease)}
-.lightbox figcaption{color:var(--cream);font:italic 22px var(--serif);display:flex;gap:16px;align-items:center}
+.lightbox[open]{animation:none}
+.lb-stage{position:relative;display:grid;place-items:center;touch-action:none}
+.lb-stage>img{grid-area:1/1;border-radius:var(--radius);object-fit:cover;user-select:none;-webkit-user-drag:none;will-change:transform}
+.lb-slices{position:absolute;inset:0;display:flex;border-radius:var(--radius);overflow:hidden;pointer-events:none}
+.lb-slices i{flex:1;background-repeat:no-repeat}
+.lightbox figcaption{color:var(--cream);font:italic 22px var(--serif);display:flex;gap:16px;align-items:center;min-height:30px;transition:opacity .3s}
 .lightbox figcaption a{font:700 10px var(--sans);letter-spacing:.24em;text-transform:uppercase;border-bottom:1px solid currentColor}
-.lightbox .circle{position:absolute;color:var(--cream)}
+.lightbox .circle{position:absolute;color:var(--cream);z-index:2;transition:background .3s,color .3s,opacity .3s,transform .3s var(--out)}
 .lb-close{top:20px;right:20px}
 .lb-prev{left:20px;top:50%;margin-top:-22px}
 .lb-next{right:20px;top:50%;margin-top:-22px}
-@keyframes lbIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+.lightbox[open]::backdrop{animation:fadeIn .45s var(--out)}
+.lightbox.closing::backdrop{animation:fadeOut .4s var(--out) forwards}
+.lightbox.closing figcaption,.lightbox.closing .circle{opacity:0}
+.lightbox:not(.closing)[open] .circle,.lightbox:not(.closing)[open] figcaption{animation:fadeIn .5s .2s var(--out) backwards}
+@keyframes fadeIn{from{opacity:0}}
+@keyframes fadeOut{to{opacity:0}}
 
 /* ---------- Manifesto ---------- */
 
@@ -354,23 +430,33 @@ body.ready .hero p{opacity:.92;transform:none}
 .lane{overflow:hidden}
 .lane-run{display:flex;gap:clamp(12px,1.4vw,18px);width:max-content;animation:lane var(--dur,60s) linear infinite}
 .lane.rev .lane-run{animation-direction:reverse}
-.lanes:hover .lane-run{animation-play-state:paused}
+@media (hover:hover) and (pointer:fine){.lanes:hover .lane-run{animation-play-state:paused}}
+.lanes.js .lane-run{animation:none;will-change:transform}
+.lane{transform:translateX(10%);opacity:0;transition:transform 1.6s var(--out),opacity 1s var(--out)}
+.lane.rev{transform:translateX(-10%)}
+.lanes.in .lane{transform:none;opacity:1}
+.lanes.in .lane.rev{transition-delay:.12s}
 @keyframes lane{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .chip{flex:none;display:grid;place-items:center;width:clamp(150px,14vw,200px);height:clamp(70px,6.6vw,92px);padding:14px 28px;border-radius:var(--radius);background:var(--cream);transition:transform .5s var(--ease),box-shadow .5s}
 .chip img{max-width:100%;max-height:44px;object-fit:contain}
 .chip.tall img{max-height:60px}
-.chip:hover{transform:translateY(-4px);box-shadow:0 20px 40px -20px rgba(0,0,0,.6)}
+@media (hover:hover) and (pointer:fine){.chip:hover{transform:translateY(-4px);box-shadow:0 20px 40px -20px rgba(0,0,0,.6)}}
 .invite{margin-top:clamp(48px,5vw,72px)}
-.invite-bar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px clamp(22px,3vw,36px);border:1px solid rgba(247,244,231,.2);border-radius:var(--radius)}
+.invite-bar{position:relative;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px clamp(22px,3vw,36px);border-radius:var(--radius)}
+.invite-bar:before{content:"";position:absolute;inset:0;border:1px solid rgba(247,244,231,.2);border-radius:inherit;clip-path:inset(0 100% 0 0);transition:clip-path 1.4s var(--io) .25s;pointer-events:none}
+.invite-bar.in:before{clip-path:inset(0 0 0 0)}
 .invite .eyebrow{opacity:.6;margin-bottom:6px}
 .invite h3{font-size:clamp(24px,2.2vw,32px);margin:0}
 .invite-link{flex:none;display:inline-flex;align-items:center;gap:10px;font:700 11px var(--sans);letter-spacing:.22em;text-transform:uppercase;padding-bottom:6px;border-bottom:1px solid rgba(247,244,231,.5);transition:gap .4s var(--ease),border-color .4s}
-.invite-link:hover{gap:16px;border-color:var(--cream)}
+@media (hover:hover) and (pointer:fine){.invite-link:hover{gap:16px;border-color:var(--cream)}}
 .invite-link svg{width:14px;height:14px}
 
 /* ---------- Join ---------- */
 .join{background:var(--green);color:var(--cream);padding:clamp(90px,10vw,140px) 0;text-align:center;overflow:hidden}
 .join h2{font-size:clamp(34px,4vw,58px);white-space:nowrap}
+.finish{width:min(360px,64%);height:10px;margin:0 auto 34px;background:repeating-conic-gradient(var(--cream) 0 25%,transparent 0 50%) 0 0/10px 10px;opacity:.8;transform:scaleX(0);transform-origin:left;transition:transform 1.3s var(--io)}
+.finish.rv{opacity:.8;transform:scaleX(0)}
+.finish.rv.in{transform:none}
 .join p{margin:16px 0 34px;opacity:.8}
 .join-links{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
 
@@ -380,7 +466,7 @@ body.ready .hero p{opacity:.92;transform:none}
 .footer-logo{width:84px}
 .footer-links{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
 .footer-links a{display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 20px;border:1px solid rgba(247,244,231,.28);border-radius:100px;font:700 11px var(--sans);letter-spacing:.16em;text-transform:uppercase;transition:background .3s,color .3s}
-.footer-links a:hover{background:var(--cream);color:var(--green)}
+@media (hover:hover) and (pointer:fine){.footer-links a:hover{background:var(--cream);color:var(--green)}}
 .footer-links svg{width:17px;height:17px}
 .footer-base{grid-column:1/-1;display:flex;justify-content:space-between;gap:20px;padding-top:26px;border-top:1px solid rgba(247,244,231,.12);font:700 10px var(--sans);letter-spacing:.24em;text-transform:uppercase;opacity:.5}
 
@@ -391,7 +477,21 @@ body.ready .hero p{opacity:.92;transform:none}
 .dlg h3{font-size:56px;margin:16px 0 14px}
 .dlg p{margin:0 0 26px;opacity:.8}
 .dlg-close{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;font-size:22px;line-height:1}
-.dlg-close:hover{background:rgba(0,64,24,.08)}
+@media (hover:hover) and (pointer:fine){.dlg-close:hover{background:rgba(0,64,24,.08)}}
+.reg[open]{animation:dlgIn .34s var(--out)}
+.reg[open]::backdrop{animation:fadeIn .34s var(--out)}
+.reg.closing::backdrop{animation:fadeOut .28s var(--out) forwards}
+@keyframes dlgIn{from{opacity:0;transform:scale(.96)}}
+@keyframes sheetUp{from{transform:translateY(100%)}}
+
+
+/* ---------- Touch: every button answers the press ---------- */
+.pill,.nav-join,.circle,.tabs button,.subtabs button,.cal-run button,.cal-run a,.invite-link,.footer-links a,.skip,.menu-btn,.dlg-close,.g-item,.route-nav a{-webkit-tap-highlight-color:transparent}
+.nav-join,.circle,.tabs button,.subtabs button,.cal-run button,.cal-run a,.footer-links a,.skip,.dlg-close{transition:background .35s,color .35s,border-color .35s,opacity .3s,transform .3s var(--out)}
+.pill:active,.nav-join:active,.circle:active,.tabs button:active,.subtabs button:active,.cal-run button:active,.cal-run a:active,.invite-link:active,.footer-links a:active,.skip:active,.dlg-close:active,.menu-btn:active{transform:scale(.96);transition-duration:.1s}
+.g-item.in:active{transform:scale(.985);transition-duration:.12s}
+img.lazy-fade{opacity:0}
+img.lazy-fade.loaded{opacity:1}
 
 /* ---------- Responsive ---------- */
 @media (max-width:950px){
@@ -458,7 +558,8 @@ body.ready .hero p{opacity:.92;transform:none}
   .calendar{padding:84px 0}
   .cal-next{grid-template-columns:1fr;grid-template-areas:"top" "when" "count" "runs"}
   .cal-count{justify-self:stretch}
-  .cal-day{font-size:76px}
+  .cal-ring{width:118px}
+  .cal-ring .cal-day{font-size:60px}
   .cal-count>div div{min-width:0;flex:1;padding:10px 4px}
   .cal-count b{font-size:28px}
   /* Archive */
@@ -468,6 +569,14 @@ body.ready .hero p{opacity:.92;transform:none}
   .g-item .cap{padding:30px 12px 10px;font-size:15px}
   .g-item .cap b{display:none}
   .lightbox .lb-prev,.lightbox .lb-next{display:none}
+  .lightbox figure{padding:64px 0 24px}
+  .lightbox figcaption{font-size:18px;padding:0 20px}
+  /* Registration: a sheet from the bottom you can drag away */
+  .reg{margin:auto 0 0;width:100%;max-width:100%;border-radius:28px 28px 0 0;touch-action:none}
+  .reg[open]{animation:sheetUp .5s var(--drawer)}
+  .dlg{padding:46px 24px calc(28px + env(safe-area-inset-bottom))}
+  .dlg:before{content:"";position:absolute;top:10px;left:50%;width:40px;height:4px;margin-left:-20px;border-radius:4px;background:rgba(0,64,24,.2)}
+  .dlg h3{font-size:48px}
   /* Partners */
   .chip{width:132px;height:64px;padding:10px 20px}
   .chip img{max-height:34px}
@@ -488,6 +597,13 @@ body.ready .hero p{opacity:.92;transform:none}
   .loc-img img:not(.on){opacity:0}
   .route path,.map .land{stroke-dashoffset:0}
   .map .leg,.map .runner{opacity:.55}
+  .slides img{transform:none!important}
+  .slides img:not(.on){visibility:hidden!important}
+  .g-item.rv,.lane,.finish.rv,.invite-bar:before{clip-path:none!important;transform:none!important;opacity:1!important}
+  .g-item.rv img{transform:none!important}
+  .sheet a{opacity:1!important;transform:none!important}
+  .cal-ring .prg{stroke-dashoffset:var(--off,1)}
+  img.lazy-fade{opacity:1}
 }
 </style>
 </head>
@@ -501,17 +617,24 @@ body.ready .hero p{opacity:.92;transform:none}
 </svg>
 
 <div class="intro" id="intro" aria-hidden="true">
-  <div class="intro-orbit"></div>
-  <div class="intro-orbit two"></div>
+  <div class="intro-bg"><div class="intro-orbit"></div><div class="intro-orbit two"></div></div>
   <div class="intro-inner">
     <svg class="intro-logo" viewBox="0 0 878 760" role="img" aria-label="Saturday Run Club"><path class="ink-fill" d="M158.4 759.0C132.6 755.7 111.9 741.0 105.4 721.1C104.1 717.0 103.4 716.0 102.1 716.6C101.2 717.0 94.6 717.5 87.4 717.8C43.7 719.3 13.7 696.5 3.9 654.2C1.3 643.1 0.2 613.0 1.9 600.8C5.5 576.0 15.6 549.2 30.0 525.8L34.9 518.0L27.5 518.0L20.0 518.0L20.0 514.1L20.0 510.3L29.7 509.7C35.1 509.4 40.2 508.9 41.0 508.6C41.8 508.2 43.7 506.2 45.2 504.1C46.7 502.1 50.0 497.9 52.7 495.0L57.5 489.7L57.8 373.1C58.0 293.9 57.7 254.9 57.0 251.5C55.2 243.3 52.3 238.2 47.6 235.5C43.3 233.0 33.5 231.1 24.8 231.0L20.0 231.0L20.0 227.5L20.0 223.9L90.8 224.2C156.1 224.6 162.0 224.7 168.0 226.4C198.6 235.2 219.7 254.5 226.6 280.0C227.8 284.5 228.3 290.2 228.3 298.5C228.3 308.9 228.0 311.6 225.6 318.5C216.8 344.5 195.3 363.3 165.7 371.0C161.7 372.0 158.6 373.3 158.7 373.8C158.9 374.5 180.2 410.0 181.6 411.9C181.8 412.1 187.9 410.6 195.2 408.6C222.6 401.3 249.6 397.3 279.2 396.3L298.0 395.7L298.0 330.6C298.0 293.2 297.6 261.7 297.0 256.7C294.8 238.1 289.9 233.3 271.0 231.4L264.0 230.7L264.0 227.4L264.0 224.0L318.0 224.0L372.0 224.0L372.0 227.3L372.0 230.6L363.1 231.7C348.6 233.6 343.9 237.0 340.3 248.5C338.6 254.1 338.5 259.3 338.5 325.9L338.5 397.4L352.0 399.1C367.6 401.1 385.9 404.2 397.8 407.0C408.4 409.5 408.0 409.6 420.8 406.0C433.4 402.5 457.1 398.2 468.8 397.3L477.1 396.7L476.8 324.1C476.5 268.1 476.1 250.6 475.1 247.6C471.7 237.2 466.4 233.5 452.1 231.7L443.0 230.6L443.0 227.3L443.0 224.0L516.2 224.0L589.5 224.0L661.0 325.7C700.3 381.6 734.0 429.4 735.8 431.9L739.0 436.5L738.7 343.5C738.4 241.4 738.7 246.5 732.3 239.0C728.6 234.7 723.4 232.7 712.9 231.5L707.2 230.9L698.9 239.3C689.5 248.7 684.2 251.9 676.6 252.7C667.5 253.6 662.3 247.9 664.4 239.4C665.4 235.5 670.8 230.1 674.5 229.4C679.0 228.6 681.8 230.3 684.0 235.6C685.1 238.0 686.3 240.0 686.8 240.0C688.3 240.0 695.4 234.5 698.3 231.1C699.8 229.3 701.0 227.0 701.0 225.9C701.0 224.8 701.7 224.0 702.8 224.0C703.8 224.0 707.3 220.4 711.3 215.1L718.1 206.2L717.8 151.8C717.5 100.8 717.3 97.2 715.5 92.0C713.1 85.5 708.8 82.0 702.9 82.0C699.7 82.0 699.0 81.6 699.0 80.0C699.0 77.8 700.6 77.2 718.3 73.8C731.7 71.3 730.6 70.9 734.0 79.7C737.4 88.9 738.0 96.6 738.0 137.5L738.0 177.5L744.9 167.0C761.1 142.2 774.4 115.5 775.7 105.2C776.2 100.7 776.0 100.2 771.8 95.0C769.3 92.0 766.8 88.5 766.2 87.3C763.1 81.6 766.4 73.8 772.5 72.1C776.5 71.0 781.8 72.8 784.2 76.1C790.8 84.9 787.8 99.5 773.5 128.0C761.4 152.3 743.2 181.3 721.4 211.2L712.1 224.0L749.0 224.0L786.0 224.0L786.0 227.3L786.0 230.5L778.4 231.8C766.1 233.7 760.7 237.8 757.5 247.6C756.1 252.0 756.0 266.2 756.2 381.3L756.5 510.1L764.5 503.4C787.2 484.5 813.6 465.3 824.7 459.7C839.7 452.0 855.7 448.0 870.9 448.0C878.8 448.0 879.3 448.9 872.5 451.0C852.6 457.3 819.5 481.9 762.0 533.4C734.6 557.9 663.2 626.4 664.0 627.3C664.3 627.6 667.7 625.5 671.5 622.6C675.4 619.7 685.2 612.7 693.5 607.0C737.0 577.2 763.0 566.7 773.9 574.7C778.3 578.0 779.2 580.7 778.7 589.5C777.5 609.9 762.3 635.6 735.8 661.7C709.3 688.0 686.2 704.9 659.6 717.5C634.0 729.7 611.6 734.5 596.6 731.0C582.7 727.8 578.6 713.1 586.4 694.0C589.1 687.2 589.1 687.2 579.0 695.5C558.7 712.2 538.4 725.6 528.1 729.1C516.6 733.1 504.7 730.4 500.8 723.0C497.1 715.9 499.5 700.7 506.3 689.2C508.4 685.7 508.1 685.8 500.8 692.0C478.2 711.0 461.9 721.9 447.1 727.9C439.5 730.9 438.0 731.2 431.3 730.8C426.0 730.4 423.1 729.7 421.2 728.3C413.2 722.4 413.3 709.0 421.4 692.7C424.4 686.7 424.6 686.2 422.5 687.7C407.4 699.6 390.1 712.3 382.7 717.1C352.8 736.5 330.9 736.9 327.9 718.2C326.8 711.2 328.4 704.6 333.7 694.0C336.4 688.8 338.7 684.1 338.9 683.7C339.1 683.2 334.3 686.7 328.4 691.5C283.9 726.8 239.5 749.4 199.9 756.9C187.3 759.3 168.4 760.2 158.4 759.0ZM189.7 749.9C206.1 747.7 230.5 740.6 246.9 733.4C273.5 721.7 301.4 703.5 339.2 673.3C352.8 662.4 358.4 657.2 369.3 644.7C408.5 600.2 470.1 540.6 519.0 500.0C531.4 489.7 556.9 470.4 562.2 467.2C564.9 465.6 565.0 465.3 565.0 456.9L565.0 448.2L561.2 449.2C554.3 451.1 529.2 448.1 505.5 442.5C499.7 441.1 494.6 440.0 494.2 440.0C493.7 440.0 492.8 443.8 492.1 448.5C489.8 465.1 483.2 480.5 473.1 493.2C455.7 515.2 429.3 525.1 391.5 523.7C360.4 522.6 338.2 513.7 321.2 495.5C317.8 492.0 313.9 487.0 312.5 484.5C311.0 482.0 309.3 480.0 308.8 480.0C306.3 480.0 262.3 514.0 261.3 516.7C261.0 517.4 260.3 518.0 259.8 518.0C258.1 518.0 234.4 539.8 218.4 556.2C176.6 598.8 145.4 642.9 131.5 679.0C118.6 712.3 125.3 738.2 148.9 747.1C152.0 748.2 156.3 749.5 158.5 750.0C164.5 751.2 180.8 751.1 189.7 749.9ZM614.5 724.4C628.3 720.9 651.7 703.7 691.0 668.1C740.4 623.4 767.8 592.3 765.6 583.5C764.8 580.4 761.6 579.8 754.0 581.5C738.4 584.7 714.2 599.1 674.5 628.5C636.3 656.8 609.9 683.2 600.4 702.6C596.9 709.7 596.1 717.9 598.4 721.5C601.4 726.1 605.3 726.8 614.5 724.4ZM361.8 719.8C380.8 712.8 426.6 677.9 451.3 651.6C464.5 637.6 482.8 620.9 499.5 607.6C512.4 597.4 532.7 583.5 538.7 580.8C543.7 578.6 557.5 576.0 564.0 576.0L568.5 576.1L564.5 579.3C528.8 608.2 473.6 661.3 454.4 685.1C434.1 710.4 429.9 718.7 436.0 722.0C441.5 724.9 463.4 713.1 485.8 695.1C499.3 684.2 508.0 676.1 534.5 650.1C560.8 624.3 576.5 609.8 591.2 597.7C614.5 578.5 621.3 575.0 637.4 573.5L645.2 572.7L605.3 612.6C583.3 634.6 560.6 657.9 554.8 664.5C530.1 692.7 516.0 711.9 516.0 717.1C516.0 720.8 519.7 723.4 523.6 722.4C530.5 720.7 543.6 713.2 559.5 701.6C572.3 692.4 601.6 667.2 604.2 663.3C620.9 638.1 670.4 586.9 731.8 531.6C739.8 524.3 745.9 518.1 745.6 517.4C745.3 516.7 708.5 464.0 663.8 400.2L582.5 284.3L582.2 369.8C582.1 416.8 582.1 455.5 582.3 455.6C582.5 455.8 585.3 454.8 588.6 453.5C596.7 450.2 611.1 447.8 620.7 448.2L628.5 448.5L622.9 450.3C615.1 452.9 601.8 460.3 590.9 468.0L581.7 474.4L582.2 483.1C582.6 489.4 583.4 493.2 585.2 497.2C589.4 506.3 594.5 508.7 612.2 509.7L623.0 510.3L623.0 514.1L623.0 518.0L577.6 518.0C543.7 518.0 532.1 517.7 531.8 516.8C530.6 513.3 440.9 599.8 402.0 642.0C363.7 683.6 346.0 707.3 346.0 717.2C346.0 723.4 350.2 724.0 361.8 719.8ZM99.7 710.4L102.7 709.8L103.3 697.2C104.3 676.2 110.1 656.6 123.2 630.7C139.9 597.7 171.0 558.1 202.9 529.5L215.1 518.5L209.5 518.0L204.0 517.5L181.4 480.5C169.0 460.1 158.2 442.5 157.4 441.3L156.0 439.1L145.5 444.0C133.5 449.6 116.9 459.0 106.1 466.3L98.7 471.3L99.3 480.4C100.8 502.4 106.7 508.6 127.1 509.7L137.0 510.3L137.0 514.1L137.0 518.0L93.2 518.0L49.3 518.0L43.8 525.8C28.4 547.2 19.0 566.8 13.4 589.3C10.2 602.0 9.1 625.6 11.0 640.7C15.8 678.9 35.1 702.4 67.5 709.5C73.7 710.9 94.5 711.5 99.7 710.4ZM425.2 506.1C447.3 500.4 463.9 484.1 472.0 460.0C474.2 453.6 477.3 437.0 476.6 436.2C475.7 435.4 452.5 429.8 434.3 426.1L415.2 422.2L404.8 426.5C381.3 436.3 342.5 456.4 341.4 459.5C340.6 461.5 344.8 473.0 349.0 480.0C358.2 495.6 373.0 505.2 392.5 508.4C398.5 509.3 417.7 508.0 425.2 506.1ZM553.7 505.4C558.1 503.3 559.3 502.1 561.5 497.5C566.2 488.0 564.6 488.0 553.0 497.5C538.4 509.5 538.5 509.4 544.0 508.6C546.5 508.2 550.8 506.8 553.7 505.4ZM248.3 492.6C260.1 484.1 277.2 472.9 291.3 464.5L301.2 458.7L300.5 455.1C298.6 445.4 298.0 438.4 298.0 426.6L298.0 413.7L279.2 414.3C258.2 415.1 240.3 416.8 222.5 419.9C211.6 421.8 192.3 426.3 191.5 427.2C191.2 427.6 226.0 484.5 232.3 493.8C234.6 497.2 236.9 500.0 237.3 500.0C237.8 500.0 242.7 496.7 248.3 492.6ZM122.5 438.2C127.4 435.5 135.0 431.5 139.2 429.4C143.5 427.3 147.0 425.2 147.0 424.8C147.0 424.4 140.7 413.7 132.9 401.0L118.8 378.0L108.9 378.0L99.0 378.0L99.0 415.5L99.0 452.9L106.2 448.1C110.2 445.5 117.5 441.0 122.5 438.2ZM561.9 442.9L565.0 441.8L565.0 431.5L565.0 421.2L561.0 417.8C550.5 408.7 534.2 404.1 510.2 403.3L493.9 402.7L494.2 417.6L494.5 432.4L512.0 436.7C538.1 443.2 555.1 445.3 561.9 442.9ZM347.7 434.9C352.5 432.6 362.9 428.2 370.8 425.0C378.7 421.8 385.3 419.0 385.6 418.8C386.1 418.2 350.6 415.0 343.8 415.0L338.0 415.0L338.0 427.0C338.0 433.6 338.2 439.0 338.4 439.0C338.6 439.0 342.8 437.1 347.7 434.9ZM477.0 416.5L477.0 405.0L474.2 405.0C470.5 405.0 443.9 410.5 436.5 412.8L430.5 414.7L435.0 415.9C439.1 416.9 476.2 427.6 476.8 427.9C476.9 427.9 477.0 422.8 477.0 416.5ZM563.3 258.1C558.7 250.9 546.8 237.0 543.6 235.0C538.1 231.7 527.8 230.4 517.4 231.8C505.7 233.4 501.4 235.8 497.5 243.4L494.5 249.4L494.2 322.7L493.9 396.0L503.6 396.0C523.8 396.0 547.2 401.4 558.6 408.8L564.5 412.6L564.8 336.6C565.0 267.0 564.9 260.5 563.3 258.1ZM136.5 361.6C147.8 358.5 154.8 354.4 162.4 346.7C174.6 334.3 180.0 320.4 180.0 301.0C180.0 287.5 178.0 278.5 172.9 268.0C165.7 253.4 154.8 244.4 139.9 240.5C131.1 238.1 115.1 238.9 106.0 242.2L99.5 244.5L99.2 304.4L99.0 364.3L114.7 363.7C124.6 363.4 132.7 362.6 136.5 361.6ZM22.0 199.6C22.0 198.0 31.7 137.8 32.5 134.2C32.9 132.7 33.8 132.0 35.3 132.0C37.4 132.0 37.5 132.3 37.5 142.8C37.6 160.0 41.7 171.8 50.9 181.0C59.8 189.9 75.4 192.8 86.5 187.7C98.4 182.1 106.0 168.7 106.0 153.2C106.0 138.4 102.4 131.8 80.2 106.2C56.0 78.1 51.9 71.2 51.2 56.9C50.2 37.2 60.1 21.1 78.5 12.3C84.9 9.3 87.5 8.7 94.8 8.2C105.5 7.6 111.3 8.8 123.5 14.0C137.0 19.7 141.2 19.3 146.0 11.5C148.4 7.6 153.0 6.5 153.0 9.8C153.0 10.7 150.6 24.3 147.7 40.0C142.8 65.8 142.2 68.5 140.3 68.8C138.4 69.1 138.3 68.5 137.8 57.8C136.9 38.8 130.9 27.8 117.6 21.0C108.0 16.1 99.6 15.7 91.5 19.6C80.9 24.8 75.3 35.4 76.3 48.5C77.2 61.1 81.9 68.6 104.0 92.5C119.5 109.3 122.3 113.0 127.3 123.6C137.4 145.2 132.9 169.2 115.8 185.7C105.3 195.8 94.2 200.1 78.8 200.1C68.3 200.1 62.4 198.6 49.8 192.5C44.8 190.0 39.4 188.0 38.0 188.0C34.3 188.0 30.6 191.1 28.1 196.5C26.6 199.6 25.4 201.0 24.0 201.0C22.9 201.0 22.0 200.4 22.0 199.6ZM157.9 198.7C151.6 196.4 148.2 193.2 144.9 186.5C142.1 180.8 141.7 178.8 141.3 169.3C140.0 141.0 154.2 106.7 176.5 84.3C185.4 75.4 191.4 71.9 198.0 71.8C207.4 71.7 211.1 75.9 214.5 90.5C215.1 93.1 215.5 92.4 217.4 84.6L219.5 75.6L228.8 73.7C233.9 72.6 238.3 72.0 238.6 72.2C238.8 72.5 233.6 96.5 227.0 125.6C220.3 154.6 215.0 179.6 215.2 180.9C215.9 186.7 221.3 183.8 228.7 173.7C232.0 169.2 234.8 168.0 235.7 170.6C236.2 172.1 223.2 188.8 217.7 193.6C206.9 203.1 197.8 200.9 196.4 188.4C195.9 184.2 197.6 170.0 199.6 162.0C199.9 160.6 197.2 164.8 193.5 171.2C180.6 193.6 168.8 202.7 157.9 198.7ZM252.3 198.1C250.6 197.0 248.6 195.1 247.9 193.9C245.5 189.4 247.7 176.2 258.4 130.0C264.2 105.0 269.0 84.2 269.0 83.8C269.0 83.3 265.6 83.0 261.5 83.0C255.0 83.0 254.0 82.8 254.0 81.2C254.0 78.4 255.1 77.5 262.4 73.9C270.7 69.9 284.5 57.2 290.5 48.1C293.4 43.7 295.1 42.0 296.8 42.0C298.0 42.0 299.0 42.3 299.0 42.6C299.0 42.9 297.4 50.1 295.5 58.6C293.6 67.0 292.0 74.2 292.0 74.5C292.0 74.8 296.1 75.0 301.1 75.0L310.2 75.0L309.6 78.1C309.3 79.8 309.0 81.6 309.0 82.1C309.0 82.6 304.7 83.1 299.3 83.2L289.7 83.5L278.9 130.0C273.0 155.6 268.1 177.9 268.1 179.6C267.9 187.5 273.3 185.8 283.3 174.9C288.2 169.5 290.3 167.9 292.0 168.2C294.1 168.5 294.0 168.9 289.5 175.0C275.9 193.5 260.4 203.1 252.3 198.1ZM316.3 198.0C311.2 194.9 309.5 190.7 309.6 181.5C309.8 175.2 311.9 164.5 319.4 132.2C324.8 109.4 329.0 90.1 328.8 89.2C328.6 88.3 327.7 87.4 326.8 87.2C325.3 86.9 322.7 89.8 315.8 99.2C314.3 101.4 314.0 101.4 312.4 99.8C310.8 98.3 311.0 97.8 315.4 91.2C321.4 82.2 330.6 73.6 335.6 72.3C340.9 71.0 345.4 72.4 348.1 76.1C351.4 80.7 350.4 87.2 340.1 131.3C329.5 176.5 328.9 182.0 334.9 182.0C344.2 182.0 363.3 159.6 375.5 134.5C382.6 119.9 385.9 110.1 391.0 88.8L395.2 71.0L405.1 71.0C412.2 71.0 415.0 71.3 415.0 72.2C415.0 72.9 409.8 96.0 403.5 123.5C390.0 182.4 390.3 181.1 392.5 183.0C393.9 184.1 394.5 184.0 396.8 182.3C399.1 180.6 405.3 172.7 407.9 168.2C408.7 166.8 412.0 167.6 412.0 169.2C412.0 171.2 401.3 185.9 395.6 191.5C389.4 197.7 383.3 200.7 379.4 199.4C368.4 195.9 367.7 189.9 374.5 160.1C377.0 149.3 379.3 139.9 379.5 139.2C380.6 136.0 378.6 138.9 372.2 149.8C356.8 175.6 343.1 191.7 331.8 197.0C324.5 200.5 320.7 200.7 316.3 198.0ZM503.4 198.9C498.9 197.6 493.4 191.0 491.5 184.8C484.3 160.5 494.4 123.0 515.7 95.2C528.4 78.7 540.4 71.4 554.2 71.9C557.6 72.0 563.6 77.1 564.4 80.6C564.8 82.1 565.3 83.0 565.5 82.8C566.4 82.0 579.0 24.6 579.2 21.0C579.4 14.2 575.7 11.0 568.9 12.4C566.1 12.9 565.9 12.8 566.2 10.2C566.5 7.5 566.6 7.5 585.3 3.6C595.6 1.5 604.3 0.0 604.6 0.3C604.9 0.6 595.9 40.7 584.6 89.4C573.3 138.1 564.0 179.0 564.0 180.4C564.0 181.7 564.6 183.3 565.4 183.9C567.8 185.9 570.5 183.7 576.6 175.0C579.7 170.6 582.6 167.0 583.1 167.0C585.6 167.0 584.8 170.5 580.8 176.7C574.2 186.7 566.7 194.5 560.5 197.5C554.0 200.7 550.2 200.3 546.5 195.8C544.4 193.3 544.0 191.9 544.0 185.9C544.0 182.0 545.3 172.7 547.1 164.4C548.8 156.4 549.9 149.6 549.6 149.2C549.3 148.9 549.0 149.2 549.0 149.9C549.0 151.6 538.6 172.2 534.3 178.8C529.7 186.0 521.4 194.8 517.0 197.0C512.3 199.4 507.3 200.1 503.4 198.9ZM605.5 198.5C585.5 191.3 584.0 153.1 602.2 116.5C611.5 98.0 627.2 79.0 637.3 74.1C649.9 68.0 659.0 73.2 662.5 88.5L663.7 93.5L665.5 85.5C666.5 81.1 667.7 77.0 668.1 76.4C669.2 75.1 685.9 71.6 686.8 72.4C687.1 72.8 682.5 94.3 676.5 120.3C664.9 170.7 663.1 179.5 663.8 182.2C664.8 186.3 669.9 183.2 676.6 174.5C681.0 168.9 681.4 168.6 683.6 169.8C684.9 170.5 684.2 172.0 679.2 178.6C671.2 189.2 662.3 197.5 657.4 199.0C646.2 202.3 642.4 192.4 646.4 170.0C647.3 165.3 648.0 161.1 648.0 160.5C648.0 159.9 645.8 163.6 643.1 168.6C637.1 180.0 632.8 186.2 627.6 191.2C620.2 198.5 612.4 201.0 605.5 198.5ZM421.0 194.7C421.0 194.0 424.8 171.5 429.5 144.8C434.2 118.0 438.0 94.6 438.0 92.8C438.0 88.7 435.0 85.2 430.9 84.3C428.6 83.9 428.0 83.3 428.2 81.6C428.5 79.8 430.6 78.9 443.0 75.3C456.6 71.3 461.0 70.4 461.0 71.5C461.0 71.7 458.5 86.2 455.5 103.6C452.4 121.0 450.1 135.4 450.3 135.6C450.5 135.8 452.6 130.9 455.0 124.7C463.6 102.3 474.8 81.1 480.9 75.6C484.2 72.6 489.9 71.1 493.3 72.3C499.1 74.3 500.6 85.4 496.4 95.9C493.0 104.5 484.9 107.7 482.2 101.5C479.9 96.2 479.3 95.5 477.2 95.2C474.3 94.7 470.6 100.7 463.7 117.3C451.1 147.2 449.3 152.7 445.1 175.0C443.4 184.1 441.7 192.5 441.5 193.8C441.0 195.9 440.5 196.0 431.0 196.0C423.5 196.0 421.0 195.7 421.0 194.7ZM179.8 178.5C191.5 170.4 203.7 143.0 209.4 112.1C212.4 96.4 211.2 87.0 205.5 81.3C199.8 75.6 193.0 77.3 185.7 86.1C177.5 96.3 169.6 115.0 164.9 135.7C161.9 149.1 161.6 169.7 164.4 175.3C167.8 182.2 173.1 183.3 179.8 178.5ZM527.5 177.9C538.6 167.6 553.4 135.9 558.5 111.5C560.4 102.3 560.7 88.7 559.2 84.8C555.2 74.9 544.7 76.2 535.4 87.8C526.4 99.2 517.2 121.4 513.0 142.1C510.5 154.3 510.2 171.1 512.4 176.3C515.3 183.3 521.0 183.9 527.5 177.9ZM628.2 178.8C639.3 171.0 650.8 146.1 657.1 116.0C661.8 93.2 657.9 78.0 647.2 78.0C642.2 78.0 637.6 81.3 632.6 88.3C619.8 106.4 611.0 135.3 611.0 159.4C611.0 171.7 612.1 176.1 616.2 179.5C619.7 182.4 623.4 182.2 628.2 178.8Z"/><g class="ink-strokes"><path pathLength="1" style="--d:0.21s" d="M22.0 199.6C22.0 198.0 31.7 137.8 32.5 134.2C32.9 132.7 33.8 132.0 35.3 132.0C37.4 132.0 37.5 132.3 37.5 142.8C37.6 160.0 41.7 171.8 50.9 181.0C59.8 189.9 75.4 192.8 86.5 187.7C98.4 182.1 106.0 168.7 106.0 153.2C106.0 138.4 102.4 131.8 80.2 106.2C56.0 78.1 51.9 71.2 51.2 56.9C50.2 37.2 60.1 21.1 78.5 12.3C84.9 9.3 87.5 8.7 94.8 8.2C105.5 7.6 111.3 8.8 123.5 14.0C137.0 19.7 141.2 19.3 146.0 11.5C148.4 7.6 153.0 6.5 153.0 9.8C153.0 10.7 150.6 24.3 147.7 40.0C142.8 65.8 142.2 68.5 140.3 68.8C138.4 69.1 138.3 68.5 137.8 57.8C136.9 38.8 130.9 27.8 117.6 21.0C108.0 16.1 99.6 15.7 91.5 19.6C80.9 24.8 75.3 35.4 76.3 48.5C77.2 61.1 81.9 68.6 104.0 92.5C119.5 109.3 122.3 113.0 127.3 123.6C137.4 145.2 132.9 169.2 115.8 185.7C105.3 195.8 94.2 200.1 78.8 200.1C68.3 200.1 62.4 198.6 49.8 192.5C44.8 190.0 39.4 188.0 38.0 188.0C34.3 188.0 30.6 191.1 28.1 196.5C26.6 199.6 25.4 201.0 24.0 201.0C22.9 201.0 22.0 200.4 22.0 199.6Z"/><path pathLength="1" style="--d:0.24s" d="M157.9 198.7C151.6 196.4 148.2 193.2 144.9 186.5C142.1 180.8 141.7 178.8 141.3 169.3C140.0 141.0 154.2 106.7 176.5 84.3C185.4 75.4 191.4 71.9 198.0 71.8C207.4 71.7 211.1 75.9 214.5 90.5C215.1 93.1 215.5 92.4 217.4 84.6L219.5 75.6L228.8 73.7C233.9 72.6 238.3 72.0 238.6 72.2C238.8 72.5 233.6 96.5 227.0 125.6C220.3 154.6 215.0 179.6 215.2 180.9C215.9 186.7 221.3 183.8 228.7 173.7C232.0 169.2 234.8 168.0 235.7 170.6C236.2 172.1 223.2 188.8 217.7 193.6C206.9 203.1 197.8 200.9 196.4 188.4C195.9 184.2 197.6 170.0 199.6 162.0C199.9 160.6 197.2 164.8 193.5 171.2C180.6 193.6 168.8 202.7 157.9 198.7Z"/><path pathLength="1" style="--d:0.25s" d="M179.8 178.5C191.5 170.4 203.7 143.0 209.4 112.1C212.4 96.4 211.2 87.0 205.5 81.3C199.8 75.6 193.0 77.3 185.7 86.1C177.5 96.3 169.6 115.0 164.9 135.7C161.9 149.1 161.6 169.7 164.4 175.3C167.8 182.2 173.1 183.3 179.8 178.5Z"/><path pathLength="1" style="--d:0.27s" d="M252.3 198.1C250.6 197.0 248.6 195.1 247.9 193.9C245.5 189.4 247.7 176.2 258.4 130.0C264.2 105.0 269.0 84.2 269.0 83.8C269.0 83.3 265.6 83.0 261.5 83.0C255.0 83.0 254.0 82.8 254.0 81.2C254.0 78.4 255.1 77.5 262.4 73.9C270.7 69.9 284.5 57.2 290.5 48.1C293.4 43.7 295.1 42.0 296.8 42.0C298.0 42.0 299.0 42.3 299.0 42.6C299.0 42.9 297.4 50.1 295.5 58.6C293.6 67.0 292.0 74.2 292.0 74.5C292.0 74.8 296.1 75.0 301.1 75.0L310.2 75.0L309.6 78.1C309.3 79.8 309.0 81.6 309.0 82.1C309.0 82.6 304.7 83.1 299.3 83.2L289.7 83.5L278.9 130.0C273.0 155.6 268.1 177.9 268.1 179.6C267.9 187.5 273.3 185.8 283.3 174.9C288.2 169.5 290.3 167.9 292.0 168.2C294.1 168.5 294.0 168.9 289.5 175.0C275.9 193.5 260.4 203.1 252.3 198.1Z"/><path pathLength="1" style="--d:0.29s" d="M316.3 198.0C311.2 194.9 309.5 190.7 309.6 181.5C309.8 175.2 311.9 164.5 319.4 132.2C324.8 109.4 329.0 90.1 328.8 89.2C328.6 88.3 327.7 87.4 326.8 87.2C325.3 86.9 322.7 89.8 315.8 99.2C314.3 101.4 314.0 101.4 312.4 99.8C310.8 98.3 311.0 97.8 315.4 91.2C321.4 82.2 330.6 73.6 335.6 72.3C340.9 71.0 345.4 72.4 348.1 76.1C351.4 80.7 350.4 87.2 340.1 131.3C329.5 176.5 328.9 182.0 334.9 182.0C344.2 182.0 363.3 159.6 375.5 134.5C382.6 119.9 385.9 110.1 391.0 88.8L395.2 71.0L405.1 71.0C412.2 71.0 415.0 71.3 415.0 72.2C415.0 72.9 409.8 96.0 403.5 123.5C390.0 182.4 390.3 181.1 392.5 183.0C393.9 184.1 394.5 184.0 396.8 182.3C399.1 180.6 405.3 172.7 407.9 168.2C408.7 166.8 412.0 167.6 412.0 169.2C412.0 171.2 401.3 185.9 395.6 191.5C389.4 197.7 383.3 200.7 379.4 199.4C368.4 195.9 367.7 189.9 374.5 160.1C377.0 149.3 379.3 139.9 379.5 139.2C380.6 136.0 378.6 138.9 372.2 149.8C356.8 175.6 343.1 191.7 331.8 197.0C324.5 200.5 320.7 200.7 316.3 198.0Z"/><path pathLength="1" style="--d:0.32s" d="M421.0 194.7C421.0 194.0 424.8 171.5 429.5 144.8C434.2 118.0 438.0 94.6 438.0 92.8C438.0 88.7 435.0 85.2 430.9 84.3C428.6 83.9 428.0 83.3 428.2 81.6C428.5 79.8 430.6 78.9 443.0 75.3C456.6 71.3 461.0 70.4 461.0 71.5C461.0 71.7 458.5 86.2 455.5 103.6C452.4 121.0 450.1 135.4 450.3 135.6C450.5 135.8 452.6 130.9 455.0 124.7C463.6 102.3 474.8 81.1 480.9 75.6C484.2 72.6 489.9 71.1 493.3 72.3C499.1 74.3 500.6 85.4 496.4 95.9C493.0 104.5 484.9 107.7 482.2 101.5C479.9 96.2 479.3 95.5 477.2 95.2C474.3 94.7 470.6 100.7 463.7 117.3C451.1 147.2 449.3 152.7 445.1 175.0C443.4 184.1 441.7 192.5 441.5 193.8C441.0 195.9 440.5 196.0 431.0 196.0C423.5 196.0 421.0 195.7 421.0 194.7Z"/><path pathLength="1" style="--d:0.34s" d="M503.4 198.9C498.9 197.6 493.4 191.0 491.5 184.8C484.3 160.5 494.4 123.0 515.7 95.2C528.4 78.7 540.4 71.4 554.2 71.9C557.6 72.0 563.6 77.1 564.4 80.6C564.8 82.1 565.3 83.0 565.5 82.8C566.4 82.0 579.0 24.6 579.2 21.0C579.4 14.2 575.7 11.0 568.9 12.4C566.1 12.9 565.9 12.8 566.2 10.2C566.5 7.5 566.6 7.5 585.3 3.6C595.6 1.5 604.3 0.0 604.6 0.3C604.9 0.6 595.9 40.7 584.6 89.4C573.3 138.1 564.0 179.0 564.0 180.4C564.0 181.7 564.6 183.3 565.4 183.9C567.8 185.9 570.5 183.7 576.6 175.0C579.7 170.6 582.6 167.0 583.1 167.0C585.6 167.0 584.8 170.5 580.8 176.7C574.2 186.7 566.7 194.5 560.5 197.5C554.0 200.7 550.2 200.3 546.5 195.8C544.4 193.3 544.0 191.9 544.0 185.9C544.0 182.0 545.3 172.7 547.1 164.4C548.8 156.4 549.9 149.6 549.6 149.2C549.3 148.9 549.0 149.2 549.0 149.9C549.0 151.6 538.6 172.2 534.3 178.8C529.7 186.0 521.4 194.8 517.0 197.0C512.3 199.4 507.3 200.1 503.4 198.9Z"/><path pathLength="1" style="--d:0.35s" d="M527.5 177.9C538.6 167.6 553.4 135.9 558.5 111.5C560.4 102.3 560.7 88.7 559.2 84.8C555.2 74.9 544.7 76.2 535.4 87.8C526.4 99.2 517.2 121.4 513.0 142.1C510.5 154.3 510.2 171.1 512.4 176.3C515.3 183.3 521.0 183.9 527.5 177.9Z"/><path pathLength="1" style="--d:0.37s" d="M605.5 198.5C585.5 191.3 584.0 153.1 602.2 116.5C611.5 98.0 627.2 79.0 637.3 74.1C649.9 68.0 659.0 73.2 662.5 88.5L663.7 93.5L665.5 85.5C666.5 81.1 667.7 77.0 668.1 76.4C669.2 75.1 685.9 71.6 686.8 72.4C687.1 72.8 682.5 94.3 676.5 120.3C664.9 170.7 663.1 179.5 663.8 182.2C664.8 186.3 669.9 183.2 676.6 174.5C681.0 168.9 681.4 168.6 683.6 169.8C684.9 170.5 684.2 172.0 679.2 178.6C671.2 189.2 662.3 197.5 657.4 199.0C646.2 202.3 642.4 192.4 646.4 170.0C647.3 165.3 648.0 161.1 648.0 160.5C648.0 159.9 645.8 163.6 643.1 168.6C637.1 180.0 632.8 186.2 627.6 191.2C620.2 198.5 612.4 201.0 605.5 198.5Z"/><path pathLength="1" style="--d:0.37s" d="M628.2 178.8C639.3 171.0 650.8 146.1 657.1 116.0C661.8 93.2 657.9 78.0 647.2 78.0C642.2 78.0 637.6 81.3 632.6 88.3C619.8 106.4 611.0 135.3 611.0 159.4C611.0 171.7 612.1 176.1 616.2 179.5C619.7 182.4 623.4 182.2 628.2 178.8Z"/><path pathLength="1" style="--d:0.41s" d="M136.5 361.6C147.8 358.5 154.8 354.4 162.4 346.7C174.6 334.3 180.0 320.4 180.0 301.0C180.0 287.5 178.0 278.5 172.9 268.0C165.7 253.4 154.8 244.4 139.9 240.5C131.1 238.1 115.1 238.9 106.0 242.2L99.5 244.5L99.2 304.4L99.0 364.3L114.7 363.7C124.6 363.4 132.7 362.6 136.5 361.6Z"/><path pathLength="1" style="--d:0.41s" d="M122.5 438.2C127.4 435.5 135.0 431.5 139.2 429.4C143.5 427.3 147.0 425.2 147.0 424.8C147.0 424.4 140.7 413.7 132.9 401.0L118.8 378.0L108.9 378.0L99.0 378.0L99.0 415.5L99.0 452.9L106.2 448.1C110.2 445.5 117.5 441.0 122.5 438.2Z"/><path pathLength="1" style="--d:0.43s" d="M248.3 492.6C260.1 484.1 277.2 472.9 291.3 464.5L301.2 458.7L300.5 455.1C298.6 445.4 298.0 438.4 298.0 426.6L298.0 413.7L279.2 414.3C258.2 415.1 240.3 416.8 222.5 419.9C211.6 421.8 192.3 426.3 191.5 427.2C191.2 427.6 226.0 484.5 232.3 493.8C234.6 497.2 236.9 500.0 237.3 500.0C237.8 500.0 242.7 496.7 248.3 492.6Z"/><path pathLength="1" style="--d:0.48s" d="M347.7 434.9C352.5 432.6 362.9 428.2 370.8 425.0C378.7 421.8 385.3 419.0 385.6 418.8C386.1 418.2 350.6 415.0 343.8 415.0L338.0 415.0L338.0 427.0C338.0 433.6 338.2 439.0 338.4 439.0C338.6 439.0 342.8 437.1 347.7 434.9Z"/><path pathLength="1" style="--d:0.48s" d="M425.2 506.1C447.3 500.4 463.9 484.1 472.0 460.0C474.2 453.6 477.3 437.0 476.6 436.2C475.7 435.4 452.5 429.8 434.3 426.1L415.2 422.2L404.8 426.5C381.3 436.3 342.5 456.4 341.4 459.5C340.6 461.5 344.8 473.0 349.0 480.0C358.2 495.6 373.0 505.2 392.5 508.4C398.5 509.3 417.7 508.0 425.2 506.1Z"/><path pathLength="1" style="--d:0.50s" d="M477.0 416.5L477.0 405.0L474.2 405.0C470.5 405.0 443.9 410.5 436.5 412.8L430.5 414.7L435.0 415.9C439.1 416.9 476.2 427.6 476.8 427.9C476.9 427.9 477.0 422.8 477.0 416.5Z"/><path pathLength="1" style="--d:0.52s" d="M563.3 258.1C558.7 250.9 546.8 237.0 543.6 235.0C538.1 231.7 527.8 230.4 517.4 231.8C505.7 233.4 501.4 235.8 497.5 243.4L494.5 249.4L494.2 322.7L493.9 396.0L503.6 396.0C523.8 396.0 547.2 401.4 558.6 408.8L564.5 412.6L564.8 336.6C565.0 267.0 564.9 260.5 563.3 258.1Z"/><path pathLength="1" style="--d:0.52s" d="M561.9 442.9L565.0 441.8L565.0 431.5L565.0 421.2L561.0 417.8C550.5 408.7 534.2 404.1 510.2 403.3L493.9 402.7L494.2 417.6L494.5 432.4L512.0 436.7C538.1 443.2 555.1 445.3 561.9 442.9Z"/><path pathLength="1" style="--d:0.53s" d="M553.7 505.4C558.1 503.3 559.3 502.1 561.5 497.5C566.2 488.0 564.6 488.0 553.0 497.5C538.4 509.5 538.5 509.4 544.0 508.6C546.5 508.2 550.8 506.8 553.7 505.4Z"/><path pathLength="1" style="--d:0.56s" d="M158.4 759.0C132.6 755.7 111.9 741.0 105.4 721.1C104.1 717.0 103.4 716.0 102.1 716.6C101.2 717.0 94.6 717.5 87.4 717.8C43.7 719.3 13.7 696.5 3.9 654.2C1.3 643.1 0.2 613.0 1.9 600.8C5.5 576.0 15.6 549.2 30.0 525.8L34.9 518.0L27.5 518.0L20.0 518.0L20.0 514.1L20.0 510.3L29.7 509.7C35.1 509.4 40.2 508.9 41.0 508.6C41.8 508.2 43.7 506.2 45.2 504.1C46.7 502.1 50.0 497.9 52.7 495.0L57.5 489.7L57.8 373.1C58.0 293.9 57.7 254.9 57.0 251.5C55.2 243.3 52.3 238.2 47.6 235.5C43.3 233.0 33.5 231.1 24.8 231.0L20.0 231.0L20.0 227.5L20.0 223.9L90.8 224.2C156.1 224.6 162.0 224.7 168.0 226.4C198.6 235.2 219.7 254.5 226.6 280.0C227.8 284.5 228.3 290.2 228.3 298.5C228.3 308.9 228.0 311.6 225.6 318.5C216.8 344.5 195.3 363.3 165.7 371.0C161.7 372.0 158.6 373.3 158.7 373.8C158.9 374.5 180.2 410.0 181.6 411.9C181.8 412.1 187.9 410.6 195.2 408.6C222.6 401.3 249.6 397.3 279.2 396.3L298.0 395.7L298.0 330.6C298.0 293.2 297.6 261.7 297.0 256.7C294.8 238.1 289.9 233.3 271.0 231.4L264.0 230.7L264.0 227.4L264.0 224.0L318.0 224.0L372.0 224.0L372.0 227.3L372.0 230.6L363.1 231.7C348.6 233.6 343.9 237.0 340.3 248.5C338.6 254.1 338.5 259.3 338.5 325.9L338.5 397.4L352.0 399.1C367.6 401.1 385.9 404.2 397.8 407.0C408.4 409.5 408.0 409.6 420.8 406.0C433.4 402.5 457.1 398.2 468.8 397.3L477.1 396.7L476.8 324.1C476.5 268.1 476.1 250.6 475.1 247.6C471.7 237.2 466.4 233.5 452.1 231.7L443.0 230.6L443.0 227.3L443.0 224.0L516.2 224.0L589.5 224.0L661.0 325.7C700.3 381.6 734.0 429.4 735.8 431.9L739.0 436.5L738.7 343.5C738.4 241.4 738.7 246.5 732.3 239.0C728.6 234.7 723.4 232.7 712.9 231.5L707.2 230.9L698.9 239.3C689.5 248.7 684.2 251.9 676.6 252.7C667.5 253.6 662.3 247.9 664.4 239.4C665.4 235.5 670.8 230.1 674.5 229.4C679.0 228.6 681.8 230.3 684.0 235.6C685.1 238.0 686.3 240.0 686.8 240.0C688.3 240.0 695.4 234.5 698.3 231.1C699.8 229.3 701.0 227.0 701.0 225.9C701.0 224.8 701.7 224.0 702.8 224.0C703.8 224.0 707.3 220.4 711.3 215.1L718.1 206.2L717.8 151.8C717.5 100.8 717.3 97.2 715.5 92.0C713.1 85.5 708.8 82.0 702.9 82.0C699.7 82.0 699.0 81.6 699.0 80.0C699.0 77.8 700.6 77.2 718.3 73.8C731.7 71.3 730.6 70.9 734.0 79.7C737.4 88.9 738.0 96.6 738.0 137.5L738.0 177.5L744.9 167.0C761.1 142.2 774.4 115.5 775.7 105.2C776.2 100.7 776.0 100.2 771.8 95.0C769.3 92.0 766.8 88.5 766.2 87.3C763.1 81.6 766.4 73.8 772.5 72.1C776.5 71.0 781.8 72.8 784.2 76.1C790.8 84.9 787.8 99.5 773.5 128.0C761.4 152.3 743.2 181.3 721.4 211.2L712.1 224.0L749.0 224.0L786.0 224.0L786.0 227.3L786.0 230.5L778.4 231.8C766.1 233.7 760.7 237.8 757.5 247.6C756.1 252.0 756.0 266.2 756.2 381.3L756.5 510.1L764.5 503.4C787.2 484.5 813.6 465.3 824.7 459.7C839.7 452.0 855.7 448.0 870.9 448.0C878.8 448.0 879.3 448.9 872.5 451.0C852.6 457.3 819.5 481.9 762.0 533.4C734.6 557.9 663.2 626.4 664.0 627.3C664.3 627.6 667.7 625.5 671.5 622.6C675.4 619.7 685.2 612.7 693.5 607.0C737.0 577.2 763.0 566.7 773.9 574.7C778.3 578.0 779.2 580.7 778.7 589.5C777.5 609.9 762.3 635.6 735.8 661.7C709.3 688.0 686.2 704.9 659.6 717.5C634.0 729.7 611.6 734.5 596.6 731.0C582.7 727.8 578.6 713.1 586.4 694.0C589.1 687.2 589.1 687.2 579.0 695.5C558.7 712.2 538.4 725.6 528.1 729.1C516.6 733.1 504.7 730.4 500.8 723.0C497.1 715.9 499.5 700.7 506.3 689.2C508.4 685.7 508.1 685.8 500.8 692.0C478.2 711.0 461.9 721.9 447.1 727.9C439.5 730.9 438.0 731.2 431.3 730.8C426.0 730.4 423.1 729.7 421.2 728.3C413.2 722.4 413.3 709.0 421.4 692.7C424.4 686.7 424.6 686.2 422.5 687.7C407.4 699.6 390.1 712.3 382.7 717.1C352.8 736.5 330.9 736.9 327.9 718.2C326.8 711.2 328.4 704.6 333.7 694.0C336.4 688.8 338.7 684.1 338.9 683.7C339.1 683.2 334.3 686.7 328.4 691.5C283.9 726.8 239.5 749.4 199.9 756.9C187.3 759.3 168.4 760.2 158.4 759.0Z"/><path pathLength="1" style="--d:0.56s" d="M99.7 710.4L102.7 709.8L103.3 697.2C104.3 676.2 110.1 656.6 123.2 630.7C139.9 597.7 171.0 558.1 202.9 529.5L215.1 518.5L209.5 518.0L204.0 517.5L181.4 480.5C169.0 460.1 158.2 442.5 157.4 441.3L156.0 439.1L145.5 444.0C133.5 449.6 116.9 459.0 106.1 466.3L98.7 471.3L99.3 480.4C100.8 502.4 106.7 508.6 127.1 509.7L137.0 510.3L137.0 514.1L137.0 518.0L93.2 518.0L49.3 518.0L43.8 525.8C28.4 547.2 19.0 566.8 13.4 589.3C10.2 602.0 9.1 625.6 11.0 640.7C15.8 678.9 35.1 702.4 67.5 709.5C73.7 710.9 94.5 711.5 99.7 710.4Z"/><path pathLength="1" style="--d:0.60s" d="M189.7 749.9C206.1 747.7 230.5 740.6 246.9 733.4C273.5 721.7 301.4 703.5 339.2 673.3C352.8 662.4 358.4 657.2 369.3 644.7C408.5 600.2 470.1 540.6 519.0 500.0C531.4 489.7 556.9 470.4 562.2 467.2C564.9 465.6 565.0 465.3 565.0 456.9L565.0 448.2L561.2 449.2C554.3 451.1 529.2 448.1 505.5 442.5C499.7 441.1 494.6 440.0 494.2 440.0C493.7 440.0 492.8 443.8 492.1 448.5C489.8 465.1 483.2 480.5 473.1 493.2C455.7 515.2 429.3 525.1 391.5 523.7C360.4 522.6 338.2 513.7 321.2 495.5C317.8 492.0 313.9 487.0 312.5 484.5C311.0 482.0 309.3 480.0 308.8 480.0C306.3 480.0 262.3 514.0 261.3 516.7C261.0 517.4 260.3 518.0 259.8 518.0C258.1 518.0 234.4 539.8 218.4 556.2C176.6 598.8 145.4 642.9 131.5 679.0C118.6 712.3 125.3 738.2 148.9 747.1C152.0 748.2 156.3 749.5 158.5 750.0C164.5 751.2 180.8 751.1 189.7 749.9Z"/><path pathLength="1" style="--d:0.66s" d="M361.8 719.8C380.8 712.8 426.6 677.9 451.3 651.6C464.5 637.6 482.8 620.9 499.5 607.6C512.4 597.4 532.7 583.5 538.7 580.8C543.7 578.6 557.5 576.0 564.0 576.0L568.5 576.1L564.5 579.3C528.8 608.2 473.6 661.3 454.4 685.1C434.1 710.4 429.9 718.7 436.0 722.0C441.5 724.9 463.4 713.1 485.8 695.1C499.3 684.2 508.0 676.1 534.5 650.1C560.8 624.3 576.5 609.8 591.2 597.7C614.5 578.5 621.3 575.0 637.4 573.5L645.2 572.7L605.3 612.6C583.3 634.6 560.6 657.9 554.8 664.5C530.1 692.7 516.0 711.9 516.0 717.1C516.0 720.8 519.7 723.4 523.6 722.4C530.5 720.7 543.6 713.2 559.5 701.6C572.3 692.4 601.6 667.2 604.2 663.3C620.9 638.1 670.4 586.9 731.8 531.6C739.8 524.3 745.9 518.1 745.6 517.4C745.3 516.7 708.5 464.0 663.8 400.2L582.5 284.3L582.2 369.8C582.1 416.8 582.1 455.5 582.3 455.6C582.5 455.8 585.3 454.8 588.6 453.5C596.7 450.2 611.1 447.8 620.7 448.2L628.5 448.5L622.9 450.3C615.1 452.9 601.8 460.3 590.9 468.0L581.7 474.4L582.2 483.1C582.6 489.4 583.4 493.2 585.2 497.2C589.4 506.3 594.5 508.7 612.2 509.7L623.0 510.3L623.0 514.1L623.0 518.0L577.6 518.0C543.7 518.0 532.1 517.7 531.8 516.8C530.6 513.3 440.9 599.8 402.0 642.0C363.7 683.6 346.0 707.3 346.0 717.2C346.0 723.4 350.2 724.0 361.8 719.8Z"/><path pathLength="1" style="--d:0.73s" d="M614.5 724.4C628.3 720.9 651.7 703.7 691.0 668.1C740.4 623.4 767.8 592.3 765.6 583.5C764.8 580.4 761.6 579.8 754.0 581.5C738.4 584.7 714.2 599.1 674.5 628.5C636.3 656.8 609.9 683.2 600.4 702.6C596.9 709.7 596.1 717.9 598.4 721.5C601.4 726.1 605.3 726.8 614.5 724.4Z"/></g></svg>
-    <div class="intro-rule"><span id="intro-rule"></span></div>
+    <div class="intro-rule" id="intro-rule"><span class="l"></span><span class="r"></span></div>
     <div class="eyebrow intro-tag">Where community meets movement</div>
   </div>
   <button class="skip" id="skip" type="button">Skip intro <svg><use href="#i-up"/></svg></button>
 </div>
 
-<div class="track" aria-hidden="true"><i id="track"></i></div>
+<div class="track" aria-hidden="true"><i id="track"></i><b id="track-dot"></b></div>
+<nav class="route-nav" id="route-nav" aria-label="Sections">
+  <span class="rn-line"></span><span class="rn-fill" id="rn-fill"></span><span class="rn-runner" id="rn-runner"></span>
+  <a href="#story" data-sec="story"><span>Our Story</span><b>01</b></a>
+  <a href="#locations" data-sec="locations"><span>Locations</span><b>02</b></a>
+  <a href="#calendar" data-sec="calendar"><span>Calendar</span><b>03</b></a>
+  <a href="#archive" data-sec="archive"><span>Archive</span><b>04</b></a>
+  <a href="#collaborations" data-sec="collaborations"><span>Collaborations</span><b>05</b></a>
+</nav>
 
 <nav class="nav" id="nav" aria-label="Main">
   <div class="nav-in">
@@ -570,7 +693,7 @@ body.ready .hero p{opacity:.92;transform:none}
   </header>
 
   <section class="story" id="story" aria-label="Our story">
-    <div class="story-bg" aria-hidden="true"><img src="assets/photos/story-wide.jpg" alt="" loading="lazy"></div>
+    <div class="story-bg" aria-hidden="true"><img src="assets/photos/story-wide.jpg" srcset="assets/photos/m/story-wide.jpg 1400w, assets/photos/story-wide.jpg 2730w" sizes="100vw" alt="" loading="lazy"></div>
     <div class="wrap story-in">
       <div class="story-copy">
         <div class="eyebrow rv">01 / Our story</div>
@@ -624,9 +747,9 @@ body.ready .hero p{opacity:.92;transform:none}
         </div>
         <div class="loc-card" id="loc-card" role="tabpanel">
           <div class="loc-img">
-            <img class="on" data-loc="khobar" src="assets/photos/khobar.jpg" alt="Runners on the Khobar waterfront">
-            <img data-loc="riyadh" src="assets/photos/riyadh.jpg" alt="SRC runners on a Riyadh street" loading="lazy">
-            <img data-loc="popups" src="assets/photos/popups.jpg" alt="A pop-up run by the water" loading="lazy">
+            <img class="on" data-loc="khobar" src="assets/photos/khobar.jpg" srcset="assets/photos/m/khobar.jpg 1400w, assets/photos/khobar.jpg 2730w" sizes="(max-width:950px) 100vw, 40vw" alt="Runners on the Khobar waterfront">
+            <img data-loc="riyadh" src="assets/photos/riyadh.jpg" srcset="assets/photos/m/riyadh.jpg 1400w, assets/photos/riyadh.jpg 2730w" sizes="(max-width:950px) 100vw, 40vw" alt="SRC runners on a Riyadh street" loading="lazy">
+            <img data-loc="popups" src="assets/photos/popups.jpg" srcset="assets/photos/m/popups.jpg 1400w, assets/photos/popups.jpg 2730w" sizes="(max-width:950px) 100vw, 40vw" alt="A pop-up run by the water" loading="lazy">
           </div>
           <div class="loc-info bib" id="loc-info">
             <span class="pin-hole tl"></span><span class="pin-hole tr"></span><span class="pin-hole bl"></span><span class="pin-hole br"></span>
@@ -663,7 +786,8 @@ body.ready .hero p{opacity:.92;transform:none}
         </div>
         <p class="rv d1">Khobar and Riyadh run every Saturday. Pop-ups are added here as they’re announced.</p>
       </div>
-      <article class="cal-next rv" id="cal-next" aria-live="polite"></article>
+      <article class="cal-next rv" id="cal-next"></article>
+      <p class="sr-only" id="cal-sr" aria-live="polite"></p>
     </div>
   </section>
 
@@ -689,7 +813,7 @@ body.ready .hero p{opacity:.92;transform:none}
       </div>
     </div>
     <ul class="sr-only" id="partner-list"></ul>
-    <div class="lanes rv" id="lanes" aria-hidden="true"></div>
+    <div class="lanes" id="lanes" aria-hidden="true"></div>
     <div class="wrap invite">
       <div class="invite-bar rv">
         <div><div class="eyebrow">Partner with SRC</div><h3>Your brand <em>here.</em></h3></div>
@@ -700,6 +824,7 @@ body.ready .hero p{opacity:.92;transform:none}
 
   <section class="join grain" id="join">
     <div class="wrap">
+      <div class="finish rv" aria-hidden="true"></div>
       <h2 class="rv">See you <em>Saturday.</em></h2>
       <p class="rv d1">Every Saturday. All paces welcome.</p>
       <div class="join-links rv d2"><a class="pill pill-cream" href="#locations">Find your run <i><svg><use href="#i-arrow"/></svg></i></a></div>
@@ -733,7 +858,7 @@ body.ready .hero p{opacity:.92;transform:none}
   <button class="circle lb-close" id="lb-close" aria-label="Close photo">×</button>
   <button class="circle lb-prev" id="lb-prev" aria-label="Previous photo"><svg><use href="#i-left"/></svg></button>
   <button class="circle lb-next" id="lb-next" aria-label="Next photo"><svg><use href="#i-right"/></svg></button>
-  <figure><img id="lb-img" alt=""><figcaption><span id="lb-cap"></span><a id="lb-link" target="_blank" rel="noopener noreferrer" hidden>View on Instagram</a></figcaption></figure>
+  <figure><div class="lb-stage" id="lb-stage"><img id="lb-img" alt="" draggable="false"></div><figcaption><span id="lb-cap"></span><a id="lb-link" target="_blank" rel="noopener noreferrer" hidden>View on Instagram</a></figcaption></figure>
 </dialog>
 
 <script>
@@ -781,6 +906,17 @@ const clamp01 = v => Math.min(Math.max(v, 0), 1);
 const ease = t => 1 - Math.pow(1 - t, 3);
 const esc = s => String(s).replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
 const SVGNS = "http://www.w3.org/2000/svg";
+const isPhone = () => matchMedia("(max-width:760px)").matches;
+// Lighter 1400px copies in photos/m for phones
+const M_PHOTOS = new Set("g-crowd g-mats g-run g-shore g-smiles g-warmup hero-crowd hero-group hero-hanging hero-jersey hero-path hero-sea hero-sunset khobar popups riyadh story-hug story-jerseys story-shore story-smiles story-stretch story-wide story-women".split(" ").map(n => n + ".jpg"));
+const mOf = src => { const m = /^assets\/photos\/([^/]+\.jpg)$/.exec(src || ""); return m && M_PHOTOS.has(m[1]) ? "assets/photos/m/" + m[1] : null; };
+const phoneSrc = src => (innerWidth <= 900 && mOf(src)) || src;
+// Images fade in once they have loaded, instead of popping
+function fadeImg(img) {
+  if (reduceMotion || (img.complete && img.naturalWidth)) return;
+  img.classList.add("lazy-fade");
+  img.addEventListener("load", () => img.classList.add("loaded"));
+}
 function svgEl(tag, attrs, parent) {
   const el = document.createElementNS(SVGNS, tag);
   Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
@@ -789,30 +925,46 @@ function svgEl(tag, attrs, parent) {
 }
 
 
-// ----- Intro: logo reveal with a race counter -----
-const intro = $("#intro");
+// ----- Intro: the logo writes itself over a starting line; the line snaps and the logo runs into the nav -----
+const intro = $("#intro"), navLogo = $(".nav-logo");
+let visited = false;
+try { visited = !!localStorage.getItem("src-visited"); } catch (e) {}
+function land() { document.body.classList.add("landed"); intro.remove(); }
 function endIntro() {
-  if (document.body.classList.contains("ready")) return;
+  if (intro.classList.contains("out")) return;
+  const logo = $(".intro-logo"), rule = $("#intro-rule").getBoundingClientRect();
+  intro.style.setProperty("--ty", (rule.top / innerHeight * 100).toFixed(2) + "%");
   intro.classList.add("out");
   document.body.classList.remove("locked");
-  document.body.classList.add("ready");
-  setTimeout(() => intro.remove(), 1300);
+  try { localStorage.setItem("src-visited", "1"); } catch (e) {}
+  setTimeout(() => document.body.classList.add("ready"), 120);
+  const a = logo.getBoundingClientRect(), b = navLogo.getBoundingClientRect();
+  const k = Math.min(b.width / a.width, b.height / a.height);
+  const dx = b.left + b.width / 2 - (a.left + a.width / 2), dy = b.top + b.height / 2 - (a.top + a.height / 2);
+  logo.animate([{transform: "none"}, {transform: `translate(${dx}px,${dy}px) scale(${k})`}], {duration: 950, easing: "cubic-bezier(.65,0,.35,1)", fill: "forwards"})
+    .finished.then(land, land);
 }
-if (reduceMotion) { intro.remove(); document.body.classList.remove("locked"); document.body.classList.add("ready"); }
+if (reduceMotion) { intro.remove(); document.body.classList.remove("locked"); document.body.classList.add("ready", "landed"); }
 else {
-  // The logo writes itself (about 3.4s); the rule under it tracks the pen
-  const rule = $("#intro-rule"), t0 = performance.now(), dur = 3500;
+  // Returning visitors get the finished logo and go straight to the start
+  if (visited) intro.classList.add("quick");
+  const halves = $$("#intro-rule span"), t0 = performance.now(), dur = visited ? 380 : 1750;
   (function tick(t) {
-    const p = Math.min((t - t0) / dur, 1);
-    rule.style.transform = `scaleX(${ease(p)})`;
-    if (p < 1) requestAnimationFrame(tick); else setTimeout(endIntro, 500);
+    const p = ease(Math.min((t - t0) / dur, 1));
+    halves[0].style.transform = `scaleX(${Math.min(1, p * 2)})`;
+    halves[1].style.transform = `scaleX(${Math.max(0, p * 2 - 1)})`;
+    if (p < 1) requestAnimationFrame(tick); else setTimeout(endIntro, visited ? 60 : 160);
   })(t0);
-  $("#skip").addEventListener("click", endIntro);
-  setTimeout(endIntro, 6500);
+  // Tap, scroll or any key skips straight to the start
+  intro.addEventListener("click", endIntro);
+  addEventListener("keydown", endIntro, {once: true});
+  addEventListener("wheel", endIntro, {once: true, passive: true});
+  addEventListener("touchmove", endIntro, {once: true, passive: true});
+  setTimeout(endIntro, 4000);
 }
 
 // ----- Nav -----
-const nav = $("#nav"), hero = $("#home"), menuBtn = $("#menu-btn");
+const nav = $("#nav"), hero = $("#home"), menuBtn = $("#menu-btn"), story = $("#story");
 function setMenu(open) {
   document.body.classList.toggle("menu-open", open);
   document.body.classList.toggle("locked", open);
@@ -821,6 +973,9 @@ function setMenu(open) {
 }
 menuBtn.addEventListener("click", () => setMenu(!document.body.classList.contains("menu-open")));
 $$("#sheet a").forEach(a => a.addEventListener("click", () => setMenu(false)));
+let sheetY = null;
+$("#sheet").addEventListener("touchstart", e => sheetY = e.touches[0].clientY, {passive: true});
+$("#sheet").addEventListener("touchend", e => { if (sheetY !== null && e.changedTouches[0].clientY - sheetY < -70) setMenu(false); sheetY = null; });
 addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
 document.addEventListener("click", e => {
   const a = e.target.closest('a[href^="#"]');
@@ -882,9 +1037,35 @@ Object.entries(CITIES).forEach(([key, c]) => {
   pins[key] = g;
 });
 legs.forEach(l => l.len = l.path.getTotalLength());
+// The pacer: when you switch city, a runner travels there along a drawn line
+const pacerTrail = svgEl("path", {class: "pacer-trail"}, mapZoom);
+const pacer = svgEl("circle", {class: "pacer", r: 5, cx: -50, cy: -50}, mapZoom);
+pacer.style.opacity = pacerTrail.style.opacity = 0;
+let lastPin = null, pacerRun = 0;
+function runPacer(from, to, zoom) {
+  const [x1, y1] = proj(CITIES[from].ll), [x2, y2] = proj(CITIES[to].ll);
+  const bend = -Math.min(130, Math.hypot(x2 - x1, y2 - y1) * .32);
+  pacerTrail.setAttribute("d", `M${x1} ${y1} Q${(x1 + x2) / 2} ${(y1 + y2) / 2 + bend} ${x2} ${y2}`);
+  const len = pacerTrail.getTotalLength(), t0 = performance.now(), dur = 1150, id = ++pacerRun;
+  pacerTrail.style.strokeDasharray = len;
+  pacer.setAttribute("r", (6 / zoom).toFixed(2));
+  pacer.style.opacity = 1; pacerTrail.style.opacity = .85;
+  (function step(t) {
+    if (id !== pacerRun) return;
+    const k = Math.min((t - t0) / dur, 1), e = k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+    const pt = pacerTrail.getPointAtLength(e * len);
+    pacer.setAttribute("cx", pt.x); pacer.setAttribute("cy", pt.y);
+    pacerTrail.style.strokeDashoffset = len * (1 - e);
+    if (k < 1) requestAnimationFrame(step);
+    else setTimeout(() => { if (id === pacerRun) pacer.style.opacity = pacerTrail.style.opacity = 0; }, 450);
+  })(t0);
+}
 const mapIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { map.classList.add("in"); mapIO.disconnect(); } }), {threshold: .25});
 mapIO.observe(map);
 function focusMap(keys, zoom) {
+  const lead = keys[0];
+  if (lastPin && lastPin !== lead && !reduceMotion && map.classList.contains("in")) runPacer(lastPin, lead, zoom);
+  lastPin = lead;
   Object.entries(pins).forEach(([k, g]) => g.classList.toggle("on", keys.includes(k)));
   const pts = keys.map(k => proj(CITIES[k].ll));
   const cx = pts.reduce((s, p) => s + p[0], 0) / pts.length, cy = pts.reduce((s, p) => s + p[1], 0) / pts.length;
@@ -944,26 +1125,43 @@ $("#loc-facts").innerHTML = LOCATIONS.khobar.facts.map(f => `<span>${f}</span>`)
 let CONTENT = DEFAULT_CONTENT;
 const slides = $("#slides"), bar = $("#hero-bar");
 let slideImgs = [], slide = 0, slideTimer;
-function showSlide(n) {
+function showSlide(n, dir = 1) {
   if (!slideImgs.length) return;
-  slideImgs[slide].classList.remove("on");
+  const old = slideImgs[slide];
   slide = (n + slideImgs.length) % slideImgs.length;
-  slideImgs[slide].loading = "eager";
-  slideImgs[slide].classList.add("on");
+  const cur = slideImgs[slide];
+  if (cur !== old) {
+    // Direction first, so the new photo comes in from the side you moved toward
+    if (slides.classList.contains("back") !== dir < 0) { slides.classList.toggle("back", dir < 0); void slides.offsetWidth; }
+    slideImgs.forEach(img => img.classList.remove("past"));
+    old.classList.remove("on"); old.classList.add("past");
+  }
+  cur.loading = "eager"; cur.classList.add("on");
+  slideImgs[(slide + 1) % slideImgs.length].loading = "eager";
   $("#slide-no").textContent = String(slide + 1).padStart(2, "0") + " / " + String(slideImgs.length).padStart(2, "0");
   bar.classList.remove("run"); void bar.offsetWidth; bar.classList.add("run");
   clearTimeout(slideTimer); slideTimer = setTimeout(() => showSlide(slide + 1), 6000);
 }
-$("#prev").addEventListener("click", () => showSlide(slide - 1));
+$("#prev").addEventListener("click", () => showSlide(slide - 1, -1));
+// Swipe the hero on phones
+let hx = null, hy = 0;
+hero.addEventListener("touchstart", e => { hx = e.touches[0].clientX; hy = e.touches[0].clientY; }, {passive: true});
+hero.addEventListener("touchend", e => {
+  if (hx === null) return;
+  const dx = e.changedTouches[0].clientX - hx, dy = e.changedTouches[0].clientY - hy; hx = null;
+  if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) showSlide(slide + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
+}, {passive: true});
 $("#next").addEventListener("click", () => showSlide(slide + 1));
 function renderHero(list) {
   slides.innerHTML = "";
   list.forEach((item, i) => {
     const img = new Image();
     const it = typeof item === "string" ? {image: item} : item;
+    const m = mOf(it.image);
+    if (m) { img.srcset = `${m} 1400w, ${it.image} 2730w`; img.sizes = "100vw"; }
     img.src = it.image; img.alt = "";
     if (it.focus) img.style.objectPosition = it.focus;
-    if (i > 0) img.loading = "lazy";
+    if (i > 0) img.loading = "lazy"; else img.className = "on";
     slides.appendChild(img);
   });
   slideImgs = $$("img", slides); slide = 0;
@@ -971,18 +1169,17 @@ function renderHero(list) {
 }
 
 function renderStats(stats) {
-  $$("[data-stat]").forEach(el => el.dataset.count = stats[el.dataset.stat] ?? 0);
+  // Odometer: every digit spins up like a race clock, columns step in one after another
+  const reel = "0123456789".repeat(2).split("").map(d => `<i>${d}</i>`).join("");
+  $$("[data-stat]").forEach(el => {
+    const text = (+(stats[el.dataset.stat] ?? 0)).toLocaleString("en-US") + (el.dataset.suffix || "");
+    if (reduceMotion) { el.textContent = text; return; }
+    el.innerHTML = `<span class="sr-only">${text}</span><span class="odo" aria-hidden="true">${[...text].map(ch => /\d/.test(ch) ? `<span class="col"><span data-n="${10 + +ch}">${reel}</span></span>` : `<i>${ch}</i>`).join("")}</span>`;
+  });
   const countIO = new IntersectionObserver(entries => entries.forEach(e => {
     if (!e.isIntersecting) return;
     countIO.unobserve(e.target);
-    const el = e.target, end = +el.dataset.count, suffix = el.dataset.suffix || "";
-    if (reduceMotion) { el.textContent = end.toLocaleString("en-US") + suffix; return; }
-    const t0 = performance.now();
-    (function tick(t) {
-      const p = Math.min((t - t0) / 2000, 1);
-      el.textContent = Math.round(end * (1 - Math.pow(1 - p, 4))).toLocaleString("en-US") + suffix;
-      if (p < 1) requestAnimationFrame(tick);
-    })(t0);
+    $$(".col>span", e.target).forEach((c, i) => { c.style.transitionDelay = i * 90 + "ms"; c.style.transform = `translateY(-${c.dataset.n}em)`; });
   }), {threshold: .6});
   $$("[data-stat]").forEach(el => countIO.observe(el));
 }
@@ -996,6 +1193,20 @@ function renderPartners(partners) {
     const copies = Math.max(1, Math.ceil(12 / group.length));
     return `<div class="lane${l ? " rev" : ""}"><div class="lane-run" style="--dur:${l ? 70 : 60}s">${chips.repeat(copies * 2)}</div></div>`;
   }).join("");
+}
+
+let lanes = [], laneHold = false;
+function setupLanes() {
+  const box = $("#lanes");
+  if (reduceMotion) { box.classList.add("in"); return; }
+  box.classList.add("js");
+  lanes = $$(".lane-run", box).map((el, i) => ({el, w: el.scrollWidth / 2, x: i ? -el.scrollWidth / 4 : 0, dir: i ? 1 : -1, secs: i ? 70 : 60}));
+  // Hold still while a mouse is over them or a finger is on them, so a logo can be read
+  box.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") laneHold = true; });
+  box.addEventListener("pointerleave", () => laneHold = false);
+  box.addEventListener("pointerdown", () => laneHold = true);
+  ["pointerup", "pointercancel"].forEach(t => box.addEventListener(t, e => { if (e.pointerType !== "mouse") setTimeout(() => laneHold = false, 600); }));
+  io.observe(box);
 }
 
 // ----- Archive: photo grid (or the Instagram feed), tap any photo to view it -----
@@ -1022,37 +1233,164 @@ function renderGallery(list, fromInstagram) {
   items = list;
   gallery.classList.toggle("ig", !!fromInstagram);
   gallery.innerHTML = list.map((it, i) => `<button type="button" class="g-item rv" data-i="${i}"${i >= FIRST_SHOWN ? " hidden" : ""} aria-label="View photo${it.caption ? ": " + esc(it.caption) : ""}"><div class="ph"><img src="${esc(thumbOf(it.image))}" data-full="${esc(it.image)}" alt="" loading="lazy" onerror="if(this.src!==this.dataset.full)this.src=this.dataset.full"></div><span class="cap">${esc(it.caption || "")}<b>${String(i + 1).padStart(2, "0")}</b></span>${i === FIRST_SHOWN - 1 && list.length > FIRST_SHOWN ? `<span class="g-more"><b>+${list.length - FIRST_SHOWN}</b><small>View all</small></span>` : `<span class="zoom-ico" aria-hidden="true"><svg><use href="#i-up"/></svg></span>`}</button>`).join("");
-  $$(".g-item", gallery).forEach((el, i) => { el.style.transitionDelay = (i % 3) * 80 + "ms"; io.observe(el); });
+  // Tiles start fully clipped, so watch the grid itself and open the shutters together
+  $$(".g-item", gallery).forEach((el, i) => el.style.transitionDelay = (i % 4) * 90 + "ms");
+  new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting) { $$(".g-item", gallery).forEach(t => t.classList.add("in")); o.disconnect(); } }), {threshold: .15}).observe(gallery);
+  $$("img", gallery).forEach(fadeImg);
 }
 gallery.addEventListener("click", e => {
   const b = e.target.closest(".g-item");
-  if (b) openLightbox(+b.dataset.i);
+  if (b) openLightbox(+b.dataset.i, b);
 });
 
-const lb = $("#lightbox"), lbImg = $("#lb-img");
-let lbIndex = 0;
-function openLightbox(i) {
-  lbIndex = (i + items.length) % items.length;
+const lb = $("#lightbox"), lbImg = $("#lb-img"), lbStage = $("#lb-stage");
+const SHEET = "cubic-bezier(.32,.72,0,1)";
+let lbIndex = 0, lbAnim = [], lbNav = 0;
+const preload = src => new Promise(res => { const im = new Image(); im.onload = () => res(im); im.onerror = () => res(null); im.src = src; });
+const wrapI = i => (i + items.length) % items.length;
+async function loadPhoto(i) {
+  const it = items[wrapI(i)];
+  const im = await preload(thumbOf(it.image)) || await preload(phoneSrc(it.image));
+  return {it, src: im ? im.src : it.image, w: im ? im.naturalWidth : 4, h: im ? im.naturalHeight : 3};
+}
+function fitSize(w, h) {
+  const mw = isPhone() ? innerWidth - 24 : Math.min(innerWidth * .92, 1200), mh = innerHeight - (isPhone() ? 150 : 170);
+  const k = Math.min(mw / w, mh / h);
+  return [Math.round(w * k), Math.round(h * k)];
+}
+function placePhoto(ph) {
+  const [w, h] = fitSize(ph.w, ph.h);
+  lbImg.src = ph.src; lbImg.alt = ph.it.caption || "SRC moment";
+  lbImg.style.width = w + "px"; lbImg.style.height = h + "px";
+  // Sharpen to the full photo once it has loaded
+  const full = phoneSrc(ph.it.image);
+  if (!lbImg.src.endsWith(full)) preload(full).then(im => { if (im && items[lbIndex] === ph.it) lbImg.src = im.src; });
+}
+function setCaption() {
   const it = items[lbIndex];
-  lbImg.src = it.image; lbImg.alt = it.caption || "SRC moment";
-  lbImg.style.animation = "none"; void lbImg.offsetWidth; lbImg.style.animation = "";
   $("#lb-cap").textContent = `${String(lbIndex + 1).padStart(2, "0")} / ${String(items.length).padStart(2, "0")}${it.caption ? "  ·  " + it.caption : ""}`;
   const link = $("#lb-link");
   link.hidden = !it.link; if (it.link) link.href = it.link;
-  if (!lb.open) lb.showModal();
 }
-$("#lb-close").addEventListener("click", () => lb.close());
-$("#lb-prev").addEventListener("click", () => openLightbox(lbIndex - 1));
-$("#lb-next").addEventListener("click", () => openLightbox(lbIndex + 1));
-lb.addEventListener("click", e => { if (e.target === lb) lb.close(); });
-lb.addEventListener("keydown", e => { if (e.key === "ArrowRight") openLightbox(lbIndex + 1); if (e.key === "ArrowLeft") openLightbox(lbIndex - 1); });
-let touchX = null;
-lb.addEventListener("touchstart", e => touchX = e.touches[0].clientX, {passive: true});
-lb.addEventListener("touchend", e => {
-  if (touchX === null) return;
-  const dx = e.changedTouches[0].clientX - touchX; touchX = null;
-  if (Math.abs(dx) > 50) openLightbox(lbIndex + (dx < 0 ? 1 : -1));
+const tileOf = i => gallery.querySelector(`.g-item[data-i="${i}"]:not([hidden])`);
+function markOpen() {
+  $$(".g-item.open").forEach(t => t.classList.remove("open"));
+  const t = tileOf(lbIndex); if (t && lb.open && !reduceMotion) t.classList.add("open");
+}
+function stopLb() { lbAnim.forEach(a => a.cancel()); lbAnim = []; $$(".lb-slices", lbStage).forEach(n => n.remove()); }
+// The photo as it sat in its tile: scaled down, cropped and rounded like the tile
+function fromTile(a, b) {
+  const k = Math.max(a.width / b.width, a.height / b.height);
+  const ix = (b.width - a.width / k) / 2, iy = (b.height - a.height / k) / 2;
+  const dx = a.left + a.width / 2 - (b.left + b.width / 2), dy = a.top + a.height / 2 - (b.top + b.height / 2);
+  return {transform: `translate(${dx}px,${dy}px) scale(${k})`, clipPath: `inset(${iy}px ${ix}px round ${22 / k}px)`, opacity: 1};
+}
+const SHOWN = {transform: "none", clipPath: "inset(0px 0px round 22px)", opacity: 1};
+async function openLightbox(i, tile) {
+  const id = ++lbNav;
+  const ph = await loadPhoto(i);
+  if (id !== lbNav) return;
+  stopLb();
+  lbIndex = wrapI(i);
+  placePhoto(ph); lbImg.style.transform = "";
+  setCaption();
+  lb.classList.remove("closing");
+  if (!lb.open) { lb.showModal(); document.body.classList.add("locked"); }
+  if (tile && !reduceMotion) lbAnim.push(lbImg.animate([fromTile(tile.getBoundingClientRect(), lbImg.getBoundingClientRect()), SHOWN], {duration: 640, easing: SHEET}));
+  markOpen();
+  loadPhoto(lbIndex + 1); loadPhoto(lbIndex - 1);
+}
+function closeLightbox() {
+  if (!lb.open || lb.classList.contains("closing")) return;
+  lbNav++;
+  const cur = getComputedStyle(lbImg).transform;
+  stopLb();
+  lb.classList.add("closing");
+  const done = () => { lb.close(); lb.classList.remove("closing"); stopLb(); lbImg.style.transform = ""; markOpen(); document.body.classList.remove("locked"); };
+  if (reduceMotion) return done();
+  lbImg.style.transform = "";
+  const from = {...SHOWN, transform: cur === "none" ? "none" : cur};
+  const tile = tileOf(lbIndex), r = tile && tile.getBoundingClientRect();
+  const back = r && r.bottom > 0 && r.top < innerHeight;
+  const to = back ? fromTile(r, lbImg.getBoundingClientRect()) : {...from, transform: from.transform === "none" ? "scale(.94)" : from.transform + " scale(.94)", opacity: 0};
+  const a = lbImg.animate([from, to], {duration: back ? 520 : 260, easing: SHEET, fill: "forwards"});
+  lbAnim.push(a);
+  a.finished.then(done, () => {});
+}
+// Next or previous: a photo finish. The new photo is scanned in, slice by slice, from the side you're heading
+async function go(dir, swipeX) {
+  const id = ++lbNav;
+  const ph = await loadPhoto(lbIndex + dir);
+  if (id !== lbNav || !lb.open) return;
+  stopLb();
+  lbIndex = wrapI(lbIndex + dir); setCaption(); markOpen();
+  loadPhoto(lbIndex + dir);
+  if (reduceMotion) { placePhoto(ph); lbImg.style.transform = ""; return; }
+  if (swipeX !== undefined) {
+    // Swiped: the photo keeps going the way you threw it, the next one slides in behind your finger
+    const out = lbImg.animate([{transform: `translateX(${swipeX}px)`}, {transform: `translateX(${-dir * innerWidth}px)`}], {duration: 220, easing: "cubic-bezier(.23,1,.32,1)", fill: "forwards"});
+    lbAnim.push(out);
+    await out.finished.catch(() => {});
+    if (id !== lbNav) return;
+    placePhoto(ph); lbImg.style.transform = "";
+    await lbImg.decode().catch(() => {});
+    stopLb();
+    lbAnim.push(lbImg.animate([{transform: `translateX(${dir * innerWidth * .35}px)`, opacity: 0}, {transform: "none", opacity: 1}], {duration: 420, easing: "cubic-bezier(.23,1,.32,1)"}));
+    return;
+  }
+  const [w, h] = fitSize(ph.w, ph.h), n = isPhone() ? 6 : 10;
+  const strip = document.createElement("div");
+  strip.className = "lb-slices";
+  strip.style.cssText = `inset:auto;left:50%;top:50%;width:${w}px;height:${h}px;margin:${-h / 2}px 0 0 ${-w / 2}px`;
+  for (let k = 0; k < n; k++) {
+    const sl = document.createElement("i");
+    sl.style.cssText = `background-image:url("${ph.src}");background-size:${w}px ${h}px;background-position:${-k * w / n}px 0`;
+    strip.appendChild(sl);
+  }
+  lbStage.appendChild(strip);
+  const order = [...strip.children];
+  if (dir > 0) order.reverse();
+  const anims = order.map((sl, k) => sl.animate([
+    {clipPath: dir > 0 ? "inset(0 0 0 100%)" : "inset(0 100% 0 0)", transform: `translateY(${k % 2 ? 2 : -2}%)`},
+    {clipPath: "inset(0 0 0 0)", transform: "none"}
+  ], {duration: 560, delay: k * 36, easing: "cubic-bezier(.77,0,.175,1)", fill: "backwards"}));
+  lbAnim.push(...anims, lbImg.animate([{opacity: 1}, {opacity: .1}], {duration: 560 + n * 36, easing: "ease-out", fill: "forwards"}));
+  await anims[anims.length - 1].finished.catch(() => {});
+  if (id !== lbNav) return;
+  placePhoto(ph);
+  await lbImg.decode().catch(() => {});
+  if (id === lbNav) stopLb();
+}
+$("#lb-close").addEventListener("click", closeLightbox);
+$("#lb-prev").addEventListener("click", () => go(-1));
+$("#lb-next").addEventListener("click", () => go(1));
+lb.addEventListener("click", e => { if (e.target === lb) closeLightbox(); });
+lb.addEventListener("cancel", e => { e.preventDefault(); closeLightbox(); });
+lb.addEventListener("keydown", e => { if (e.key === "ArrowRight") go(1); if (e.key === "ArrowLeft") go(-1); });
+// Gestures: drag sideways to change photo, pull down to put it back
+let drag = null;
+lbStage.addEventListener("pointerdown", e => {
+  if (e.button) return;
+  drag = {x: e.clientX, y: e.clientY, dx: 0, dy: 0, vx: 0, vy: 0, t: e.timeStamp, axis: null};
+  lbStage.setPointerCapture(e.pointerId);
 });
+lbStage.addEventListener("pointermove", e => {
+  if (!drag) return;
+  const dx = e.clientX - drag.x, dy = e.clientY - drag.y, dt = Math.max(1, e.timeStamp - drag.t);
+  if (!drag.axis && Math.hypot(dx, dy) > 8) drag.axis = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
+  drag.vx = (dx - drag.dx) / dt; drag.vy = (dy - drag.dy) / dt; drag.dx = dx; drag.dy = dy; drag.t = e.timeStamp;
+  if (drag.axis === "x") lbImg.style.transform = `translateX(${dx}px) rotate(${dx / 90}deg)`;
+  else if (drag.axis === "y") lbImg.style.transform = `translateY(${Math.max(dy, dy / 4)}px) scale(${Math.max(.82, 1 - Math.max(0, dy) / 1400)})`;
+});
+const endDrag = () => {
+  if (!drag) return;
+  const d = drag; drag = null;
+  if (d.axis === "x" && items.length > 1 && (Math.abs(d.dx) > 70 || Math.abs(d.vx) > .45)) go(d.dx < 0 ? 1 : -1, d.dx);
+  else if (d.axis === "y" && (d.dy > 110 || d.vy > .5)) closeLightbox();
+  else if (d.axis) { const from = lbImg.style.transform; lbImg.style.transform = ""; lbAnim.push(lbImg.animate([{transform: from}, {transform: "none"}], {duration: 360, easing: SHEET})); }
+};
+lbStage.addEventListener("pointerup", endDrag);
+lbStage.addEventListener("pointercancel", endDrag);
 
 // ----- Calendar: weekly Saturday runs + runs added in the admin -----
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -1110,63 +1448,162 @@ function buildCalendar() {
   };
   const first = list[0];
   next.innerHTML = `<div class="eyebrow">Next run · ${label(first.date)}</div>
-    <div class="cal-when"><span class="cal-day">${first.date.getDate()}</span><div><h3>${DAYS[first.date.getDay()]}</h3><small>${MONTHS[first.date.getMonth()]} ${first.date.getFullYear()}</small></div></div>
+    <div class="cal-when"><span class="cal-ring" aria-hidden="true"><svg viewBox="0 0 120 120"><circle class="trk" cx="60" cy="60" r="58"/><circle class="prg" cx="60" cy="60" r="58" pathLength="1"/></svg><span class="cal-day">${first.date.getDate()}</span></span><div><h3>${DAYS[first.date.getDay()]}</h3><small>${MONTHS[first.date.getMonth()]} ${first.date.getFullYear()}</small></div></div>
     <div class="cal-count"><small>Starts in</small><div id="cal-count"></div></div>
     <div class="cal-runs">${first.items.map(it => `<div class="cal-run"><div><strong>${esc(it.title || it.city)}</strong><span>${esc([it.title ? it.city : "", it.time || "Time shared on WhatsApp", it.place].filter(Boolean).join(" · "))}</span></div>${reg(it)}</div>`).join("")}</div>`;
   // Live countdown to the start time, or to the start of the run day when no time is set yet
   const t = first.items.map(it => parseTime(it.time)).find(Boolean) || [0, 0];
   const target = new Date(first.date); target.setHours(t[0], t[1], 0, 0);
-  const box = $("#cal-count"), pad = n => String(n).padStart(2, "0");
+  const box = $("#cal-count"), pad = n => String(n).padStart(2, "0"), sr = $("#cal-sr");
+  // The ring fills through the week, from last Saturday's run to this one
+  const ring = $(".cal-ring .prg", next), off = 1 - clamp01(1 - (target - riyadhNow()) / (7 * 864e5));
+  ring.style.setProperty("--off", off);
+  new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting) { ring.style.strokeDashoffset = off; o.disconnect(); } }), {threshold: .4}).observe(next);
+  // Race clock: only the digits that change flip over
+  box.innerHTML = ["Days", "Hrs", "Min", "Sec"].map(l => `<div><b></b><span>${l}</span></div>`).join("");
+  const cells = $$("b", box);
+  const setCell = (b, str) => {
+    while (b.children.length < str.length) b.insertAdjacentHTML("afterbegin", `<span class="dg"><i></i></span>`);
+    while (b.children.length > str.length) b.firstElementChild.remove();
+    [...str].forEach((ch, k) => {
+      const slot = b.children[k], cur = slot.lastElementChild;
+      if (cur.textContent === ch) return;
+      if (!cur.textContent || reduceMotion || document.hidden) { slot.innerHTML = `<i>${ch}</i>`; return; }
+      const nx = document.createElement("i"); nx.textContent = ch; nx.className = "from";
+      slot.appendChild(nx); void nx.offsetWidth; nx.className = ""; cur.className = "gone";
+      setTimeout(() => cur.remove(), 600);
+    });
+  };
+  let lastMin = -1;
   const tick = () => {
     const ms = Math.max(0, target - riyadhNow());
     const d = Math.floor(ms / 864e5), h = Math.floor(ms / 36e5) % 24, m = Math.floor(ms / 6e4) % 60, sec = Math.floor(ms / 1e3) % 60;
-    box.innerHTML = `<div><b>${d}</b><span>Days</span></div><div><b>${pad(h)}</b><span>Hrs</span></div><div><b>${pad(m)}</b><span>Min</span></div><div><b>${pad(sec)}</b><span>Sec</span></div>`;
+    [String(d), pad(h), pad(m), pad(sec)].forEach((v, i) => setCell(cells[i], v));
+    // Screen readers hear it once a minute, not every second
+    if (m !== lastMin) { lastMin = m; sr.textContent = ms ? `Next run starts in ${d} days, ${h} hours and ${m} minutes.` : "It's run day."; }
     if (!ms) { box.parentNode.querySelector("small").textContent = "Run day"; clearInterval(timer); }
   };
   const timer = setInterval(tick, 1000); tick();
 }
 
 // ----- Registration -----
+// Feedback while the registration page opens. Nothing here claims you're registered: that happens on the form itself
+function opening(el) {
+  if (el.classList.contains("busy")) return;
+  const label = el.querySelector("#loc-register-label") || el, text = label.textContent;
+  label.textContent = "Opening…"; el.classList.add("busy");
+  setTimeout(() => { label.textContent = text; el.classList.remove("busy"); }, 1600);
+}
 const dlg = $("#register-dialog");
 document.addEventListener("click", e => {
+  const ext = e.target.closest(".cal-run a[target]");
+  if (ext) { opening(ext); return; }
   const b = e.target.closest("[data-register]");
   if (!b) return;
   const key = b.dataset.register, url = (CONTENT.registration || {})[key];
-  if (url) { window.open(url, "_blank", "noopener"); return; }
+  if (url) { opening(b); window.open(url, "_blank", "noopener"); return; }
   $("#dlg-city").textContent = CITY_NAMES[key];
+  dlg.classList.remove("closing");
   dlg.showModal();
 });
-$("#dlg-close").addEventListener("click", () => dlg.close());
-dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+let regAnim = null;
+function closeReg(fromY = 0) {
+  if (!dlg.open || dlg.classList.contains("closing")) return;
+  dlg.classList.add("closing");
+  const done = () => { dlg.close(); dlg.classList.remove("closing"); dlg.style.transform = ""; if (regAnim) regAnim.cancel(); regAnim = null; };
+  if (reduceMotion) return done();
+  const kf = isPhone() ? [{transform: `translateY(${fromY}px)`}, {transform: "translateY(100%)"}] : [{opacity: 1, transform: "none"}, {opacity: 0, transform: "scale(.97)"}];
+  regAnim = dlg.animate(kf, {duration: isPhone() ? 320 : 200, easing: SHEET, fill: "forwards"});
+  regAnim.finished.then(done, () => {});
+}
+$("#dlg-close").addEventListener("click", () => closeReg());
+dlg.addEventListener("click", e => { if (e.target === dlg) closeReg(); });
+dlg.addEventListener("cancel", e => { e.preventDefault(); closeReg(); });
+// On phones the sheet follows your finger; let go low or fast and it closes
+let sheetDrag = null;
+dlg.addEventListener("pointerdown", e => {
+  if (!isPhone() || e.target.closest("a,button")) return;
+  sheetDrag = {y: e.clientY, dy: 0, v: 0, t: e.timeStamp};
+  dlg.setPointerCapture(e.pointerId);
+});
+dlg.addEventListener("pointermove", e => {
+  if (!sheetDrag) return;
+  const raw = e.clientY - sheetDrag.y, dy = raw > 0 ? raw : raw / 5;
+  sheetDrag.v = (dy - sheetDrag.dy) / Math.max(1, e.timeStamp - sheetDrag.t); sheetDrag.dy = dy; sheetDrag.t = e.timeStamp;
+  dlg.style.transform = `translateY(${dy}px)`;
+});
+const endSheet = () => {
+  if (!sheetDrag) return;
+  const {dy, v} = sheetDrag; sheetDrag = null;
+  if (dy > 110 || v > .5) return closeReg(dy);
+  dlg.style.transform = "";
+  if (dy) dlg.animate([{transform: `translateY(${dy}px)`}, {transform: "none"}], {duration: 340, easing: SHEET});
+};
+dlg.addEventListener("pointerup", endSheet);
+dlg.addEventListener("pointercancel", endSheet);
 
 // ----- Story: background settles in when the section arrives -----
-const story = $("#story");
 new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting) { story.classList.add("in"); o.disconnect(); } }), {threshold: .2}).observe(story);
 
-// ----- Scroll: nav state -----
-function onScroll() {
-  nav.classList.toggle("solid", scrollY > hero.offsetHeight - 100);
-}
-addEventListener("scroll", onScroll, {passive: true}); onScroll();
+$$(".story-cards img").forEach(fadeImg);
 
-// ----- One animation loop -----
-const track = $("#track"), heroInner = $(".hero-content .wrap");
-const routePath = $("#route-path"), runner = $("#runner"), routeLen = routePath.getTotalLength();
-let runT = 0;
-// Measure once (and on resize) instead of every frame; only animate what is on screen
-const onScreen = {hero: true, story: false, map: false};
-const visIO = new IntersectionObserver(es => es.forEach(e => onScreen[e.target.dataset.vis] = e.isIntersecting));
-[[hero, "hero"], [map, "map"]].forEach(([el, k]) => { el.dataset.vis = k; visIO.observe(el); });
-let maxY = 1, lastY = -1;
+// ----- Scroll: nav state, active section, the route -----
+const SECTIONS = ["story", "locations", "calendar", "archive", "collaborations"];
+const track = $("#track"), trackDot = $("#track-dot"), routeNav = $("#route-nav"), rnFill = $("#rn-fill"), rnRunner = $("#rn-runner");
+const routeLinks = $$("a", routeNav), sectionLinks = [...$$(".nav-links a, #sheet a"), ...routeLinks];
+const toneEls = [...$$("main > header, main > section"), $(".footer")];
+let maxY = 1, lastY = -1, heroH = 1, routeH = 1, secTops = [], tones = [], curSec = null;
+let storyTop = 0, storyH = 1;
+function onScroll() {
+  const y = scrollY, p = clamp01(y / maxY);
+  nav.classList.toggle("solid", y > heroH - 100);
+  track.style.transform = `scaleX(${p})`;
+  trackDot.style.transform = `translateX(${p * innerWidth}px)`;
+  rnFill.style.transform = `scaleY(${p})`;
+  rnRunner.style.transform = `translateY(${p * routeH}px)`;
+  routeNav.classList.toggle("show", y > innerHeight * .6);
+  // Green markers over the light sections, cream over the dark ones
+  const mid = y + innerHeight / 2, zone = tones.find(z => mid >= z.top && mid < z.bottom);
+  routeNav.classList.toggle("ink", !!(zone && zone.light));
+  let sec = "";
+  secTops.forEach((t, i) => { if (y >= t - innerHeight * .45) sec = SECTIONS[i]; });
+  if (sec !== curSec) {
+    curSec = sec;
+    sectionLinks.forEach(a => {
+      const on = a.getAttribute("href") === "#" + sec;
+      a.classList.toggle("on", on);
+      if (on) a.setAttribute("aria-current", "location"); else a.removeAttribute("aria-current");
+    });
+  }
+}
 function measure() {
   maxY = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+  heroH = hero.offsetHeight; routeH = routeNav.offsetHeight;
+  secTops = SECTIONS.map(id => $("#" + id).offsetTop);
+  tones = toneEls.map(el => ({top: el.offsetTop, bottom: el.offsetTop + el.offsetHeight, light: /numbers|calendar|archive/.test(el.className)}));
+  routeLinks.forEach((a, i) => a.style.setProperty("--p", clamp01((secTops[i] - 60) / maxY).toFixed(4)));
+  storyTop = story.offsetTop; storyH = story.offsetHeight;
+  lanes.forEach(l => l.w = l.el.scrollWidth / 2);
   lastY = -1;
+  onScroll();
 }
+addEventListener("scroll", onScroll, {passive: true});
 addEventListener("resize", measure); addEventListener("load", measure);
-function frameLoop() {
+new ResizeObserver(() => measure()).observe(document.body);
+
+// ----- One animation loop: only what is on screen moves -----
+const heroInner = $(".hero-content .wrap");
+const routePath = $("#route-path"), runner = $("#runner"), routeLen = routePath.getTotalLength();
+const storyPh = $$(".story-cards .ph"), STORY_DEPTH = [-36, 26, -16];
+let runT = 0, lastT = 0, prevY = scrollY, scrollPace = 0, lanePace = 1;
+const onScreen = {hero: true, story: false, map: false, collab: false};
+const visIO = new IntersectionObserver(es => es.forEach(e => onScreen[e.target.dataset.vis] = e.isIntersecting));
+[[hero, "hero"], [story, "story"], [map, "map"], [$("#collaborations"), "collab"]].forEach(([el, k]) => { el.dataset.vis = k; visIO.observe(el); });
+function frameLoop(t) {
+  const dt = lastT ? Math.min(64, t - lastT) : 16; lastT = t;
   const y = scrollY, moved = y !== lastY;
   lastY = y;
-  if (moved) track.style.transform = `scaleX(${y / maxY})`;
+  scrollPace += (Math.abs(y - prevY) / dt - scrollPace) * .15; prevY = y;
   if (onScreen.hero) {
     if (moved && finePointer) {
       const p = y / innerHeight;
@@ -1180,11 +1617,27 @@ function frameLoop() {
       runner.setAttribute("cx", pt.x); runner.setAttribute("cy", pt.y);
     }
   }
+  // Story photos sit at different depths (mouse and trackpad only)
+  if (onScreen.story && moved && finePointer) {
+    const k = (y + innerHeight - storyTop) / (innerHeight + storyH) - .5;
+    storyPh.forEach((ph, i) => ph.style.transform = `translate3d(0,${(k * STORY_DEPTH[i]).toFixed(1)}px,0)`);
+  }
   if (onScreen.map) legs.forEach(l => {
     l.t = (l.t + .004) % 1;
     const pt = l.path.getPointAtLength(l.t * l.len);
     l.dot.setAttribute("cx", pt.x); l.dot.setAttribute("cy", pt.y);
   });
+  // Partner lanes pick up pace when you scroll fast, then settle back to a jog
+  if (onScreen.collab && lanes.length) {
+    const target = laneHold ? 0 : 1 + Math.min(scrollPace * 2.4, 3.5);
+    lanePace += (target - lanePace) * Math.min(1, dt / (target > lanePace ? 120 : 420));
+    lanes.forEach(l => {
+      l.x += l.dir * (l.w / (l.secs * 1000)) * lanePace * dt;
+      if (l.x <= -l.w) l.x += l.w;
+      if (l.x > 0) l.x -= l.w;
+      l.el.style.transform = `translate3d(${l.x.toFixed(2)}px,0,0)`;
+    });
+  }
   requestAnimationFrame(frameLoop);
 }
 
@@ -1204,6 +1657,7 @@ function frameLoop() {
   renderStats(CONTENT.stats);
   buildCalendar();
   renderPartners(CONTENT.partners);
+  setupLanes();
   $("#ig-link").href = `https://www.instagram.com/${CONTENT.instagram.username}/`;
   const feed = CONTENT.instagram.feed_url ? await loadInstagram(CONTENT.instagram.feed_url) : null;
   renderGallery(feed || CONTENT.gallery, !!feed);
